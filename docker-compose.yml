@@ -1,0 +1,21 @@
+version: '3'
+services:
+
+  rbs_api:
+    image: rbs_api_image
+    restart: always
+    ports:
+      - "7321:7321"
+    networks:
+      main:
+  
+  rbs_web:
+    image: rbs_web_image
+    restart: always
+    ports:
+      - "8888:3000"
+    networks:
+      main:
+networks:
+  main:
+    driver: bridge              
