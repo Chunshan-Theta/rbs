@@ -63,3 +63,6 @@ typings/
 
 # mongodb
 dump
+
+#.idea
+.idea/*

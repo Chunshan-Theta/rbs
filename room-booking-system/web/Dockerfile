@@ -1,6 +1,6 @@
 FROM node:14.11.0-alpine
 
-LABEL Name=rbs_api
+LABEL Name=rbs_web
 
 
 WORKDIR /app
