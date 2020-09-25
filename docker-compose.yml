@@ -1,7 +1,7 @@
 version: '3'
 services:
 
-  rbs_api:
+  rbs_api_container:
     image: rbs_api_image
     restart: always
     ports:
@@ -9,7 +9,7 @@ services:
     networks:
       main:
   
-  rbs_web:
+  rbs_web_container:
     image: rbs_web_image
     restart: always
     ports:
