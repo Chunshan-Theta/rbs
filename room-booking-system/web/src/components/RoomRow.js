@@ -7,9 +7,9 @@ const rowMapper = (dayHours, props) => {
   let tableRow = []
 
   // Loop through each hour from 8AM to 9PM (starting at 8AM = 0)
-  for (var i = 0; i < 13; i++) {
+  for (var i = 0; i < 16; i++) {
     // Extract the corresponding data from the 24 hour array
-    let bookingData = dayHours[i + 8]
+    let bookingData = dayHours[i+8]
 
     // If the data for that hour is a number (not a booking object), there is no booking
     // Add a <td> element that indicates the time slot is available

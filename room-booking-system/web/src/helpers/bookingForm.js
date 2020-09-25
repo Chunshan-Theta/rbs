@@ -27,7 +27,12 @@ export const startTimeSelectOptions = [
   <option value="19:00">7:00pm</option>,
   <option value="19:30">7:30pm</option>,
   <option value="20:00">8:00pm</option>,
-  <option value="20:30">8:30pm</option>
+  <option value="20:30">8:30pm</option>,
+  <option value="21:00">9:00pm</option>,
+  <option value="21:30">9:30pm</option>,
+  <option value="22:00">10:00pm</option>,
+  <option value="22:30">10:30pm</option>,
+  <option value="23:00">11:00pm</option>
 ]
 
 export const endTimeSelectOptions = [
@@ -56,7 +61,12 @@ export const endTimeSelectOptions = [
   <option value="19:30">7:30pm</option>,
   <option value="20:00">8:00pm</option>,
   <option value="20:30">8:30pm</option>,
-  <option value="21:00">9:00pm</option>
+  <option value="21:00">9:00pm</option>,
+  <option value="21:30">9:30pm</option>,
+  <option value="22:00">10:00pm</option>,
+  <option value="22:30">10:30pm</option>,
+  <option value="23:00">11:00pm</option>,
+  <option value="23:30">11:30pm</option>
 ]
 
 // formats the time extracted from the time inputs into an array, eg 8:30 => [8, 30]

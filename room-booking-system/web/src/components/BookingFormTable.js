@@ -131,6 +131,33 @@ const BookingFormTable = props => (
             onShowBooking={props.onShowBooking}
           />
       </tr>
+      <tr className="table__row--full">
+        <th scope="row">9pm</th>
+          <ColumnCell
+            date={props.date}
+            bookings={props.roomData.bookings}
+            hour={21}
+            onShowBooking={props.onShowBooking}
+          />
+      </tr>
+      <tr className="table__row--full">
+        <th scope="row">10pm</th>
+          <ColumnCell
+            date={props.date}
+            bookings={props.roomData.bookings}
+            hour={22}
+            onShowBooking={props.onShowBooking}
+          />
+      </tr>
+      <tr className="table__row--full">
+        <th scope="row">11pm</th>
+          <ColumnCell
+            date={props.date}
+            bookings={props.roomData.bookings}
+            hour={23}
+            onShowBooking={props.onShowBooking}
+          />
+      </tr>
     </tbody>
   </table>
 )

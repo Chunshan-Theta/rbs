@@ -6,7 +6,7 @@ import api from './init'
 // Data expected in [year, month, date, hours, seconds] format
 const dateUTC = (dataArray) => {
   // Ensure date data is saved in AEST and then converted to a Date object in UTC
-  return momentTimezone(dataArray).tz('Australia/Sydney').toDate()
+  return momentTimezone(dataArray).tz("Asia/Taipei").toDate()
 }
 
 // Make a room booking

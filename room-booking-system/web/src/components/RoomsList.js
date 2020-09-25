@@ -5,7 +5,7 @@ import { roomSorter } from '../helpers/sorter'
 const RoomsList = props => (
   <table className="table">
     <tr className="table__row table__row--header">
-      <th scope="colgroup" colSpan="15" className="table__cell--header table__cell--level table__cell--align-left">
+      <th scope="colgroup" colSpan="17" className="table__cell--header table__cell--level table__cell--align-left">
         Level Eight
       </th>
     </tr>
@@ -52,6 +52,15 @@ const RoomsList = props => (
       <th scope="col" className="table__cell--header">
         8pm
       </th>
+      <th scope="col" className="table__cell--header">
+        9pm
+      </th>
+      <th scope="col" className="table__cell--header">
+        10pm
+      </th>
+      <th scope="col" className="table__cell--header">
+        11pm
+      </th>
     </tr>
     <tbody className="table__body">
       {props.rooms &&
@@ -67,7 +76,7 @@ const RoomsList = props => (
         ))}
     </tbody>
     <tr className="table__row table__row--header">
-      <th scope="colgroup" colSpan="15" className="table__cell--header table__cell--level table__cell--align-left">
+      <th scope="colgroup" colSpan="17" className="table__cell--header table__cell--level table__cell--align-left">
         Level Thirteen
       </th>
     </tr>
