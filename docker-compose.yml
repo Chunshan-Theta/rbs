@@ -6,8 +6,8 @@ services:
     build: ./room-booking-system/api/
     environment:
       - MONGO_URI=mongodb://pythontest:pythontest@cluster0-shard-00-00.enocw.mongodb.net:27017,cluster0-shard-00-01.enocw.mongodb.net:27017,cluster0-shard-00-02.enocw.mongodb.net:27017/MongoDbToolCommonUnittest?ssl=true&replicaSet=atlas-qr78be-shard-0&authSource=admin&retryWrites=true&w=majority
-      - JWT_SECRET="jwtSecret_20200914"
-      - JWT_ALGORITHM="HS256"
+      - JWT_SECRET=jwtSecret_20200914
+      - JWT_ALGORITHM=HS256
       - JWT_EXPIRES_IN=3600
       - NODE_ENV=dev
     restart: always
@@ -20,6 +20,9 @@ services:
     #image: rbs_web_image
     build: ./room-booking-system/web/
     restart: always
+    environment:
+      - REACT_APP_API_URL=http://127.0.0.1:7321
+
     ports:
       - "80:3000"
     networks:
