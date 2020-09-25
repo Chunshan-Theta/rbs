@@ -123,6 +123,15 @@ const RoomsList = props => (
       <th scope="col" className="table__cell--header">
         8pm
       </th>
+      <th scope="col" className="table__cell--header">
+        9pm
+      </th>
+      <th scope="col" className="table__cell--header">
+        10pm
+      </th>
+      <th scope="col" className="table__cell--header">
+        11pm
+      </th>
     </tr>
     <tbody className="table__body">
       {props.rooms &&
