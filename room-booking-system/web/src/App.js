@@ -85,14 +85,14 @@ class App extends Component {
   }
 
   // Makes a booking by updating the database and the React state
-  onMakeBooking = ({ startDate, endDate, businessUnit, purpose, roomId, recurringData }) => {
-    const bookingData = { startDate, endDate, businessUnit, purpose, roomId }
+  onMakeBooking = ({ startDate, endDate, businessUnit, purpose, roomId, recurringData, description }) => {
+    const bookingData = { startDate, endDate, businessUnit, purpose, roomId, description }
     const existingBookings = this.state.currentRoom.bookings
 
     // Check if there is a clash and, if not, save the new booking to the database
     try {
       makeBooking(
-        { startDate, endDate, businessUnit, purpose, roomId, recurringData },
+        { startDate, endDate, businessUnit, purpose, roomId, recurringData, description },
         existingBookings
       )
         .then(updatedRoom => {
@@ -277,7 +277,7 @@ class App extends Component {
                     {!!decodedToken && !!roomData && !loading && (
                       <div className="wrapper">
                         <div className="header header__nav header--flex">
-                          <h1 className="header__heading header__heading--main">Company Name Here</h1>
+                          <h1 className="header__heading header__heading--main">多一個空間</h1>
                           <NavBar
                             signOut={signOut}
                             loadMyBookings={loadMyBookings}
@@ -342,7 +342,7 @@ class App extends Component {
                         !!currentRoom && (
                           <div className="wrapper">
                             <header className="header header__nav header--flex">
-                              <h1 className="header__heading header__heading--main">Company Name Here</h1>
+                              <h1 className="header__heading header__heading--main">多一個空間</h1>
                               <NavBar
                                 signOut={signOut}
                                 loadMyBookings={loadMyBookings}
@@ -380,7 +380,7 @@ class App extends Component {
                         !!roomData && (
                           <div className="wrapper">
                             <div className="header header__nav header--flex">
-                              <h1 className="header__heading header__heading--main">Company Name Here</h1>
+                              <h1 className="header__heading header__heading--main">多一個空間</h1>
                               <NavBar
                                 signOut={signOut}
                                 loadMyBookings={loadMyBookings}

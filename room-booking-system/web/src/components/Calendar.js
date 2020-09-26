@@ -1,8 +1,8 @@
 import React from 'react'
 import Datetime from 'react-datetime'
 
-const validDate = current => current.day() !== 0
-
+//const validDate = current => current.day() !== 0
+const validDate = current => 1
 const Calendar = props => (
   <Datetime
     dateFormat="YYYY-MM-DD"

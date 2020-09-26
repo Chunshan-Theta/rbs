@@ -110,8 +110,9 @@ router.put('/rooms/:id', requireJWT, (req, res) => {
       let proposedBookingDateStart = bookingDateTracker.add(1, units)
     
       // Check whether this day is a Sunday (no bookings on Sundays)
-      if (proposedBookingDateStart.day() !== 0) {
-        
+      //if (proposedBookingDateStart.day() !== 0) {
+      if (1) {
+
         // Create a new booking object based on the first booking 
         let newBooking = Object.assign({}, firstBooking)
         

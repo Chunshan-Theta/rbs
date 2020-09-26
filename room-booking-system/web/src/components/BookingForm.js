@@ -10,7 +10,8 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
   // Disable sunday (day 0) on the calendar as an booking option
   const valid = function(current) {
 
-    return current.day() !== 0
+    //return current.day() !== 0
+    return 1
   }
 
   const handleEndDate = (dateArray) => {
@@ -70,7 +71,7 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
             let recurringData = handleRecurringData(recurringType, recurringEnd)
             const purpose = formData.purpose.value
             const description = formData.description.value
-          onMakeBooking({ startDate, endDate, businessUnit, purpose, roomId, recurringData })
+          onMakeBooking({ startDate, endDate, businessUnit, purpose, roomId, recurringData, description })
         }}>
         <div className="content__calendar">
           <Datetime
@@ -89,7 +90,7 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
           <h3 className="header__heading header__heading--column">Make a Booking</h3>
           <div className="form__group form__group--margin-top">
             <label className="form__label form__label--booking">
-              {'Start time'}
+              {'開始時間'}
               <select name="startTime" className="form__input form__input--select">
                 {startTimeSelectOptions.map(option => {
                   return option
@@ -99,7 +100,7 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
           </div>
           <div className="form__group">
             <label className="form__label form__label--booking">
-              {'End time'}
+              {'結束時間'}
               <select name="endTime" className="form__input form__input--select">
                 {endTimeSelectOptions.map(option => {
                   return option
@@ -109,19 +110,19 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
           </div>
           <div className="form__group">
             <label className="form__label form__label--booking">
-              {'Business Unit'}
-              <select name="business" defaultValue="Business Unit 1" className="form__input form__input--select">
-                <option value="Business Unit 1">固定電影聚會</option>
-                <option value="Business Unit 2">固定桌遊活動</option>
-                <option value="Business Unit 3">互惠合作</option>
-                <option value="Business Unit 4">經常性遊客</option>
-                <option value="Business Unit 5">新進遊客</option>
+              {'類型'}
+              <select name="business" defaultValue="固定電影聚會" className="form__input form__input--select">
+                <option value="固定電影聚會">電影聚會</option>
+                <option value="固定桌遊活動">桌遊活動</option>
+                <option value="互惠合作預定">互惠合作預定</option>
+                <option value="經常性遊客預定">經常性遊客預定</option>
+                <option value="新進遊客預定">新進遊客預定</option>
               </select>
             </label>
           </div>
           <div className="form__group">
             <label className="form__label form__label--booking">
-              {'Recurring'}
+              {'重複性'}
               <span>
                 <select name="recurring" defaultValue="none" onChange={(event) => onToggleRecurring(event.target.value)} className="form__input form__input--select">
                   <option value="none">Non recurring</option>
@@ -133,16 +134,15 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
             </label>
           </div>
           <label className="form__label form__label--booking">
-            {'Recurring end date'}
+            {'重複結束日期'}
             <input type="date" name="recurringEndDate" disabled={disableRecurring} className="form__input--date"/>
           </label>
           <div className="form__group">
             <label className="form__label form__label--booking">
-              {'Purpose'}
-              <select name="purpose" defaultValue="Scheduled class" className="form__input form__input--select">
-                <option value="Scheduled Class">Scheduled class</option>
-                <option value="Special Event">Special event</option>
-                <option value="Ad-hoc Event">Ad-hoc event</option>
+              {'標籤'}
+              <select name="purpose" defaultValue="比賽" className="form__input form__input--select">
+                <option value="聯誼">聯誼</option>
+                <option value="比賽">比賽</option>
               </select>
             </label>
           </div>

@@ -36,9 +36,9 @@ const BookingModal = props => {
             <p className="modal__paragraph">{`${momentTimezone.tz(props.selectedBooking['bookingStart'], 'Asia/Taipei').format('MMMM Do, YYYY')} to ${momentTimezone.tz(props.selectedBooking['bookingEnd'], 'Asia/Taipei').format('MMMM Do, YYYY')}`}
           </p>
           </p>
-          <p className="modal__paragraph"><strong>Business Unit </strong>{props.selectedBooking['businessUnit']}</p>
-          <p className="modal__paragraph"><strong>Purpose </strong>{props.selectedBooking['purpose']}</p>
-          <p className="modal__paragraph"><strong>Description </strong>{props.selectedBooking['description']}</p>
+          <p className="modal__paragraph"><strong>活動類型  </strong>{props.selectedBooking['businessUnit']}</p>
+          <p className="modal__paragraph"><strong>活動標籤  </strong>{props.selectedBooking['purpose']}</p>
+          <p className="modal__paragraph"><strong>活動說明  </strong>{props.selectedBooking['description']}</p>
         </div>
       )}
       <a href={`mailto:${props.user}`} className="button">Contact</a>

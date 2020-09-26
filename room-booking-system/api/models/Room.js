@@ -12,6 +12,7 @@ const bookingSchema = new Schema({
   recurring: [],
   businessUnit: { type: String, required: true },
   purpose: { type: String, required: true },
+  description: { type: String, required: false },
   roomId: { type: Schema.ObjectId, ref: 'Room' }
 })
 
