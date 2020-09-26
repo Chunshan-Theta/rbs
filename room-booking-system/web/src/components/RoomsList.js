@@ -6,7 +6,7 @@ const RoomsList = props => (
   <table className="table">
     <tr className="table__row table__row--header">
       <th scope="colgroup" colSpan="17" className="table__cell--header table__cell--level table__cell--align-left">
-        Level Eight
+        1樓
       </th>
     </tr>
     <tr className="table__row table__row--subheader">
@@ -64,7 +64,7 @@ const RoomsList = props => (
     </tr>
     <tbody className="table__body">
       {props.rooms &&
-        roomSorter(props.rooms, '8').map(room => (
+        roomSorter(props.rooms, '1').map(room => (
           <RoomRow
             key={room._id}
             room={room}
@@ -77,7 +77,7 @@ const RoomsList = props => (
     </tbody>
     <tr className="table__row table__row--header">
       <th scope="colgroup" colSpan="17" className="table__cell--header table__cell--level table__cell--align-left">
-        Level Thirteen
+        B1
       </th>
     </tr>
     <tr className="table__row table__row--subheader">
@@ -135,7 +135,7 @@ const RoomsList = props => (
     </tr>
     <tbody className="table__body">
       {props.rooms &&
-        roomSorter(props.rooms, '13').map(room => (
+        roomSorter(props.rooms, 'B1').map(room => (
           <RoomRow
             key={room._id}
             room={room}

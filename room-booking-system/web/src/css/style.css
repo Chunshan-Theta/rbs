@@ -313,6 +313,7 @@ td.rdtYear:hover {
   width: 23rem;
 }
 .key__group {
+  width:100%;
   display: -webkit-inline-box;
   display: -ms-inline-flexbox;
   display: inline-flex;
@@ -459,6 +460,7 @@ td.rdtYear:hover {
   box-shadow: unset;
 }
 .table__data--asset {
+  width:100%;
   font-family: "proxima-nova", sans-serif;
   font-size: 1.4rem;
   font-weight: 400;

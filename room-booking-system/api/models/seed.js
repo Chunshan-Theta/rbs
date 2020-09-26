@@ -24,7 +24,7 @@ Room.create([
     capacity: 18,
     assets: {
       projector: true,
-      opWalls: true
+      asset_tool_0: true
     }
   },
   {
@@ -37,7 +37,7 @@ Room.create([
     floor: '8',
     capacity: 18,
     assets: {
-      opWalls: true
+      asset_tool_0: true
     }
   },
   {
@@ -138,7 +138,7 @@ Room.create([
     floor: '13',
     capacity: 20,
     assets: {
-      opWalls: true
+      asset_tool_0: true
     }
   },
   {
@@ -146,7 +146,7 @@ Room.create([
     floor: '13',
     capacity: 20,
     assets: {
-      opWalls: true
+      asset_tool_0: true
     }
   },
   {
@@ -154,7 +154,7 @@ Room.create([
     floor: '13',
     capacity: 20,
     assets: {
-      opWalls: true
+      asset_tool_0: true
     }
   },
   {
@@ -163,7 +163,7 @@ Room.create([
     capacity: 20,
     assets: {
       projector: true,
-      opWalls: true
+      asset_tool_0: true
     }
   },
   {

@@ -90,11 +90,12 @@ const RoomRow = props => (
   <tr className="table__row">
     <th scope="row" className="table__cell--align-left">
       <Link to="/createbooking" onClick={() => props.onSetRoom(props.room._id)} className="table__link">{props.room.name}</Link>
+      <p className="table__data--asset">可容人數：{props.room.capacity}</p>
       <ul >
       {Object.keys(props.room.assets).map(
         asset =>
           props.room.assets[asset] && (
-            <li key={asset} onClick={props.onShowBooking} className="table__data--asset">{formatAssetName(asset)}</li>
+            <li key={asset} onClick={props.NoImpletement} className="table__data--asset">{formatAssetName(asset)}</li>
             )
           )}
       </ul>

@@ -7,9 +7,9 @@ export const floorParams = [ {name: '8', value: false}, {name: '13', value: fals
 // initial feature filter parameters
 export const filterParams = [ 
   {name: 'macLab', value: false},
-  {name: 'pcLab', value: false},
+  {name: 'asset_tool_1', value: false},
   {name: 'tv', value: false},
-  {name: 'opWalls', value: false},
+  {name: 'asset_tool_0', value: false},
   {name: 'projector', value: false} ]
 
 // Initial Capacity parameters
@@ -19,6 +19,9 @@ export const capacityParams = [
   {capacity: 20, id: '20seats', value: false},
   {capacity: 24, id: '24seats', value: false},
   {capacity: 40, id: '40seats', value: false},
+  {capacity: 6, id: '6seats', value: false},
+  {capacity: 10, id: '10seats', value: false},
+  {capacity: 30, id: '30seats', value: false},
 ]
 
 // Filtering Functions
@@ -37,12 +40,12 @@ export const onFilterByFeature = (params, filteredData) => {
   params.forEach(feature => {
     if (feature.name === 'macLab' && feature.value === true) {
       filteredData = filteredData.filter(room => room.assets.macLab === true)
-    } else if (feature.name === 'pcLab' && feature.value === true) {
+    } else if (feature.name === 'asset_tool_1' && feature.value === true) {
       filteredData = filteredData.filter(room => room.assets.pcLab === true)
     } else if (feature.name === 'tv' && feature.value === true) {
       filteredData = filteredData.filter(room => room.assets.tv === true)
-    } else if (feature.name === 'opWall' && feature.value === true) {
-      filteredData = filteredData.filter(room => room.assets.opWalls === true)
+    } else if (feature.name === 'asset_tool_0' && feature.value === true) {
+      filteredData = filteredData.filter(room => room.assets.asset_tool_0 === true)
     } else if (feature.name === 'projector' && feature.value === true) {
       filteredData = filteredData.filter(room => room.assets.projector === true)
     }

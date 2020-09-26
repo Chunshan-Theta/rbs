@@ -2,9 +2,9 @@ import React from 'react'
 import moment from 'moment'
 
 const formatAssetName = asset => {
-  if (asset === 'opWalls') {
-    return 'Operable Walls'
-  } else if (asset === 'pcLab') {
+  if (asset === 'asset_tool_0') {
+    return '*投影機'
+  } else if (asset === 'asset_tool_1') {
     return 'PC Lab'
   } else if (asset === 'macLab') {
     return 'Mac Lab'

@@ -5,23 +5,23 @@ const Key = props => (
     <h3 className="header__heading header__heading--sidebar">Key</h3>
     <div className="key__group">
       <span className="key__square key__square--bu1"></span>
-      <p className="key__description">Business Unit 1</p>
+      <p className="key__description">固定電影聚會</p>
     </div>
     <div className="key__group">
       <span className="key__square key__square--bu2"></span>
-      <p className="key__description">Business Unit 2</p>
+      <p className="key__description">固定桌遊活動</p>
     </div>
     <div className="key__group">
       <span className="key__square key__square--bu3"></span>
-      <p className="key__description">Business Unit 3</p>
+      <p className="key__description">互惠合作</p>
     </div>
     <div className="key__group">
       <span className="key__square key__square--bu4"></span>
-      <p className="key__description">Business Unit 4</p>
+      <p className="key__description">經常性遊客</p>
     </div>
     <div className="key__group">
       <span className="key__square key__square--bu5"></span>
-      <p className="key__description">Business Unit 5</p>
+      <p className="key__description">新進遊客</p>
     </div>
   </div>
 )

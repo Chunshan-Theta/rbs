@@ -9,6 +9,7 @@ import { formatTime, startTimeSelectOptions, endTimeSelectOptions } from '../hel
 function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onShowBooking, disableRecurring, onToggleRecurring }) {
   // Disable sunday (day 0) on the calendar as an booking option
   const valid = function(current) {
+
     return current.day() !== 0
   }
 
@@ -110,11 +111,11 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
             <label className="form__label form__label--booking">
               {'Business Unit'}
               <select name="business" defaultValue="Business Unit 1" className="form__input form__input--select">
-                <option value="Business Unit 1">Business Unit 1</option>
-                <option value="Business Unit 2">Business Unit 2</option>
-                <option value="Business Unit 3">Business Unit 3</option>
-                <option value="Business Unit 4">Business Unit 4</option>
-                <option value="Business Unit 5">Business Unit 5</option>
+                <option value="Business Unit 1">固定電影聚會</option>
+                <option value="Business Unit 2">固定桌遊活動</option>
+                <option value="Business Unit 3">互惠合作</option>
+                <option value="Business Unit 4">經常性遊客</option>
+                <option value="Business Unit 5">新進遊客</option>
               </select>
             </label>
           </div>
