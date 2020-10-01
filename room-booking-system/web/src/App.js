@@ -6,6 +6,16 @@ import {
   Redirect
 } from 'react-router-dom'
 import './css/style.css'
+//
+import './css/sass/styles.css'
+import './css/sass/event.css'
+import './css/sass/month.css'
+import './css/sass/reset.css'
+import './css/sass/time-column.css'
+import './css/sass/time-grid.css'
+import './css/sass/toolbar.css'
+import './css/sass/variables.css'
+
 import moment from 'moment'
 
 import BookingForm from './components/BookingForm'
@@ -18,6 +28,7 @@ import NavBar from './components/NavBar'
 import RoomsList from './components/RoomsList'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
+import DashBoard from './components/ViewCalendar'
 
 import {
   signIn,
@@ -266,7 +277,11 @@ class App extends Component {
                     </div>
                   )
                 )} />
-
+                <Route path="/calendar_view" exact render={() =>
+                  (
+                      <DashBoard/>
+                  )
+                } />
                 <Route path="/bookings" exact render={requireAuth(() => (
                   <Fragment>
                     { !!decodedToken && !roomData && loading && (
