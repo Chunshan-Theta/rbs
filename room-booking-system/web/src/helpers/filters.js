@@ -19,7 +19,7 @@ export const capacityParams = [
   {capacity: 20, id: '20seats', value: false},
   {capacity: 24, id: '24seats', value: false},
   {capacity: 40, id: '40seats', value: false},
-  {capacity: 6, id: '6seats', value: false},
+  {capacity: 6,  id: '6seats',  value: false},
   {capacity: 10, id: '10seats', value: false},
   {capacity: 30, id: '30seats', value: false},
 ]

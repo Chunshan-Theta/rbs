@@ -21,15 +21,57 @@ Event = ({ event }) => (
       <p>{event.desc}</p>
     </span>
   )
-let DashBoard = () => (
-  <Calendar
-    events={events}
-    views={allViews}
-    components={{
-      event: Event,
-    }}
-    localizer={localizer}
-  />
-)
+
+function EventList(events){
+    var res = null
+    events.forEach(e=>{
+
+    res+=(
+        <span>
+          <p>{e.name}</p>
+          <p>{e.booking}</p>
+        </span>
+    )})
+    return res
+}
+
+function DashBoard({
+  roomData
+}){
+    var events_d = []
+    var id = 0
+    roomData.forEach(room=>{
+        var room_name = room.name
+        room.bookings.forEach(event=>{
+                var event_start = new Date(event.bookingStart)
+                var event_end = new Date(event.bookingStart)
+                event_end.setMinutes(event_end.getMinutes() + event.duration*60)
+            events_d.push({
+                id: id,
+                title: event.description?event.description: event.businessUnit,
+                allDay: false,
+                desc: room_name+","+event.businessUnit,
+                start: event_start,
+                end: event_end,
+              })
+            id+=1
+        })
+    })
+    return (
+    <div>
+      <Calendar
+        events={events_d}
+        views={allViews}
+        components={{
+          event: Event,
+        }}
+        localizer={localizer}
+      />
+    </div>
+
+  )
+}
+
+
 
 export default DashBoard

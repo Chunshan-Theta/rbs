@@ -36,6 +36,7 @@ import {
   signUp
 } from './api/auth'
 import { listRooms } from './api/rooms'
+import { listRoomsOfficial } from './api/rooms_official'
 import { getDecodedToken } from './api/token'
 import { makeBooking, deleteBooking, updateStateRoom } from './api/booking'
 import Calendar from './components/Calendar'
@@ -185,7 +186,6 @@ class App extends Component {
   // get today's bookings for all rooms
   oneSetCurrentDateBookings = () => {
     const currentDate = moment().format('DD-MM-YYYY')
-    // const roomData = this.state.roomData
     const roomData = this.state.roomData
     // array to collect todays bookings
     let todaysBookings = []
@@ -220,6 +220,7 @@ class App extends Component {
     this.setState({ userBookings: myBookings })
   }
 
+
   render() {
     const {
       decodedToken,
@@ -245,6 +246,7 @@ class App extends Component {
     let filteredData = []
     const featureParams = this.state.filterParams
     const date = this.state.currentDate
+
 
     if (!!roomData) {
       // Send all room data and the selected floor, return filtered floors and store in filteredData
@@ -278,9 +280,9 @@ class App extends Component {
                   )
                 )} />
                 <Route path="/calendar_view" exact render={() =>
-                  (
-                      <DashBoard/>
-                  )
+                    (
+                        <DashBoard roomData={roomData?roomData:[]}/>
+                    )
                 } />
                 <Route path="/bookings" exact render={requireAuth(() => (
                   <Fragment>
@@ -446,6 +448,20 @@ class App extends Component {
           const room = this.state.roomData[0]
           this.setRoom(room._id)
           // toggle loading page off
+          this.setState({ loading: false })
+        })
+        .catch(error => {
+          console.error('Error loading room data', error)
+          this.setState({ error })
+        })
+    }
+    else{
+      // display loading page
+      this.setState({ loading: true })
+      // load all of the rooms from the database
+      listRoomsOfficial()
+        .then(rooms => {
+          this.setState({ roomData: rooms})
           this.setState({ loading: false })
         })
         .catch(error => {
