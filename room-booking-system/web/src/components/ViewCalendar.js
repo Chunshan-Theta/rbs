@@ -15,7 +15,7 @@ const ColoredDateCellWrapper = ({ children }) =>
     },
   })
 
-EventParse = ({ event }) => (
+var EventParse = ({ event }) => (
     <span>
       <strong>{event.title}</strong>
       <p>{event.desc}</p>
