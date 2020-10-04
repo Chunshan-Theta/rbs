@@ -15,7 +15,7 @@ const ColoredDateCellWrapper = ({ children }) =>
     },
   })
 
-Event = ({ event }) => (
+EventParse = ({ event }) => (
     <span>
       <strong>{event.title}</strong>
       <p>{event.desc}</p>
@@ -63,7 +63,7 @@ function DashBoard({
         events={events_d}
         views={allViews}
         components={{
-          event: Event,
+          event: EventParse,
         }}
         localizer={localizer}
       />
