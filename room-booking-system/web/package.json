@@ -18,6 +18,7 @@
     "react-modal": "^3.1.11",
     "react-router-dom": "^4.2.2",
     "react-scripts": "1.0.17",
+    "react-big-calendar": "^0.28.0",
     "seed": "^0.4.4"
   },
   "scripts": {
@@ -35,5 +36,9 @@
     "autoprefixer-stylus": "^0.14.0",
     "concurrently": "^3.5.1",
     "stylus": "^0.54.5"
-  }
+  },
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC"
 }

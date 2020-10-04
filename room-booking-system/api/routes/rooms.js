@@ -6,6 +6,16 @@ const { requireJWT } = require('../middleware/auth')
 
 const router = new express.Router()
 
+router.get('/rooms_show', (req, res) => {
+  Room.find()
+    .then(rooms => {
+      res.json(rooms)
+    })
+    .catch(error => {
+      res.json({ error })
+    })
+})
+
 router.get('/rooms', requireJWT, (req, res) => {
   Room.find()
     .then(rooms => {
