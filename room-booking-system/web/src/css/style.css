@@ -949,3 +949,14 @@ input[type=radio] {
   right: 0;
   margin: auto;
 }
+
+#Calendar {
+  width: 80%;
+  padding: 25px 25px 25px 8%;
+}
+#eventDetailTitle{
+  padding: 25px 25px 25px 8%;
+}
+#eventDetailContent{
+  padding: 0px 8% 0px 8%;
+}

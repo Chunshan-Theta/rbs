@@ -89,6 +89,12 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
         <div className="content__form">
           <h3 className="header__heading header__heading--column">Make a Booking</h3>
           <div className="form__group form__group--margin-top">
+            <div className="form__group">
+            <label className="form__label form__label--booking">
+              {'主題'}
+              <textarea type="textarea" name="purpose" className="form__input--textarea"></textarea>
+            </label>
+          </div>
             <label className="form__label form__label--booking">
               {'開始時間'}
               <select name="startTime" className="form__input form__input--select">
@@ -137,15 +143,7 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
             {'重複結束日期'}
             <input type="date" name="recurringEndDate" disabled={disableRecurring} className="form__input--date"/>
           </label>
-          <div className="form__group">
-            <label className="form__label form__label--booking">
-              {'標籤'}
-              <select name="purpose" defaultValue="比賽" className="form__input form__input--select">
-                <option value="聯誼">聯誼</option>
-                <option value="比賽">比賽</option>
-              </select>
-            </label>
-          </div>
+
           <div className="form__group">
             <label className="form__label form__label--booking">
               {'Description'}

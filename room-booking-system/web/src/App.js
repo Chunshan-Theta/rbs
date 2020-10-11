@@ -59,7 +59,8 @@ class App extends Component {
     checked: null,
     currentRoom: null,
     error: null,
-    disableRecurring: true
+    disableRecurring: true,
+    eventDetail: [["請查看活動",["並點個感興趣的活動來了解更多"]]]
   }
 
   // Pass supplied first name, lastname, email & password to the signUp function, returns the user's token
@@ -95,7 +96,9 @@ class App extends Component {
   onCloseBooking = () => {
     this.setState(() => ({ selectedBooking: null }))
   }
-
+  updatedEvent = detailString => {
+    this.setState(() => ({ eventDetail: detailString }))
+  }
   // Makes a booking by updating the database and the React state
   onMakeBooking = ({ startDate, endDate, businessUnit, purpose, roomId, recurringData, description }) => {
     const bookingData = { startDate, endDate, businessUnit, purpose, roomId, description }
@@ -280,9 +283,24 @@ class App extends Component {
                   )
                 )} />
                 <Route path="/calendar_view" exact render={() =>
-                    (
-                        <DashBoard roomData={roomData?roomData:[]}/>
-                    )
+                     <Fragment>
+                     {  !roomData && loading &&
+                        (
+                            <div className="loading_animation">
+                                <Loading />
+                            </div>
+                        )
+                     }
+                     { roomData &&
+                        (
+                            <DashBoard
+                                roomData={roomData?roomData:[]}
+                                eventDetail={this.state.eventDetail}
+                                updatedEventDetail={this.updatedEvent}
+                            />
+                        )
+                     }
+                     </Fragment>
                 } />
                 <Route path="/bookings" exact render={requireAuth(() => (
                   <Fragment>

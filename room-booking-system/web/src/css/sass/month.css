@@ -49,6 +49,7 @@
   flex-direction: column;
   flex: 1 0 0;
   overflow: hidden;
+  min-height: 100px;
   height: 100%; }
   .rbc-month-row + .rbc-month-row {
     border-top: 1px solid #DDD; }
