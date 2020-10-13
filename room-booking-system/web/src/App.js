@@ -60,7 +60,7 @@ class App extends Component {
     currentRoom: null,
     error: null,
     disableRecurring: true,
-    eventDetail: [["請查看活動",["並點個感興趣的活動來了解更多"]]]
+    eventDetail: [[" ",[" "]]]
   }
 
   // Pass supplied first name, lastname, email & password to the signUp function, returns the user's token
@@ -270,7 +270,10 @@ class App extends Component {
         <div id="app" className="App">
           <Fragment>
               <Switch>
-                <Route path="/" exact render={() => (!!decodedToken && signedIn ?
+                <Route path="/" exact render={() =>
+                                  (<Redirect to="/login" />)
+                                } />
+                <Route path="/login" exact render={() => (!!decodedToken && signedIn ?
                   (<Redirect to="/bookings" />) :
                   (<div className="wrapper__form">
                       <div className="header__page">
@@ -282,7 +285,8 @@ class App extends Component {
                     </div>
                   )
                 )} />
-                <Route path="/calendar_view" exact render={() =>
+                <Route path="/dodo-space" exact render={() =>(<Redirect to="/dodo-space/calendar_view" />)} />
+                <Route path="/dodo-space/calendar_view" exact render={() =>
                      <Fragment>
                      {  !roomData && loading &&
                         (

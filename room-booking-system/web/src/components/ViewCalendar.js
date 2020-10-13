@@ -4,6 +4,12 @@ import events from '../helpers/example_events'
 import * as dates from '../helpers/dates'
 import moment from 'moment'
 
+moment.locale('ko', {
+    week: {
+        dow: 1,
+        doy: 1,
+    },
+});
 const localizer = momentLocalizer(moment) // or globalizeLocalizer
 
 let allViews = Object.keys(Views).map(k => Views[k])
@@ -96,6 +102,7 @@ function DashBoard({
             components={{
               event: EventParse,
             }}
+
             localizer={localizer}
           />
         </div>
