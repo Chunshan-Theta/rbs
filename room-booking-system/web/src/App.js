@@ -287,8 +287,8 @@ class App extends Component {
                     </div>
                   )
                 )} />
-                <Route path="/dodo-space" exact render={() =>(<Redirect to="/dodo-space/calendar_view" />)} />
-                <Route path="/dodo-space/calendar_view" exact render={() =>
+                <Route path="/p/dodo-space" exact render={() =>(<Redirect to="/p/dodo-space/calendar_view" />)} />
+                <Route path="/p/dodo-space/calendar_view" exact render={() =>
                      <Fragment>
                      {  !roomData && loading &&
                         (
