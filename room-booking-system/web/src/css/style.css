@@ -951,12 +951,48 @@ input[type=radio] {
 }
 
 #Calendar {
-  width: 80%;
-  padding: 25px 25px 25px 8%;
+  width: 90%;
+  padding-left:5%
 }
 #eventDetailTitle{
   padding: 25px 25px 25px 8%;
 }
 #eventDetailContent{
   padding: 0px 8% 0px 8%;
+}
+.one_page li{
+    width:100%;
+    padding:5px 5px 5px 5px;
+}
+.p5 {
+    padding:5px 5px 5px 5px;
+}
+
+ul.one_page {
+  overflow-x: hidden;
+}
+div.one_page {
+
+    width:100%;
+    padding: 25px 5% 25px 5%;
+
+
+}
+div.one_page .w50 {
+    display: inline-block;
+    width:50%;
+    vertical-align:top;
+}
+.w50 div{
+    padding: 2px;
+    display: flex;
+}
+.bkc-block{
+    color:#ccc;
+    background-color:#333
+}
+.mail_button{
+    box-shadow: none;
+    background-color: #585858;
+    color: #ffffff !important;
 }

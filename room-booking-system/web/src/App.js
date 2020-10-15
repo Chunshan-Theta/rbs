@@ -29,6 +29,8 @@ import RoomsList from './components/RoomsList'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
 import DashBoard from './components/ViewCalendar'
+import EmailBlock from './components/EmailBlock'
+import OnePageHead from './components/OnePageHeader'
 
 import {
   signIn,
@@ -297,11 +299,47 @@ class App extends Component {
                      }
                      { roomData &&
                         (
-                            <DashBoard
-                                roomData={roomData?roomData:[]}
-                                eventDetail={this.state.eventDetail}
-                                updatedEventDetail={this.updatedEvent}
-                            />
+                            <ul className="one_page">
+                              <li>
+                                <OnePageHead/>
+                              </li>
+                            　<li><DashBoard
+                                  roomData={roomData?roomData:[]}
+                                  eventDetail={this.state.eventDetail}
+                                  updatedEventDetail={this.updatedEvent}
+                              /></li>
+                            　<li>
+                                <div className="one_page bkc-block">
+                                    <div className="w50">
+                                        <p>想聯絡？</p>
+                                    </div>
+                                    <div className="w50 ">
+
+                                        <EmailBlock
+                                           email_address="ddm.cooperation@gmail.com"
+                                           email_subject="我想預約空間用餐"
+                                           email_body="我想預約預約空間用餐%0D姓名：%0D時間：%0D人數："
+                                           btn_title="預約空間用餐"
+                                        />
+                                        <EmailBlock
+                                           email_address="ddm.cooperation@gmail.com"
+                                           email_subject="我想預約空間舉辦活動"
+                                           email_body="我想預約空間舉辦活動%0D姓名：%0D時間：%0D人數："
+                                           btn_title="預約空間舉辦活動"
+                                        />
+                                        <EmailBlock
+                                           email_address="ddm.cooperation@gmail.com"
+                                           email_subject="我想參加桌遊活動"
+                                           email_body="我想預參加桌遊活動%0D姓名：%0D時間：%0D人數："
+                                           btn_title="參加桌遊活動"
+                                        />
+                                    </div>
+
+                                </div>
+                              </li>
+                            </ul>
+
+
                         )
                      }
                      </Fragment>

@@ -42,7 +42,7 @@ const BookingModal = props => {
           <p className="modal__paragraph"><strong>活動說明  </strong>{props.selectedBooking['description']}</p>
         </div>
       )}
-      <a href={`mailto:${props.user}`} className="button">Contact</a>
+
       <Button
         onClick={deleteBooking}
         text={`Delete`}
