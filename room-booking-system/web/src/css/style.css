@@ -962,37 +962,110 @@ input[type=radio] {
 }
 .one_page li{
     width:100%;
-    padding:5px 5px 5px 5px;
-}
-.p5 {
-    padding:5px 5px 5px 5px;
 }
 
 ul.one_page {
   overflow-x: hidden;
 }
 div.one_page {
-
     width:100%;
-    padding: 25px 5% 25px 5%;
-
-
+    max-width: 100%;
 }
 div.one_page .w50 {
     display: inline-block;
     width:50%;
     vertical-align:top;
 }
-.w50 div{
-    padding: 2px;
+.w50{
     display: flex;
+    width: 50% !important;
+}
+.w33{
+    display: flex;
+    width: 33% !important;
+}
+.w25{
+    display: flex;
+    width: 25% !important;
 }
 .bkc-block{
     color:#ccc;
     background-color:#333
 }
-.mail_button{
-    box-shadow: none;
-    background-color: #585858;
-    color: #ffffff !important;
+.bkc-darkgray{
+    color:#f5f7fa;
+    background-color:#52575c;
 }
+*, *:before, *:after {
+    box-sizing: inherit;
+}
+/*section*/
+section{
+    max-width: 100%;
+    font-size: 100%;
+}
+section.container{
+    padding-top: 30px;
+    max-width: 100%;
+    padding-bottom:50px;
+    padding-left:2%;
+}
+section.container header.major{
+    text-align: center;
+    margin-bottom: 1.5px;
+    display: block;
+}
+section.container header.major-lf{
+    text-align: left;
+    margin-bottom: 1.5px;
+    display: block;
+}
+
+section.container header p,h1,h2,h3,h4,h5,h6{
+    text-align: left;
+    margin-bottom: 1.5px;
+    display: block;
+    padding:0px;
+    margin-block-start: 0px;
+    margin-block-end: 0px;
+}
+
+
+
+
+section.container p,h1,h2,h3,h4,h5,h6,a {
+   margin-bottom: 15px;
+}
+
+section.container img, p {
+    display: block;
+    width: 90%;
+    padding-right:2%;
+    padding-left:2%;
+}
+section.container div.row {
+    display: flex;
+    box-sizing: border-box;
+    align-items: stretch;
+}
+
+section.container a.button {
+       transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
+       display: inline-block;
+       color: inherit;
+       background: none;
+       text-decoration: none;
+       border: solid 1px #c2c7cc;
+       border-radius: 0.35em;
+       padding: 0.8em 2em 0.8em 2em;
+
+       cursor: pointer;
+       outline: 0;
+       font: inherit;
+       vertical-align: baseline;
+       box-sizing: inherit;
+}
+.center {
+    text-align: center;
+}
+

@@ -4,9 +4,29 @@ import ReactModal from 'react-modal'
 const EmailBlock = (props) => {
 
   return (
-    <div>
-       <a href={`mailto:${props.email_address}?subject=${props.email_subject}&body=${props.email_body}`} className="mail_button">{props.btn_title}</a>
-    </div>
+    <section class="container bkc-darkgray">
+        <header class="major-lf">
+            <h1>聯絡方式</h1>
+        </header>
+
+        <div class="row">
+
+            <section className="w50">
+                <p>想做點什麼呢？</p>
+
+            </section>
+            <section className="w50">
+                <a href={`mailto:ddm.cooperation@gmail.com?subject=我想預約空間用餐&body=我想預約預約空間用餐%0D姓名：%0D時間：%0D人數：`} className="button ">預約空間用餐</a>
+                <a href={`mailto:ddm.cooperation@gmail.com?subject=我想預約空間舉辦活動&body=我想預約空間舉辦活動%0D姓名：%0D時間：%0D人數：`} className="button ">預約空間舉辦活動</a>
+                <a href={`mailto:ddm.cooperation@gmail.com?subject=我想參加桌遊活動&body=我想預參加桌遊活動%0D姓名：%0D時間：%0D人數：`} className="button ">參加桌遊活動</a>
+            </section>
+
+        </div>
+
+    </section>
   )
 }
 export default EmailBlock
+
+
+

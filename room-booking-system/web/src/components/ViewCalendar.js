@@ -75,7 +75,7 @@ function DashBoard({
         })
     })
     return (
-    <div>
+    <section class="container">
         <div id="Calendar">
           <Calendar
             events={events_d}
@@ -122,7 +122,7 @@ function DashBoard({
         </div>
 
 
-    </div>
+    </section>
 
   )
 }
