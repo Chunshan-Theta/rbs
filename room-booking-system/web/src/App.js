@@ -30,6 +30,7 @@ import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
 import DashBoard from './components/ViewCalendar'
 import EmailBlock from './components/EmailBlock'
+import PicPage from './components/PicPage'
 import OnePageHead from './components/OnePageHeader'
 
 import {
@@ -301,7 +302,10 @@ class App extends Component {
                         (
                             <ul className="one_page">
                               <li>
-                                <OnePageHead/>
+                                  <OnePageHead/>
+                              </li>
+                              <li>
+                                  <PicPage/>
                               </li>
                             　<li><DashBoard
                                   roomData={roomData?roomData:[]}

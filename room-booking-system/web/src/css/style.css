@@ -601,7 +601,7 @@ html {
   font-size: 62.5%;
 }
 body {
-  background: #f4f4f4;
+  background: #fefefe;
   font-family: "proxima-nova", sans-serif;
   font-size: 1.6rem;
   padding: 0;
@@ -976,6 +976,10 @@ div.one_page .w50 {
     width:50%;
     vertical-align:top;
 }
+.w100{
+    display: flex;
+    width: 100% !important;
+}
 .w50{
     display: flex;
     width: 50% !important;
@@ -988,13 +992,17 @@ div.one_page .w50 {
     display: flex;
     width: 25% !important;
 }
-.bkc-block{
+.bkc-black{
     color:#ccc;
     background-color:#333
 }
 .bkc-darkgray{
     color:#f5f7fa;
     background-color:#52575c;
+}
+.bkc-gray{
+    color:#555555;
+    background-color:#aaaaaa;
 }
 *, *:before, *:after {
     box-sizing: inherit;
@@ -1007,8 +1015,9 @@ section{
 section.container{
     padding-top: 30px;
     max-width: 100%;
-    padding-bottom:50px;
+    padding-bottom:70px;
     padding-left:2%;
+    min-height:200px;
 }
 section.container header.major{
     text-align: center;
@@ -1018,6 +1027,7 @@ section.container header.major{
 section.container header.major-lf{
     text-align: left;
     margin-bottom: 1.5px;
+    padding-left:5%;
     display: block;
 }
 
@@ -1040,6 +1050,7 @@ section.container p,h1,h2,h3,h4,h5,h6,a {
 section.container img, p {
     display: block;
     width: 90%;
+    height: 83%;
     padding-right:2%;
     padding-left:2%;
 }
@@ -1047,6 +1058,7 @@ section.container div.row {
     display: flex;
     box-sizing: border-box;
     align-items: stretch;
+    text-align: center;
 }
 
 section.container a.button {
@@ -1065,7 +1077,90 @@ section.container a.button {
        vertical-align: baseline;
        box-sizing: inherit;
 }
+
+section.container a.button:hover {
+
+       background: #ed786a;
+}
 .center {
     text-align: center;
+    margin:0 auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.left {
+    text-align: left;
+    margin:0 auto;
+    display:flex;
+    align-items:left;
+    justify-content:left;
 }
 
+.p20 {
+    padding:20px;
+}
+
+#header-title{
+    font-family: 'Arvo';
+    font-weight: 700;
+    color: #ed786a;
+    text-shadow: 0.05em 0.075em 0 rgba(0, 0, 0, 0.1);
+    font-size: 3em;
+    letter-spacing: 10px;
+    text-align: center;
+}
+hr {
+  margin-top: 80px;
+  margin-bottom: 30px;
+  border-top: 4px double gray;
+  width:90%;
+
+}
+
+@media screen and (max-width: 980px) {
+
+    section.container div.row {
+        display: block;
+    }
+    .button {
+        margin-right: auto;
+        min-width: auto;
+        padding : 1px;
+    }
+    .w50{
+        width: 100% !important;
+        text-align: center;
+        margin:0 auto;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+    }
+    .w33{
+        width: 100% !important;
+        text-align: center;
+        margin:0 auto;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+    .w25{
+        width: 100% !important;
+        text-align: center;
+        margin:0 auto;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        padding-bottom:20px;
+    }
+    .w25 *{
+        text-align: center;
+        margin:0 auto;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+    }
+
+}
