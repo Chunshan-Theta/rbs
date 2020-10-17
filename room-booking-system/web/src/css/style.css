@@ -877,7 +877,7 @@ input[type=radio] {
 }
 .button__form--submit {
   margin: 1rem 0;
-  width: 30.6rem;
+  width: auto;
 }
 .button__form--google {
   margin: 3rem auto;
