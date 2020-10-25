@@ -15,7 +15,7 @@ import './css/sass/time-column.css'
 import './css/sass/time-grid.css'
 import './css/sass/toolbar.css'
 import './css/sass/variables.css'
-
+import DocumentMeta from 'react-document-meta';
 import moment from 'moment'
 
 import BookingForm from './components/BookingForm'
@@ -32,6 +32,7 @@ import DashBoard from './components/ViewCalendar'
 import EmailBlock from './components/EmailBlock'
 import PicPage from './components/PicPage'
 import OnePageHead from './components/OnePageHeader'
+import meta from './components/head'
 
 import {
   signIn,
@@ -288,7 +289,12 @@ class App extends Component {
                     </div>
                   )
                 )} />
-                <Route path="/p/dodo-space" exact render={() =>(<Redirect to="/p/dodo-space/calendar_view" />)} />
+                <Route path="/p/dodo-space" exact render={() =>
+                    (
+                        <Redirect to="/p/dodo-space/calendar_view" />
+                    )}
+                />
+
                 <Route path="/p/dodo-space/calendar_view" exact render={() =>
                      <Fragment>
                      {  !roomData && loading &&
@@ -300,24 +306,24 @@ class App extends Component {
                      }
                      { roomData &&
                         (
-                            <ul className="one_page">
-                              <li>
-                                  <OnePageHead/>
-                              </li>
-                              <li>
-                                  <PicPage/>
-                              </li>
-                            　<li><DashBoard
-                                  roomData={roomData?roomData:[]}
-                                  eventDetail={this.state.eventDetail}
-                                  updatedEventDetail={this.updatedEvent}
-                              /></li>
-                            　<li>
-                                <EmailBlock/>
-                              </li>
-                            </ul>
-
-
+                            <DocumentMeta {...meta("dodola")}>
+                                <ul className="one_page">
+                                  <li>
+                                      <OnePageHead/>
+                                  </li>
+                                  <li>
+                                      <PicPage/>
+                                  </li>
+                                　<li><DashBoard
+                                      roomData={roomData?roomData:[]}
+                                      eventDetail={this.state.eventDetail}
+                                      updatedEventDetail={this.updatedEvent}
+                                  /></li>
+                                　<li>
+                                    <EmailBlock/>
+                                  </li>
+                                </ul>
+                            </DocumentMeta>
                         )
                      }
                      </Fragment>
