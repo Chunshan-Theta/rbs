@@ -284,11 +284,16 @@ class App extends Component {
                         <h2 className="header__heading header__heading--sub--alt">Sign in with email</h2>
                       </div>
                       <SignInForm onSignIn={this.onSignIn} />
-                      <h3 className="header__heading header__heading--sub--alt">Don't have an account?</h3>
-                      <SignUpForm onSignUp={this.onSignUp} />
+
                     </div>
                   )
                 )} />
+                <Route path="/__account__" exact render={() =>(
+                    <div >
+                    <h3 className="header__heading header__heading--sub--alt">Don't have an account?</h3>
+                    <SignUpForm onSignUp={this.onSignUp} />
+                    </div>
+                )}/>
                 <Route path="/p/dodo-space" exact render={() =>
                     (
                         <Redirect to="/p/dodo-space/calendar_view" />
