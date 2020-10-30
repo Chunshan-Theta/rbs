@@ -1126,6 +1126,10 @@ hr {
 }
 
 @media screen and (max-width: 1024px) {
+    #eventDetailContent {
+      padding: 0;
+      word-wrap: break-word;
+    }
     ul {
         margin: 0;
         padding: 0;

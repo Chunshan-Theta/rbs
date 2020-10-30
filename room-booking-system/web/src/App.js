@@ -311,7 +311,7 @@ class App extends Component {
                      }
                      { roomData &&
                         (
-                            <DocumentMeta {...meta("dodola")}>
+                            <DocumentMeta {...meta("DoDo Space")}>
                                 <ul className="one_page">
                                   <li>
                                       <OnePageHead/>
