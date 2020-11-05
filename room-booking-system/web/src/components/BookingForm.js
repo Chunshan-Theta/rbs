@@ -6,7 +6,14 @@ import {Link} from 'react-router-dom'
 import Button from './Button'
 import { formatTime, startTimeSelectOptions, endTimeSelectOptions } from '../helpers/bookingForm'
 
-function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onShowBooking, disableRecurring, onToggleRecurring }) {
+
+//
+import BraftEditor from 'braft-editor'
+import 'braft-editor/dist/index.css'
+
+
+//
+function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onShowBooking, disableRecurring, onToggleRecurring,handleEditorChange, editorState}) {
   // Disable sunday (day 0) on the calendar as an booking option
   const valid = function(current) {
 
@@ -42,6 +49,11 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
     updateCalendar(moment(event)._i)
   }
 
+
+  //
+
+
+
   return (
     <Fragment>
       <div className="header__page">
@@ -69,8 +81,13 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
             let recurringEnd = handleEndDate(formData.recurringEndDate.value.split('-'))
             const recurringType = formData.recurring.value
             let recurringData = handleRecurringData(recurringType, recurringEnd)
+
+            //
             const purpose = formData.purpose.value
-            const description = formData.description.value
+
+            //
+            const description = editorState.toHTML()
+            console.log({ startDate, endDate, businessUnit, purpose, roomId, recurringData, description })
           onMakeBooking({ startDate, endDate, businessUnit, purpose, roomId, recurringData, description })
         }}>
         <div className="content__calendar">
@@ -147,8 +164,18 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
           <div className="form__group">
             <label className="form__label form__label--booking">
               {'Description'}
-              <textarea type="textarea" name="description" className="form__input--textarea"></textarea>
             </label>
+            <div className="my-component">
+                <BraftEditor
+                  value={editorState}
+                  onChange={handleEditorChange}
+                  controls={[
+                               'link','text-color', 'bold', 'italic', 'underline', 'strike-through', 'emoji','separator',
+                               'text-indent', 'text-align', 'separator',
+                               'headings', 'list-ul', 'list-ol', 'blockquote', 'code'
+                           ]}
+                />
+              </div>
           </div>
           <div className="form__group--button">
             <Button className="button button__form--booking" text={'Submit'} />
@@ -159,5 +186,6 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
     </Fragment>
   )
 }
+//              <textarea type="textarea" name="description" className="form__input--textarea"></textarea>
 
 export default BookingForm

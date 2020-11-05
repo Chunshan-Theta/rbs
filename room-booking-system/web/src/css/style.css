@@ -954,10 +954,10 @@ input[type=radio] {
   width: 90%;
   padding-left:5%
 }
-#eventDetailTitle{
+.eventDetailTitle{
   padding: 25px 25px 25px 8%;
 }
-#eventDetailContent{
+.eventDetailContent{
   padding: 0px 8% 0px 8%;
 }
 .one_page li{
@@ -1125,6 +1125,10 @@ hr {
 
 }
 
+.public-DraftEditor-content {
+   background-color:#FFF;
+   border: 4px double gray;
+}
 @media screen and (max-width: 1024px) {
     #eventDetailContent {
       padding: 0;

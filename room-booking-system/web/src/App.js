@@ -64,7 +64,8 @@ class App extends Component {
     currentRoom: null,
     error: null,
     disableRecurring: true,
-    eventDetail: [[" ",[" "]]]
+    eventDetail: [[" ",[" "]]],
+    editorState: null
   }
 
   // Pass supplied first name, lastname, email & password to the signUp function, returns the user's token
@@ -227,7 +228,12 @@ class App extends Component {
     this.setState({ userBookings: myBookings })
   }
 
+  //
+  handleEditorChange = (editorState) => {
+      this.setState({ editorState })
+    }
 
+  //
   render() {
     const {
       decodedToken,
@@ -425,6 +431,8 @@ class App extends Component {
                                 updateCalendar={setCalendarDate}
                                 onShowBooking={this.onShowBooking}
                                 onToggleRecurring={this.onToggleRecurring}
+                                handleEditorChange={this.handleEditorChange}
+                                editorState={this.state.editorState}
                               />
                             </div>
                               <BookingModal

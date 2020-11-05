@@ -111,8 +111,8 @@ function DashBoard({
             eventDetail.map(row => {
                     var re_obj = (
                         <div>
-                        <h1 id="eventDetailTitle">{row[0]}</h1>
-                        <div>{row[1].map(content => (<p id="eventDetailContent">{content}</p>))}</div>
+                        <h1 class="eventDetailTitle">{row[0]}</h1>
+                        <div class="eventDetailContent" dangerouslySetInnerHTML={{ __html: row[1] }} />
                         </div>
                     )
                     return(re_obj)

@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.17.1",
+    "braft-editor": "^2.3.9",
     "jwt-decode": "^2.2.0",
     "moment": "^2.20.1",
     "moment-timezone": "^0.5.14",
