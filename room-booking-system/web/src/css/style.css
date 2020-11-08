@@ -1130,6 +1130,7 @@ hr {
    border: 4px double gray;
 }
 @media screen and (max-width: 1024px) {
+
     #eventDetailContent {
       padding: 0;
       word-wrap: break-word;
@@ -1216,6 +1217,122 @@ hr {
     @-webkit-keyframes TestMove3{
         from {background-color:#3174ad;}
         to {background-color:#d2d3c9;}
+    }
+
+    .wrapper, .wrapper__content {
+        display:block;
+        min-width:auto;
+        max-width:100%;
+        margin:0 0.5rem;
+    }
+    .header {
+
+        grid-area: none;
+        display: block;
+    }
+    .nav__item,.nav__list, .nav__link, .form__input{
+        display: block;
+        margin: 0 auto ;
+        padding:0;
+        font-size: 1.5rem;
+
+    }
+    .header__heading--main, .nav {
+        text-align: center;
+        background-color:#1c1c1c;
+        margin: 0 auto;
+        border-bottom: 2px solid #f4f4f4;
+        color: #f4f4f4;
+    }
+    .header__heading,.header__heading--sub{
+        font-size: 1.5rem;
+    }
+    .sidebar, .table__row td,.table__cell--header{
+        display:none;
+    }
+    .table__row th{
+        padding: 1rem 0;
+    }
+    .content__table{
+        grid-column: 1;
+        grid-row: 2;
+    }
+    .content__form{
+        grid-column: 1;
+        grid-row: 3;
+        padding: 5rem 0;
+        max-width:100%;
+    }
+    .control-item {
+        min-width:auto;
+        width:auto;
+
+    }
+    .form__input{
+        min-height: auto;
+        padding: 0.5rem 0 0.5rem 0;
+        margin:0px;
+        width:100%;
+    }
+    .table--booking{
+        margin:0px;
+        width:100%;
+    }
+    .table{
+        margin: 0;
+    }
+
+    .content__calendar{
+        text-align:center;
+    }
+    .rdtStatic{
+        width:100%;
+    }
+
+    .rbc-show-more{
+        overflow: visible !important;
+        padding:0;
+    }
+    .rbc-agenda-event-cell p{
+        display:none !important;
+    }
+
+    .rbc-agenda-date-cell, .rbc-agenda-time-cell{
+        white-space: break-spaces !important;
+    }
+    .rbc-events-container{
+        margin: 0 !important;
+    }
+    .form__grid{
+        grid-column: 1;
+        grid-template-columns: none;
+    }
+    .booking__user-info{
+        grid-column: 1;
+        grid-row: 1;
+    }
+    .user-booking-container{
+        grid-column: 1;
+        grid-row: 2;
+        width:100%;
+    }
+    .booking__box{
+        display:block;
+        width:auto;
+    }
+    .wrapper__bookings{
+      display:block;
+    }
+    .booking__innerbox--left, .header__heading--small{
+        width: 100% !important;
+        padding:0;
+    }
+    .booking__innerbox--middle {
+        line-height: 200%;
+    }
+
+    .public-DraftEditor-content{
+        overflow:scroll;
     }
 
 }
