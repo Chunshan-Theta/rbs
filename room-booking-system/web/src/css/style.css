@@ -1128,7 +1128,9 @@ hr {
 .public-DraftEditor-content {
    background-color:#FFF;
    border: 4px double gray;
+   overflow:scroll;
 }
+
 @media screen and (max-width: 1024px) {
 
     #eventDetailContent {
