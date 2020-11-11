@@ -961,6 +961,16 @@ input[type=radio] {
 .eventDetailContent{
   padding: 0px 8% 0px 8%;
 }
+.eventDetailContent p{
+  text-align: left;
+  display: block;
+
+}
+.eventDetailContent span{
+  text-align: left;
+  display: inline;
+
+}
 .one_page li{
     width:100%;
 }
