@@ -965,6 +965,11 @@ input[type=radio] {
 .eventDetailContent{
   padding: 0px 8% 0px 8%;
 }
+.eventDetailContent *{
+  text-indent:0 !important;
+
+}
+
 .eventDetailContent p{
   text-align: left;
   display: block;
@@ -1135,6 +1140,7 @@ section.container a.button:hover {
 .p20 {
     padding:20px;
 }
+
 p, h1, h2, h3, h4, h5, h6, span, div{
     //font-family: DFKai-SB,"Times New Roman", Times, serif;
     font-family: "Microsoft JhengHei","STHeiti", Papyrus, Verdana, ;
