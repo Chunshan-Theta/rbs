@@ -107,7 +107,7 @@
   grid-row: 1;
   min-width: 20rem;
   padding: 0 5.8rem;
-  width: 100%;
+  max-width: 30%;
 }
 input[type=checkbox] {
   -webkit-box-shadow: none;
@@ -629,6 +629,7 @@ li {
   grid-template-rows: 1fr auto auto;
   min-width: 90rem;
   width: 100%;
+  overflow-x: hidden;
 }
 .wrapper__form {
   background: #fafafa;
