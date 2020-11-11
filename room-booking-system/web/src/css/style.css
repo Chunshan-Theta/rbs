@@ -4,7 +4,7 @@ p, a, span, h1,h2,h3,h4,h5,h6,div,th,td{
 }
 
 .table--booking {
-  background: #fafafa;
+  background: #f6f6f6;
   border: 0.1rem solid #d4d7dd;
   border-collapse: collapse !important;
   border-spacing: 0 0 !important;
@@ -21,7 +21,7 @@ p, a, span, h1,h2,h3,h4,h5,h6,div,th,td{
   border: 0.1rem solid #d4d7dd;
 }
 .table--booking--split {
-  background: #fafafa;
+  background: #f6f6f6;
   border: none;
   border-collapse: collapse !important;
   border-spacing: 0 0 !important;
@@ -104,7 +104,7 @@ p, a, span, h1,h2,h3,h4,h5,h6,div,th,td{
   width: 100%;
 }
 .content__form {
-  background: #fafafa;
+  background: #f6f6f6;
   -webkit-box-shadow: 0px 2px 5px 0px #d4d7dd;
   box-shadow: 0px 2px 5px 0px #d4d7dd;
   grid-column: 3;
@@ -137,7 +137,7 @@ input[type=radio] {
 .button {
   background: #420000;
   border: 0.1rem solid #420000;
-  color: #fafafa;
+  color: #f6f6f6;
   cursor: pointer;
   // font-family: DFKai-SB,"Times New Roman", Times, serif;
   font-size: 1.6rem;
@@ -150,17 +150,17 @@ input[type=radio] {
 .button:hover {
   background: #420000;
   border: 0.1rem solid #420000;
-  color: #fafafa;
+  color: #f6f6f6;
 }
 .button--alternative {
-  background: #fafafa;
+  background: #f6f6f6;
   border: 0.1rem solid #1c1c1c;
   color: #1c1c1c;
 }
 .button--alternative:hover {
   background: #1c1c1c;
   border: 0.1rem solid #1c1c1c;
-  color: #fafafa;
+  color: #f6f6f6;
 }
 .button--inline {
   display: inline-block;
@@ -170,7 +170,7 @@ input[type=radio] {
   padding: 1.2rem 2.6rem;
 }
 .rdt {
-  background: #fafafa;
+  background: #f6f6f6;
   -webkit-box-shadow: 0px 2px 5px 0px #d4d7dd;
   box-shadow: 0px 2px 5px 0px #d4d7dd;
   font-size: 1.6rem;
@@ -180,7 +180,7 @@ input[type=radio] {
   padding: 0.6rem;
 }
 .rdtPicker {
-  background: #fafafa;
+  background: #f6f6f6;
   color: #1c1c1c;
   margin: 0 auto;
   padding: 2rem 0;
@@ -228,7 +228,7 @@ input[type=radio] {
   position: relative;
 }
 .rdtToday:before {
-  border-bottom: 0.7rem solid #ed1c24;
+  border-bottom: 0.7rem solid #420000;
   border-left: 0.7rem solid transparent;
   bottom: 0.4rem;
   content: '';
@@ -237,7 +237,7 @@ input[type=radio] {
   right: 0.4rem;
 }
 .rdtActive {
-  background: #ed1c24;
+  background: #420000;
   color: #fff;
 }
 .rdtActive:hover {
@@ -304,15 +304,15 @@ td.rdtYear:hover {
   font-weight: 500;
 }
 .rdtToday::before {
-  border-bottom: 7px solid #ed1c24;
+  border-bottom: 7px solid #420000;
 }
 .filter {
-  background: #fafafa;
+  background: #f6f6f6;
   padding: 1.6rem 3.4rem 3rem 3.4rem;
   width: 23rem;
 }
 .key {
-  background: #fafafa;
+  background: #f6f6f6;
   padding: 1.6rem 3.4rem 3rem 3.4rem;
   width: 23rem;
 }
@@ -409,7 +409,7 @@ td.rdtYear:hover {
   font-weight: 700;
 }
 .table {
-  background: #fafafa;
+  background: #f6f6f6;
   border: 0.1rem solid #d4d7dd;
   border-collapse: collapse !important;
   border-spacing: 0 0 !important;
@@ -636,7 +636,7 @@ li {
   overflow-x: hidden;
 }
 .wrapper__form {
-  background: #fafafa;
+  background: #f6f6f6;
   -webkit-box-shadow: 0px 2px 5px 0px #d4d7dd;
   box-shadow: 0px 2px 5px 0px #d4d7dd;
   display: grid;
@@ -665,7 +665,7 @@ li {
   margin: 3rem;
 }
 .wrapper__bookings {
-  background: #fafafa;
+  background: #f6f6f6;
   -webkit-box-shadow: 1px 1px 5px 0px #d4d7dd;
   box-shadow: 1px 1px 5px 0px #d4d7dd;
   display: grid;
@@ -742,7 +742,7 @@ li {
   grid-row: 3;
 }
 .sidebar__box {
-  background: #fafafa;
+  background: #f6f6f6;
   -webkit-box-shadow: 1px 1px 5px 0px #d4d7dd;
   box-shadow: 1px 1px 5px 0px #d4d7dd;
   margin: 3rem auto;
@@ -818,7 +818,7 @@ li {
   width: 12rem;
 }
 .form__input--select {
-  background: #fafafa;
+  background: #f6f6f6;
   border: 0.1rem solid #a5a5a5;
   display: block;
   font-size: 1.4rem;
@@ -1008,8 +1008,8 @@ div.one_page .w50 {
     background-color:#333
 }
 .bkc-darkgray{
-    color:#f5f7fa;
-    background-color:#52575c;
+    color:#eae9e9;
+    background-color:#d4d7dd;
 }
 .bkc-gray{
     color:#420000;
