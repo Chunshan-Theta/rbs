@@ -967,6 +967,7 @@ input[type=radio] {
 }
 .eventDetailContent *{
   text-indent:0 !important;
+  max-width: 100%;
 
 }
 
@@ -980,6 +981,8 @@ input[type=radio] {
   display: inline;
 
 }
+
+
 .one_page li{
     width:100%;
 }
@@ -1166,10 +1169,13 @@ hr {
    overflow:scroll;
 }
 
-div.rbc-event {
-  background-color: #d4d7dd !important;
-}
 
+@media screen and (min-width: 1025px) {
+  div.rbc-event {
+    background-color: #d4d7dd !important;
+  }
+
+}
 @media screen and (max-width: 1024px) {
 
     #eventDetailContent {
@@ -1248,16 +1254,16 @@ div.rbc-event {
         -webkit-animation:TestMove3 1.5s infinite alternate ease-out; /*Chrome, Safari*/
     }
     @keyframes TestMove3{
-        from {background-color:#3174ad;}
-        to {background-color:#d2d3c9;}
+        from {background-color:#d4d7dd;}
+        to {background-color:#420000;}
     }
     @-moz-keyframes TestMove3{
-        from {background-color:#3174ad;}
-        to {background-color:#d2d3c9;}
+        from {background-color:#d4d7dd;}
+        to {background-color:#420000;}
     }
     @-webkit-keyframes TestMove3{
-        from {background-color:#3174ad;}
-        to {background-color:#d2d3c9;}
+        from {background-color:#d4d7dd;}
+        to {background-color:#420000;}
     }
 
     .wrapper, .wrapper__content {
@@ -1375,5 +1381,7 @@ div.rbc-event {
     .public-DraftEditor-content{
         overflow:scroll;
     }
+
+
 
 }
