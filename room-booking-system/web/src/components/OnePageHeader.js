@@ -19,7 +19,7 @@ const OnePageHead = (props) => {
                     <a href="https://ddm.com.tw/" className="button ">多多看電影</a>
                 </section>
                 <section class="w25 center">
-                    <a href="#menu" className="button ">菜單</a>
+                    <a href="#menu" className="button ">關於</a>
                 </section>
                 <section class="w25 center">
                     <a href="https://www.facebook.com/onemoreplace2019/" className="button ">紛絲專頁</a>
