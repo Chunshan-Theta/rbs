@@ -17,9 +17,9 @@ const EmailBlock = (props) => {
             </section>
             <section className="w50">
                 <ul>
-                    <li className="left"><a href={`mailto:ddm.cooperation@gmail.com?subject=我想預約空間用餐&body=我想預約預約空間用餐%0D姓名：%0D時間：%0D人數：`} className="button ">預約空間用餐</a></li>
-                    <li className="left"><a href={`mailto:ddm.cooperation@gmail.com?subject=我想預約空間舉辦活動&body=我想預約空間舉辦活動%0D姓名：%0D時間：%0D人數：`} className="button ">預約空間舉辦活動</a></li>
-                    <li className="left"><a href={`mailto:ddm.cooperation@gmail.com?subject=我想參加桌遊活動&body=我想預參加桌遊活動%0D姓名：%0D時間：%0D人數：`} className="button ">參加桌遊活動</a></li>
+                    <li className="left"><a href={`mailto:ddm.cooperation@gmail.com?subject=我想預約空間用餐&body=我想預約預約空間用餐%0D%0A姓名：%0D%0A時間：%0D%0A人數：`} className="button ">預約空間用餐</a></li>
+                    <li className="left"><a href={`mailto:ddm.cooperation@gmail.com?subject=我想預約空間舉辦活動&body=我想預約空間舉辦活動%0D%0A姓名：%0D%0A時間：%0D%0A人數：`} className="button ">預約空間舉辦活動</a></li>
+                    <li className="left"><a href={`mailto:ddm.cooperation@gmail.com?subject=我想參加桌遊活動&body=我想預參加桌遊活動%0D%0A姓名：%0D%0A時間：%0D%0A人數：`} className="button ">參加桌遊活動</a></li>
                 </ul>
             </section>
 
