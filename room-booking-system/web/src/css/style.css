@@ -1083,11 +1083,11 @@ section.container p,h1,h2,h3,h4,h5,h6,a {
 
 section.container img{
     display: block;
-    max-height: 400px;
     width:95%;
 }
 .image_box{
     padding:20px;
+    max-height: 400px;
     width:100%;
     overflow:hidden;
 
