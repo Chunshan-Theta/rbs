@@ -86,10 +86,14 @@ class APP_V1_HOME extends Component {
 
                 <Route path="/p" exact render={() =>
                     (
-                        <Redirect to="/v1/p/dodo-space/calendar_view" />
+                        <Redirect to="/p/dodo-space/calendar_view" />
                     )}
                 />
-
+                <Route path="/p/dodo-space/" exact render={() =>
+                    (
+                        <Redirect to="/p/dodo-space/calendar_view" />
+                    )}
+                />
                 <Route path="/p/dodo-space/calendar_view" exact render={() =>
                      <Fragment>
                      {  !roomData && loading &&
