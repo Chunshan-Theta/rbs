@@ -633,7 +633,6 @@ li {
   grid-template-rows: 1fr auto auto;
   min-width: 90rem;
   width: 100%;
-  overflow-x: hidden;
 }
 .wrapper__form {
   background: #f6f6f6;

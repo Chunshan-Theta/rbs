@@ -298,45 +298,7 @@ class App extends Component {
                     <SignUpForm onSignUp={this.onSignUp} />
                     </div>
                 )}/>
-                <Route path="/p/dodo-space" exact render={() =>
-                    (
-                        <Redirect to="/p/dodo-space/calendar_view" />
-                    )}
-                />
 
-                <Route path="/p/dodo-space/calendar_view" exact render={() =>
-                     <Fragment>
-                     {  !roomData && loading &&
-                        (
-                            <div className="loading_animation">
-                                <Loading />
-                            </div>
-                        )
-                     }
-                     { roomData &&
-                        (
-                            <DocumentMeta {...meta("DoDo Space")}>
-                                <ul className="one_page">
-                                  <li>
-                                      <OnePageHead/>
-                                  </li>
-                                  <li>
-                                      <PicPage/>
-                                  </li>
-                                　<li><DashBoard
-                                      roomData={roomData?roomData:[]}
-                                      eventDetail={this.state.eventDetail}
-                                      updatedEventDetail={this.updatedEvent}
-                                  /></li>
-                                　<li>
-                                    <EmailBlock/>
-                                  </li>
-                                </ul>
-                            </DocumentMeta>
-                        )
-                     }
-                     </Fragment>
-                } />
                 <Route path="/bookings" exact render={requireAuth(() => (
                   <Fragment>
                     { !!decodedToken && !roomData && loading && (
