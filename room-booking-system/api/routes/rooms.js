@@ -7,7 +7,9 @@ const { requireJWT } = require('../middleware/auth')
 const router = new express.Router()
 
 router.get('/rooms_show', (req, res) => {
-  Room.find()
+  console.log("user",req.query.user);
+  var owner = req.query.user ? req.query.user : "5f5ee77c8ffb507c3b3011ec";
+  Room.find({"owner":owner})
     .then(rooms => {
       res.json(rooms)
     })
@@ -17,7 +19,7 @@ router.get('/rooms_show', (req, res) => {
 })
 
 router.get('/rooms', requireJWT, (req, res) => {
-  Room.find()
+  Room.find({"owner":req.user.id})
     .then(rooms => {
       res.json(rooms)
     })
