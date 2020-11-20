@@ -71,7 +71,8 @@ const roomSchema = new Schema({
     asset_tool_0: { type: Boolean, default: false },
     whiteBoard: { type: Boolean, default: false }
   },
-  bookings: [bookingSchema]
+  bookings: [bookingSchema],
+  owner: String,
 })
 
 const Room = (module.exports = mongoose.model('Room', roomSchema))

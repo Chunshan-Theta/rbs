@@ -28,6 +28,21 @@ router.get('/rooms', requireJWT, (req, res) => {
     })
 })
 
+
+/*
+created room for the user(hoster).
+
+example:
+curl --location --request POST 'http://127.0.0.1:7321/rooms' \
+
+--header 'Authorization: Bearer <Bearer token>' \
+--data-raw '{
+  "name": "room1",
+  "floor": "-1",
+  "capacity": 20,
+  "owner": <userId>
+}'
+*/
 router.post('/rooms', requireJWT, (req, res) => {
   Room.create(req.body)
     .then(room => {
