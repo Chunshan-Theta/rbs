@@ -6,7 +6,12 @@ export const roomSorter = (roomList, floorNumber) => {
   
   // filter list of rooms to those on the given floor
   let filteredList = copiedList.filter(room => {
-    return room.floor === floorNumber
+    if(floorNumber){
+      return room.floor === floorNumber
+    }
+    else{
+      return true
+    }
   })
   
   // function to sort rooms numerically by their floor number
