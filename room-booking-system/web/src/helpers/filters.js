@@ -81,3 +81,12 @@ export const onFilterByAvailablity = (params, filteredData) => {
   }
   return filteredData
 }
+
+
+// Filter roomData by floor
+export  const onFilterByUser = (param, filteredData) => {
+  console.log("filteredData", filteredData)
+
+  return filteredData.filter(room => room.owner === param)
+
+}
