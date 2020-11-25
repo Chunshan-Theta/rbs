@@ -459,10 +459,15 @@ class App extends Component {
           // load the current user's bookings
           this.loadMyBookings()
           // the state's current room defaults to first room
-          const room = this.state.roomData[0]
-          this.setRoom(room._id)
-          // toggle loading page off
+          if(this.state.roomData.length>0){
+            const room = this.state.roomData[0]
+            this.setRoom(room._id)
+            // toggle loading page off
+            
+
+          }
           this.setState({ loading: false })
+          
         })
         .catch(error => {
           console.error('Error loading room data', error)
