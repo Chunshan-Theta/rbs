@@ -30,8 +30,8 @@ import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
 import DashBoard from './components/ViewCalendar'
 import EmailBlock from './components/EmailBlock'
-import PicPage from './components/PicPage'
-import OnePageHead from './components/OnePageHeader'
+import PicPage from './components/dynamic/PicPage'
+import OnePageHead from './components/dynamic/OnePageHeader'
 import meta from './components/head'
 
 import { listRooms } from './api/rooms'
@@ -69,18 +69,14 @@ class APP_V2_HOME extends Component {
     const signedIn = !!decodedToken
     const Loading = require('react-loading-animation')
 
-    let filteredData = []
     const featureParams = this.state.filterParams
     const date = this.state.currentDate
 
 
-    if (!!roomData) {
-      filteredData = onFilterByFloor(floorParam, roomData)
-    }
 
     return (
       <Router>
-        <div id="app" className="App">
+        <div id="app_v2" className="App">
           <Fragment>
               <Switch>
 
@@ -102,10 +98,10 @@ class APP_V2_HOME extends Component {
                                       <h1>Hey！ {props.match.params.userName}</h1>
                                   </li>
                                   <li>
-                                      <OnePageHead/>
+                                      {gen_component(agrs_OnePageHead)}
                                   </li>
                                   <li>
-                                      <PicPage/>
+                                      {gen_component(agrs_PicPage)}
                                   </li>
                                 　<li><DashBoard
                                       roomData={filter_room(roomData,props.match.params.userName)}
@@ -186,19 +182,74 @@ class APP_V2_HOME extends Component {
 
 
 function filter_room(roomData,userName){
-    console.log(roomData)
     roomData = roomData?roomData:[]
     let filter_roomData = []
     roomData.forEach(room => 
       {
 
-        console.log(room)
         if(room.owner == userName){
           filter_roomData.push(room)
         }
       }
     )
     return filter_roomData
+}
+
+function gen_component(data){
+  let component_type = data['component_type']? data['component_type']: null;
+  console.log("data",data)
+  switch(component_type){
+      case "OnePageHead":
+          return OnePageHead(data)
+          break;
+      case "PicPage":
+          return PicPage(data)
+          break;
+          
+      default:
+          return(<h1>Not Fount Component!</h1>)
+  }
+
+  
+}
+
+const agrs_OnePageHead = {
+  "component_type":"OnePageHead",
+	"title": "多一個空間",
+	"sub_titile": "下午茶 ｜ 桌上遊戲 ｜ 電影觀賞",
+	"btn1":{
+		"text": "本月活動",
+		"url": "#event"
+	},
+	"btn2":{
+		"text": "多多看電影",
+		"url": "https://ddm.com.tw/"
+	},
+	"btn3":{
+		"text": "關於",
+		"url": "#menu"
+	},
+	"btn4":{
+		"text": "紛絲專頁",
+		"url": "https://www.facebook.com/onemoreplace2019/"
+	}
+}
+const agrs_PicPage = {
+  "component_type":"PicPage",
+	"title": "關於 多一個空間",
+	"sub_titile": "好吃，好玩，好開心",
+	"col1":{
+		"text": "三兩好友，最佳戰友",
+		"url": "https://static.accupass.com/eventintro/2010181959479011781510.jpg"
+	},
+	"col2":{
+		"text": "喝咖啡？不如揪個團",
+		"url": "https://static.accupass.com/eventintro/2010181947321953973068.jpg"
+	},
+	"col3":{
+		"text": "週末假日的最佳選擇",
+		"url": "https://static.accupass.com/eventintro/2010181948187978925800.jpg"
+	}
 }
 
 
