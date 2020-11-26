@@ -84,13 +84,43 @@ class APP_V2_HOME extends Component {
           <Fragment>
               <Switch>
 
-
-                <Route path="/q1/" exact render={() =>
-                     <OnePageHead/>
+                <Route path="/test/:userName" exact render={(props) =>
+                     <Fragment>
+                     {  !roomData && loading &&
+                        (
+                            <div className="loading_animation">
+                                <Loading />
+                            </div>
+                        )
+                     }
+                     { roomData &&
+                        (
+                            <DocumentMeta {...meta("DoDo Space")}>
+                                
+                                <ul className="one_page">
+                                  <li>
+                                      <h1>Hey！ {props.match.params.userName}</h1>
+                                  </li>
+                                  <li>
+                                      <OnePageHead/>
+                                  </li>
+                                  <li>
+                                      <PicPage/>
+                                  </li>
+                                　<li><DashBoard
+                                      roomData={filter_room(roomData,props.match.params.userName)}
+                                      eventDetail={this.state.eventDetail}
+                                      updatedEventDetail={this.updatedEvent}
+                                  /></li>
+                                　<li>
+                                    <EmailBlock/>
+                                  </li>
+                                </ul>
+                            </DocumentMeta>
+                        )
+                     }
+                     </Fragment>
                 } />
-                <Route path="/q/:userName" component={Hello}/>
-
-
             </Switch>
           </Fragment>
         </div>
@@ -153,9 +183,23 @@ class APP_V2_HOME extends Component {
   }
 
 }
-class Hello extends React.Component{
-    render(){
-        return <h1>Hello！{this.props.match.params.userName}！</h1>
-    }
+
+
+function filter_room(roomData,userName){
+    console.log(roomData)
+    roomData = roomData?roomData:[]
+    let filter_roomData = []
+    roomData.forEach(room => 
+      {
+
+        console.log(room)
+        if(room.owner == userName){
+          filter_roomData.push(room)
+        }
+      }
+    )
+    return filter_roomData
 }
+
+
 export default APP_V2_HOME
