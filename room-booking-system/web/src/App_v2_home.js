@@ -28,8 +28,8 @@ import NavBar from './components/NavBar'
 import RoomsList from './components/RoomsList'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
-import DashBoard from './components/ViewCalendar'
-import EmailBlock from './components/EmailBlock'
+import DashBoard from './components/dynamic/ViewCalendar'
+import EmailBlock from './components/dynamic/EmailBlock'
 import PicPage from './components/dynamic/PicPage'
 import OnePageHead from './components/dynamic/OnePageHeader'
 import meta from './components/head'
@@ -103,13 +103,17 @@ class APP_V2_HOME extends Component {
                                   <li>
                                       {gen_component(agrs_PicPage)}
                                   </li>
-                                　<li><DashBoard
-                                      roomData={filter_room(roomData,props.match.params.userName)}
-                                      eventDetail={this.state.eventDetail}
-                                      updatedEventDetail={this.updatedEvent}
-                                  /></li>
                                 　<li>
-                                    <EmailBlock/>
+                                  
+                                  {gen_component({
+                                    "component_type":"DashBoard",
+                                    "roomData":filter_room(roomData,props.match.params.userName),
+                                    "eventDetail":this.state.eventDetail,
+                                    "updatedEventDetail":this.updatedEvent
+                                  })}
+                                  </li>
+                                　<li>
+                                      {gen_component(agrs_EmailBlock)}
                                   </li>
                                 </ul>
                             </DocumentMeta>
@@ -192,6 +196,7 @@ function filter_room(roomData,userName){
         }
       }
     )
+    console.log("filter_roomData",filter_roomData)
     return filter_roomData
 }
 
@@ -205,6 +210,14 @@ function gen_component(data){
       case "PicPage":
           return PicPage(data)
           break;
+      case "DashBoard":
+        return DashBoard(data)
+        break;
+
+      case "EmailBlock":
+        console.log("EmailBlock(data)",data)
+        return EmailBlock(data)
+        break;
           
       default:
           return(<h1>Not Fount Component!</h1>)
@@ -252,5 +265,28 @@ const agrs_PicPage = {
 	}
 }
 
+const agrs_EmailBlock = {
+  "component_type":"EmailBlock",
+	"title": "聯絡方式",
+	"sub_titile": "想做點什麼呢？",
+	"ml1":{
+    "text": "預約空間用餐",
+    "mail":"ddm.cooperation@gmail.com",
+    "subject":"我想預約空間用餐",
+    "body":"我想預約預約空間用餐%0D%0A姓名：%0D%0A時間：%0D%0A人數："
+	},
+	"ml2":{
+    "text": "預約空間舉辦活動",
+    "mail":"ddm.cooperation@gmail.com",
+    "subject":"我想預約空間舉辦活動",
+    "body":"我想預約空間舉辦活動%0D%0A姓名：%0D%0A時間：%0D%0A人數："
+	},
+	"ml3":{
+    "text": "參加桌遊活動",
+    "mail":"ddm.cooperation@gmail.com",
+    "subject":"我想參加桌遊活動",
+    "body":"我想預參加桌遊活動%0D%0A姓名：%0D%0A時間：%0D%0A人數："
+	}
+}
 
 export default APP_V2_HOME
