@@ -80,7 +80,21 @@ class APP_V2_HOME extends Component {
           <Fragment>
               <Switch>
 
-                <Route path="/test/:userName" exact render={(props) =>
+                <Route path="/test/:userName" exact render={(props) =>{
+                  let add_agrs = {
+                    "roomData":filter_room(roomData,props.match.params.userName),
+                    "eventDetail":this.state.eventDetail,
+                    "updatedEventDetail":this.updatedEvent
+                  }
+                  /*Todo: patch from Mongodb */
+                  let blocks =[agrs_OnePageHead,agrs_PicPage,agrs_DashBoard,agrs_EmailBlock];
+                  let blocks_convented = []
+                  blocks.forEach(row_agr=>{
+                    blocks_convented.push(<li>
+                      {gen_component({...row_agr,...add_agrs})}
+                    </li>)
+                  })
+                  return(
                      <Fragment>
                      {  !roomData && loading &&
                         (
@@ -97,29 +111,12 @@ class APP_V2_HOME extends Component {
                                   <li>
                                       <h1>Hey！ {props.match.params.userName}</h1>
                                   </li>
-                                  <li>
-                                      {gen_component(agrs_OnePageHead)}
-                                  </li>
-                                  <li>
-                                      {gen_component(agrs_PicPage)}
-                                  </li>
-                                　<li>
-                                  
-                                  {gen_component({
-                                    "component_type":"DashBoard",
-                                    "roomData":filter_room(roomData,props.match.params.userName),
-                                    "eventDetail":this.state.eventDetail,
-                                    "updatedEventDetail":this.updatedEvent
-                                  })}
-                                  </li>
-                                　<li>
-                                      {gen_component(agrs_EmailBlock)}
-                                  </li>
+                                  {blocks_convented}
                                 </ul>
                             </DocumentMeta>
                         )
                      }
-                     </Fragment>
+                     </Fragment>)}
                 } />
             </Switch>
           </Fragment>
@@ -225,7 +222,9 @@ function gen_component(data){
 
   
 }
-
+const agrs_DashBoard = {
+  "component_type":"DashBoard",
+}
 const agrs_OnePageHead = {
   "component_type":"OnePageHead",
 	"title": "多一個空間",
