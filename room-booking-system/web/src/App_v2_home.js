@@ -212,7 +212,6 @@ function gen_component(data){
         break;
 
       case "EmailBlock":
-        console.log("EmailBlock(data)",data)
         return EmailBlock(data)
         break;
           

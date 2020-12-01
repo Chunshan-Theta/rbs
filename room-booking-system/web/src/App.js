@@ -459,7 +459,7 @@ class App extends Component {
           // load the current user's bookings
           this.loadMyBookings()
           // the state's current room defaults to first room
-          if(this.state.roomData.length>0){
+          if(this.state.roomData.length > 0){
             const room = this.state.roomData[0]
             this.setRoom(room._id)
             // toggle loading page off

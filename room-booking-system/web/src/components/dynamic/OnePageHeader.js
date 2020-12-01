@@ -16,13 +16,13 @@ const OnePageHead = (props) => {
                     <a href={props.btn1.url} className="button ">{props.btn1.text}</a>
                 </section>
                 <section class="w25 center">
-                    <a href="https://ddm.com.tw/" className="button ">多多看電影</a>
+                    <a href={props.btn2.url} className="button ">{props.btn2.text}</a>
                 </section>
                 <section class="w25 center">
-                    <a href="#menu" className="button ">關於</a>
+                    <a href={props.btn3.url} className="button ">{props.btn3.text}</a>
                 </section>
                 <section class="w25 center">
-                    <a href="https://www.facebook.com/onemoreplace2019/" className="button ">紛絲專頁</a>
+                    <a href={props.btn4.url} className="button ">{props.btn4.text}</a>
                 </section>
             </div>
 
