@@ -19,6 +19,8 @@ import DocumentMeta from 'react-document-meta';
 import moment from 'moment'
 
 import BookingForm from './components/BookingForm'
+import RoomForm from './components/RoomForm'
+
 import Button from './components/Button'
 import FilterElement from './components/FilterElement'
 import Footer from './components/Footer'
@@ -28,11 +30,7 @@ import NavBar from './components/NavBar'
 import RoomsList from './components/RoomsList'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
-import DashBoard from './components/ViewCalendar'
-import EmailBlock from './components/EmailBlock'
-import PicPage from './components/PicPage'
-import OnePageHead from './components/OnePageHeader'
-import meta from './components/head'
+
 
 import {
   signIn,
@@ -42,7 +40,7 @@ import {
 import { listRooms } from './api/rooms'
 import { listRoomsOfficial } from './api/rooms_official'
 import { getDecodedToken } from './api/token'
-import { makeBooking, deleteBooking, updateStateRoom } from './api/booking'
+import { makeBooking, deleteBooking, updateStateRoom, makeRoom } from './api/booking'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
@@ -104,6 +102,17 @@ class App extends Component {
   updatedEvent = detailString => {
     this.setState(() => ({ eventDetail: detailString }))
   }
+  
+  onMakeRoom =({name,floor,capacity,owner})=>{
+    try {
+      makeRoom({name,floor,capacity,owner})
+    }catch (err) {
+      // If there is a booking clash and the booking could not be saved
+      alert('500 err:{0}'.format(err.toString()))
+      console.log(err)
+    }
+  }
+
   // Makes a booking by updating the database and the React state
   onMakeBooking = ({ startDate, endDate, businessUnit, purpose, roomId, recurringData, description }) => {
     const bookingData = { startDate, endDate, businessUnit, purpose, roomId, description }
@@ -437,6 +446,33 @@ class App extends Component {
                     </Fragment>
                   ))} />
 
+                
+              <Route path="/createroom" exact render={requireAuth(
+                  () => (
+                    <Fragment>
+                      {!!decodedToken &&
+                        !!roomData &&
+                        !!currentRoom && (
+                          <div className="wrapper">
+                            <header className="header header__nav header--flex">
+                              <h1 className="header__heading header__heading--main">多一個空間</h1>
+                              <NavBar
+                                signOut={signOut}
+                                loadMyBookings={loadMyBookings}
+                                user={signedIn ? decodedToken.sub : null}
+                              />
+                            </header>
+                            <div className="wrapper__content">
+                              <RoomForm
+                                user={decodedToken.sub}
+                                onMakeRoom={this.onMakeRoom}
+                              />
+                            </div>
+
+                        </div>
+                      )}
+                    </Fragment>
+                  ))} />
                   
             </Switch>
           </Fragment>
