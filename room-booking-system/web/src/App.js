@@ -69,7 +69,9 @@ class App extends Component {
   // Pass supplied first name, lastname, email & password to the signUp function, returns the user's token
   onSignUp = ({ firstName, lastName, email, password }) => {
     signUp({ firstName, lastName, email, password }).then(decodedToken => {
-      this.setState({ decodedToken })
+      //this.setState({ decodedToken })
+      alert("註冊成功 請登入")
+      window.location.reload(false)
     })
   }
 
@@ -106,9 +108,10 @@ class App extends Component {
   onMakeRoom =({name,floor,capacity,owner})=>{
     try {
       makeRoom({name,floor,capacity,owner})
+      alert("空間建立成功 請至首頁確認")
     }catch (err) {
       // If there is a booking clash and the booking could not be saved
-      alert('500 err:{0}'.format(err.toString()))
+      alert('500 err:空間建立失敗:{0}'.format(err.toString()))
       console.log(err)
     }
   }
@@ -297,16 +300,13 @@ class App extends Component {
                         <h2 className="header__heading header__heading--sub--alt">Sign in with email</h2>
                       </div>
                       <SignInForm onSignIn={this.onSignIn} />
-
+                      <div >
+                      <h3 className="header__heading header__heading--sub--alt">Don't have an account?</h3>
+                      <SignUpForm onSignUp={this.onSignUp} />
+                      </div>
                     </div>
                   )
                 )} />
-                <Route path="/__account__" exact render={() =>(
-                    <div >
-                    <h3 className="header__heading header__heading--sub--alt">Don't have an account?</h3>
-                    <SignUpForm onSignUp={this.onSignUp} />
-                    </div>
-                )}/>
 
                 <Route path="/bookings" exact render={requireAuth(() => (
                   <Fragment>
@@ -333,6 +333,7 @@ class App extends Component {
                             <div className="sidebar__box">
                               <Calendar setCalendarDate={setCalendarDate} />
                             </div>
+                            {/* TODO: filter enabled 
                             <div className="sidebar__box">
                               <FilterElement
                                 onSetFloorParam={this.onSetFloorParam}
@@ -348,7 +349,7 @@ class App extends Component {
                                 onSetTimeFilterParams={this.onSetTimeFilterParams}
                                 date={calendarDate}
                               />
-                            </div>
+                            </div> */}
                             <div className="sidebar__box">
                               <Key />
                             </div>
@@ -451,8 +452,7 @@ class App extends Component {
                   () => (
                     <Fragment>
                       {!!decodedToken &&
-                        !!roomData &&
-                        !!currentRoom && (
+                         (
                           <div className="wrapper">
                             <header className="header header__nav header--flex">
                               <h1 className="header__heading header__heading--main">多一個空間</h1>

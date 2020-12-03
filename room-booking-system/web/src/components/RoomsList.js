@@ -76,6 +76,13 @@ const RoomsList = props => {
   var floors = new Set();
   props.rooms.forEach(element => {floors.add(element.floor)});
   console.log(floors);
+  if(floors.size==0){
+    units.push(
+      <tbody className="table__body">
+      <h1>請點擊導覽列 建立新空間</h1>
+      </tbody>
+    )
+  }
   floors.forEach(floor => {
     units.push(
       <tbody className="table__body">
