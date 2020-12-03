@@ -5,24 +5,24 @@ const Key = props => (
     <h3 className="header__heading header__heading--sidebar">Key</h3>
     <div className="key__group">
       <span className="key__square key__square--bu1"></span>
-      <p className="key__description">固定電影聚會</p>
+      <p className="key__description">定期活動</p>
     </div>
     <div className="key__group">
       <span className="key__square key__square--bu2"></span>
-      <p className="key__description">固定桌遊活動</p>
+      <p className="key__description">期間限定活動</p>
     </div>
     <div className="key__group">
       <span className="key__square key__square--bu3"></span>
-      <p className="key__description">互惠合作</p>
+      <p className="key__description">私人活動</p>
     </div>
     <div className="key__group">
       <span className="key__square key__square--bu4"></span>
-      <p className="key__description">經常性遊客</p>
+      <p className="key__description">其他類活動</p>
     </div>
-    <div className="key__group">
+    {/* <div className="key__group">
       <span className="key__square key__square--bu5"></span>
       <p className="key__description">新進遊客</p>
-    </div>
+    </div> */}
   </div>
 )
 

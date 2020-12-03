@@ -496,12 +496,12 @@ td.rdtYear:hover {
 .table .table__row--subheader th {
   height: 4rem;
 }
-.table__cell--固定電影聚會 {
+.table__cell--定期活動 {
   background: #70d6ff;
   padding: 3rem 0;
   cursor: pointer;
 }
-.table__cell--固定電影聚會.table__cell--first-half-hour {
+.table__cell--定期活動.table__cell--first-half-hour {
   background: #70d6ff;
   cursor: pointer;
   display: block;
@@ -509,7 +509,7 @@ td.rdtYear:hover {
   padding: 3rem 0;
   width: 50%;
 }
-.table__cell--固定電影聚會.table__cell--second-half-hour {
+.table__cell--定期活動.table__cell--second-half-hour {
   background: #70d6ff;
   cursor: pointer;
   display: block;
@@ -517,12 +517,12 @@ td.rdtYear:hover {
   padding: 3rem 0;
   width: 50%;
 }
-.table__cell--固定桌遊活動 {
+.table__cell--期間限定活動 {
   background: #ffd670;
   padding: 3rem 0;
   cursor: pointer;
 }
-.table__cell--固定桌遊活動.table__cell--first-half-hour {
+.table__cell--期間限定活動.table__cell--first-half-hour {
   background: #ffd670;
   cursor: pointer;
   display: block;
@@ -530,7 +530,7 @@ td.rdtYear:hover {
   padding: 3rem 0;
   width: 50%;
 }
-.table__cell--固定桌遊活動.table__cell--second-half-hour {
+.table__cell--期間限定活動.table__cell--second-half-hour {
   background: #ffd670;
   cursor: pointer;
   display: block;
@@ -538,12 +538,12 @@ td.rdtYear:hover {
   padding: 3rem 0;
   width: 50%;
 }
-.table__cell--互惠合作預定 {
+.table__cell--私人活動 {
   background: #ef709d;
   padding: 3rem 0;
   cursor: pointer;
 }
-.table__cell--互惠合作預定.table__cell--first-half-hour {
+.table__cell--私人活動.table__cell--first-half-hour {
   background: #ef709d;
   cursor: pointer;
   display: block;
@@ -551,7 +551,7 @@ td.rdtYear:hover {
   padding: 3rem 0;
   width: 50%;
 }
-.table__cell--互惠合作預定.table__cell--second-half-hour {
+.table__cell--私人活動.table__cell--second-half-hour {
   background: #ef709d;
   cursor: pointer;
   display: block;
@@ -559,12 +559,12 @@ td.rdtYear:hover {
   padding: 3rem 0;
   width: 50%;
 }
-.table__cell--經常性遊客預定 {
+.table__cell--其他類活動 {
   background: #dabfff;
   border-top: 1rem solid #dabfff;
   cursor: pointer;
 }
-.table__cell--經常性遊客預定.table__cell--first-half-hour {
+.table__cell--其他類活動.table__cell--first-half-hour {
   background: #dabfff;
   cursor: pointer;
   display: block;
@@ -572,7 +572,7 @@ td.rdtYear:hover {
   padding: 3rem 0;
   width: 50%;
 }
-.table__cell--經常性遊客預定.table__cell--second-half-hour {
+.table__cell--其他類活動.table__cell--second-half-hour {
   background: #dabfff;
   cursor: pointer;
   display: block;

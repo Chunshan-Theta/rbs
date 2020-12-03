@@ -134,12 +134,12 @@ function BookingForm({ onMakeBooking, user, roomData, date, updateCalendar, onSh
           <div className="form__group">
             <label className="form__label form__label--booking">
               {'類型'}
-              <select name="business" defaultValue="固定電影聚會" className="form__input form__input--select">
-                <option value="固定電影聚會">電影聚會</option>
-                <option value="固定桌遊活動">桌遊活動</option>
-                <option value="互惠合作預定">互惠合作預定</option>
-                <option value="經常性遊客預定">經常性遊客預定</option>
-                <option value="新進遊客預定">新進遊客預定</option>
+              <select name="business" defaultValue="定期活動" className="form__input form__input--select">
+                <option value="定期活動">定期活動</option>
+                <option value="期間限定活動">期間限定</option>
+                <option value="私人活動">私人活動</option>
+                <option value="其他類活動">其他類活動</option>
+                {/* <option value="新進遊客預定">新進遊客預定</option> */}
               </select>
             </label>
           </div>
