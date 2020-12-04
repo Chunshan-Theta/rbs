@@ -22,7 +22,7 @@ server.get('/test', function (req, res, next) {
 });
 
 // Routes
-server.use([require('./routes/auth'), require('./routes/rooms')])
+server.use([require('./routes/auth'), require('./routes/rooms'), require('./routes/page_element')])
 
 // Error handling
 server.use((error, req, res, next) => {

@@ -35,6 +35,7 @@ import OnePageHead from './components/dynamic/OnePageHeader'
 import meta from './components/head'
 
 import { listRooms } from './api/rooms'
+import { listPages } from './api/userpages'
 import { listRoomsOfficial } from './api/rooms_official'
 import { getDecodedToken } from './api/token'
 import { makeBooking, deleteBooking, updateStateRoom } from './api/booking'
@@ -50,6 +51,7 @@ class APP_V2_HOME extends Component {
     floorParam: 'all',
     error: null,
     eventDetail: [[" ",[" "]]],
+    page: []
   }
 
   updatedEvent = detailString => {
@@ -63,6 +65,7 @@ class APP_V2_HOME extends Component {
       roomData,
       floorParam,
       error,
+      page,
       eventDetail,
       loading
     } = this.state
@@ -71,7 +74,9 @@ class APP_V2_HOME extends Component {
 
     const featureParams = this.state.filterParams
     const date = this.state.currentDate
-
+    listPages().then( page =>{
+      this.setState({ "page": page })
+    })
 
 
     return (
@@ -80,14 +85,16 @@ class APP_V2_HOME extends Component {
           <Fragment>
               <Switch>
 
-                <Route path="/test/:userName" exact render={(props) =>{
+                <Route path="/p/:userName" exact render={(props) =>{
+                  
                   let add_agrs = {
                     "roomData":filter_room(roomData,props.match.params.userName),
                     "eventDetail":this.state.eventDetail,
                     "updatedEventDetail":this.updatedEvent
                   }
                   /*Todo: patch from Mongodb */
-                  let blocks =[agrs_OnePageHead,agrs_PicPage,agrs_DashBoard,agrs_EmailBlock];
+                  //let blocks =[agrs_OnePageHead,agrs_PicPage,agrs_DashBoard,agrs_EmailBlock]
+                  let blocks = filter_page(page,props.match.params.userName)
                   let blocks_convented = []
                   blocks.forEach(row_agr=>{
                     blocks_convented.push(<li>
@@ -108,9 +115,9 @@ class APP_V2_HOME extends Component {
                             <DocumentMeta {...meta("DoDo Space")}>
                                 
                                 <ul className="one_page">
-                                  <li>
+                                  {/* <li>
                                       <h1>Hey！ {props.match.params.userName}</h1>
-                                  </li>
+                                  </li> */}
                                   {blocks_convented}
                                 </ul>
                             </DocumentMeta>
@@ -195,6 +202,21 @@ function filter_room(roomData,userName){
     )
     console.log("filter_roomData",filter_roomData)
     return filter_roomData
+}
+
+function filter_page(page,userName){
+  console.log("page", page)
+  let filter_page = []
+  page.forEach(p => 
+    {
+
+      if(p.owner == userName){
+        filter_page = p.page
+      }
+    }
+  )
+  
+  return filter_page
 }
 
 function gen_component(data){

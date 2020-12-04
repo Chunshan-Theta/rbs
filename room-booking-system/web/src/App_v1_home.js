@@ -86,47 +86,19 @@ class APP_V1_HOME extends Component {
 
                 <Route path="/p" exact render={() =>
                     (
-                        <Redirect to="/p/dodo-space/calendar_view" />
+                        <Redirect to="/p/5f5ee77c8ffb507c3b3011ec" />
                     )}
                 />
                 <Route path="/p/dodo-space/" exact render={() =>
                     (
-                        <Redirect to="/p/dodo-space/calendar_view" />
+                        <Redirect to="/p/5f5ee77c8ffb507c3b3011ec" />
                     )}
                 />
                 <Route path="/p/dodo-space/calendar_view" exact render={() =>
-                     <Fragment>
-                     {  !roomData && loading &&
-                        (
-                            <div className="loading_animation">
-                                <Loading />
-                            </div>
-                        )
-                     }
-                     { roomData &&
-                        (
-                            <DocumentMeta {...meta("DoDo Space")}>
-                                <ul className="one_page">
-                                  <li>
-                                      <OnePageHead/>
-                                  </li>
-                                  <li>
-                                      <PicPage/>
-                                  </li>
-                                　<li><DashBoard
-                                      roomData={roomData?roomData:[]}
-                                      eventDetail={this.state.eventDetail}
-                                      updatedEventDetail={this.updatedEvent}
-                                  /></li>
-                                　<li>
-                                    <EmailBlock/>
-                                  </li>
-                                </ul>
-                            </DocumentMeta>
-                        )
-                     }
-                     </Fragment>
-                } />
+                    (
+                        <Redirect to="/p/5f5ee77c8ffb507c3b3011ec" />
+                    )}
+                />
 
 
             </Switch>
