@@ -34,7 +34,7 @@ import PicPage from './components/dynamic/PicPage'
 import OnePageHead from './components/dynamic/OnePageHeader'
 import meta from './components/head'
 
-import { listRooms } from './api/rooms'
+import { listOfficeRooms } from './api/rooms'
 import { listPages } from './api/userpages'
 import { listRoomsOfficial } from './api/rooms_official'
 import { getDecodedToken } from './api/token'
@@ -74,9 +74,7 @@ class APP_V2_HOME extends Component {
 
     const featureParams = this.state.filterParams
     const date = this.state.currentDate
-    listPages().then( page =>{
-      this.setState({ "page": page })
-    })
+    
 
 
     return (
@@ -136,40 +134,23 @@ class APP_V2_HOME extends Component {
     const { decodedToken } = this.state
     const signedIn = !!decodedToken
 
-    if (signedIn) {
-      // display loading page
-      this.setState({ loading: true })
-      // load all of the rooms from the database
-      listRooms()
-        .then(rooms => {
-          this.setState({ roomData: rooms })
-          // load the current user's bookings
-          this.loadMyBookings()
-          // the state's current room defaults to first room
-          const room = this.state.roomData[0]
-          this.setRoom(room._id)
-          // toggle loading page off
-          this.setState({ loading: false })
-        })
-        .catch(error => {
-          console.error('Error loading room data', error)
-          this.setState({ error })
-        })
-    }
-    else{
-      // display loading page
-      this.setState({ loading: true })
-      // load all of the rooms from the database
-      listRoomsOfficial()
-        .then(rooms => {
-          this.setState({ roomData: rooms})
-          this.setState({ loading: false })
-        })
-        .catch(error => {
-          console.error('Error loading room data', error)
-          this.setState({ error })
-        })
-    }
+
+    // display loading page
+    this.setState({ loading: true })
+    // load all of the rooms from the database
+    listRoomsOfficial()
+      .then(rooms => {
+        this.setState({ roomData: rooms})
+        this.setState({ loading: false })
+      })
+      .catch(error => {
+        console.error('Error loading room data', error)
+        this.setState({ error })
+      })
+      listPages().then( page =>{
+        this.setState({ "page": page })
+      })
+    
   }
 
   // When the App first renders
