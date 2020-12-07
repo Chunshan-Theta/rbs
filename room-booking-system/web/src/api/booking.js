@@ -83,9 +83,13 @@ export function updateStateRoom(self, updatedRoom, loadMyBookings) {
 }
 
 
-// Make a room booking
+// Make a room
 export function makeRoom(data) {
+  console.log("/makeRoom/",data)
   return api.post(`/rooms`, data)
-  .then(res => res.data.name)
-  .catch(err => alert(err))
+    .then(res => res.data)
+    .catch(err => alert(err))
+
 }
+
+

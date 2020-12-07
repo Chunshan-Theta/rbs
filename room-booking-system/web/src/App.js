@@ -107,11 +107,14 @@ class App extends Component {
   
   onMakeRoom =({name,floor,capacity,owner})=>{
     try {
-      makeRoom({name,floor,capacity,owner})
-      alert("空間建立成功 請至首頁確認")
+      makeRoom({name,floor,capacity,owner}).then(agr=>{
+        console.log("agr",agr)
+        alert(`${agr.name} 空間建立成功 請至首頁確認`)
+        window.location.reload(false);
+      })
     }catch (err) {
       // If there is a booking clash and the booking could not be saved
-      alert('500 err:空間建立失敗:{0}'.format(err.toString()))
+      alert(`${err.toString()} 500 err:空間建立失敗:{0}`)
       console.log(err)
     }
   }

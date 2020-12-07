@@ -1,23 +1,9 @@
 import React, {Fragment} from 'react'
-import BookingFormTable from './BookingFormTable'
-import Datetime from 'react-datetime'
-import moment from 'moment'
 import {Link} from 'react-router-dom'
 import Button from './Button'
-import { formatTime, startTimeSelectOptions, endTimeSelectOptions } from '../helpers/bookingForm'
-
-
-//
-import BraftEditor from 'braft-editor'
-import 'braft-editor/dist/index.css'
-
 
 //
 function RoomForm({ onMakeRoom, user}) {
-  
-
-
-
   return (
     <Fragment>
       <div className="header__page">
@@ -25,6 +11,7 @@ function RoomForm({ onMakeRoom, user}) {
       </div>
       <form className="" onSubmit={event => {
                 //
+                event.preventDefault()
                 const formData = event.target.elements
 
                 //
@@ -77,3 +64,6 @@ function RoomForm({ onMakeRoom, user}) {
 //              <textarea type="textarea" name="description" className="form__input--textarea"></textarea>
 
 export default RoomForm
+
+
+
