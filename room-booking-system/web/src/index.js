@@ -11,6 +11,6 @@ import queryString from 'query-string'
 ReactDOM.render(<App />, document.getElementById('root'))
 // ReactDOM.render(<APP_V1_HOME />, document.getElementById('app_v1'))
 ReactDOM.render(<APP_V2_HOME />, document.getElementById('app_v2'))
-ReactDOM.render(<APP_HOME_EDIT />, document.getElementById('app_v2'))
+ReactDOM.render(<APP_HOME_EDIT />, document.getElementById('app_home_edit'))
 
 registerServiceWorker()
