@@ -82,7 +82,21 @@ class APP_V2_HOME extends Component {
         <div id="app_v2" className="App">
           <Fragment>
               <Switch>
-
+                <Route path="/p" exact render={() =>
+                    (
+                        <Redirect to="/p/5f5ee77c8ffb507c3b3011ec" />
+                    )}
+                />
+                <Route path="/p/dodo-space/" exact render={() =>
+                    (
+                        <Redirect to="/p/5f5ee77c8ffb507c3b3011ec" />
+                    )}
+                />
+                <Route path="/p/dodo-space/calendar_view" exact render={() =>
+                    (
+                        <Redirect to="/p/5f5ee77c8ffb507c3b3011ec" />
+                    )}
+                />
                 <Route path="/p/:userName" exact render={(props) =>{
                   
                   let add_agrs = {
@@ -95,9 +109,7 @@ class APP_V2_HOME extends Component {
                   let blocks = filter_page(page,props.match.params.userName)
                   let blocks_convented = []
                   blocks.forEach(row_agr=>{
-                    blocks_convented.push(<li>
-                      {gen_component({...row_agr,...add_agrs})}
-                    </li>)
+                    blocks_convented.push(<li>{gen_component({...row_agr,...add_agrs})}</li>)
                   })
                   return(
                      <Fragment>
@@ -181,6 +193,8 @@ function filter_room(roomData,userName){
         }
       }
     )
+    console.log("filter_room userName", userName)
+    console.log("roomData", roomData)
     console.log("filter_roomData",filter_roomData)
     return filter_roomData
 }
@@ -223,71 +237,6 @@ function gen_component(data){
   }
 
   
-}
-const agrs_DashBoard = {
-  "component_type":"DashBoard",
-}
-const agrs_OnePageHead = {
-  "component_type":"OnePageHead",
-	"title": "多一個空間",
-	"sub_titile": "下午茶 ｜ 桌上遊戲 ｜ 電影觀賞",
-	"btn1":{
-		"text": "本月活動",
-		"url": "#event"
-	},
-	"btn2":{
-		"text": "多多看電影",
-		"url": "https://ddm.com.tw/"
-	},
-	"btn3":{
-		"text": "關於",
-		"url": "#menu"
-	},
-	"btn4":{
-		"text": "紛絲專頁",
-		"url": "https://www.facebook.com/onemoreplace2019/"
-	}
-}
-const agrs_PicPage = {
-  "component_type":"PicPage",
-	"title": "關於 多一個空間",
-	"sub_titile": "好吃，好玩，好開心",
-	"col1":{
-		"text": "三兩好友，最佳戰友",
-		"url": "https://static.accupass.com/eventintro/2010181959479011781510.jpg"
-	},
-	"col2":{
-		"text": "喝咖啡？不如揪個團",
-		"url": "https://static.accupass.com/eventintro/2010181947321953973068.jpg"
-	},
-	"col3":{
-		"text": "週末假日的最佳選擇",
-		"url": "https://static.accupass.com/eventintro/2010181948187978925800.jpg"
-	}
-}
-
-const agrs_EmailBlock = {
-  "component_type":"EmailBlock",
-	"title": "聯絡方式",
-	"sub_titile": "想做點什麼呢？",
-	"ml1":{
-    "text": "預約空間用餐",
-    "mail":"ddm.cooperation@gmail.com",
-    "subject":"我想預約空間用餐",
-    "body":"我想預約預約空間用餐%0D%0A姓名：%0D%0A時間：%0D%0A人數："
-	},
-	"ml2":{
-    "text": "預約空間舉辦活動",
-    "mail":"ddm.cooperation@gmail.com",
-    "subject":"我想預約空間舉辦活動",
-    "body":"我想預約空間舉辦活動%0D%0A姓名：%0D%0A時間：%0D%0A人數："
-	},
-	"ml3":{
-    "text": "參加桌遊活動",
-    "mail":"ddm.cooperation@gmail.com",
-    "subject":"我想參加桌遊活動",
-    "body":"我想預參加桌遊活動%0D%0A姓名：%0D%0A時間：%0D%0A人數："
-	}
 }
 
 export default APP_V2_HOME
