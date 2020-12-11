@@ -26,7 +26,6 @@ import Footer from './components/Footer'
 import Key from './components/Key'
 import MyBookings from './components/MyBookings'
 import NavBar from './components/NavBar'
-import RoomsList from './components/RoomsList'
 import SignInForm from './components/SignInForm'
 import SignUpForm from './components/SignUpForm'
 import DashBoard from './components/dynamic/ViewCalendar'
@@ -34,56 +33,61 @@ import EmailBlock from './components/dynamic/EmailBlock'
 import PicPage from './components/dynamic/PicPage'
 import OnePageHead from './components/dynamic/OnePageHeader'
 
+
 import meta from './components/head'
 
-import { listOfficeRooms } from './api/rooms'
-import { listPages } from './api/userpages'
-import { listRoomsOfficial } from './api/rooms_official'
+import { listPages,createPages,putPages } from './api/userpages'
 import { getDecodedToken } from './api/token'
-import { makeBooking, deleteBooking, updateStateRoom } from './api/booking'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
-import { initialRoom } from './helpers/rooms'
-import { gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock } from './helpers/page_element'
+import { gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock } from './helpers/page_element'
 
 
 class APP_HOME_EDIT extends Component {
   state = {
     decodedToken: getDecodedToken(), // retrieves the token from local storage if valid, else will be null
-    blocks: []
+    blocks: [],
+    page: []
   }
 
   onAdd_header =()=>{
-    console.log(this.state.blocks)
     this.state.blocks.push(agrs_Demo_OnePageHead)
-    console.log(this.state.blocks)
     this.setState({ blocks: this.state.blocks })
   }
   onAdd_Dashboard =()=>{
-    console.log(this.state.blocks)
     this.state.blocks.push(agrs_Demo_DashBoard)
-    console.log(this.state.blocks)
     this.setState({ blocks: this.state.blocks })
   }
   onAdd_PicPage =()=>{
-    console.log(this.state.blocks)
     this.state.blocks.push(agrs_Demo_PicPage)
-    console.log(this.state.blocks)
     this.setState({ blocks: this.state.blocks })
   }
   onAdd_email =()=>{
-    console.log(this.state.blocks)
     this.state.blocks.push(agrs_Demo_EmailBlock)
-    console.log(this.state.blocks)
     this.setState({ blocks: this.state.blocks })
   }
+
+  onSubmit =()=>{
+    console.log(this.state.blocks)
+  }
+
+  onUpdateBlock =(index,pageId,block)=>{
+    this.state.blocks[index] = block
+    this.setState({ blocks: this.state.blocks })
+    // console.log("onUpdateBlock blocks", this.state.blocks)
+    // console.log("onUpdateBlock pageId", pageId)
+    putPages(pageId,this.state.blocks)
+    
+  }
+
 
   //
   render() {
     const {
       decodedToken, // retrieves the token from local storage if valid, else will be null
-      blocks
+      blocks,
+      page
     } = this.state
     const signedIn = !!decodedToken
     const Loading = require('react-loading-animation')
@@ -98,34 +102,53 @@ class APP_HOME_EDIT extends Component {
         <div id="homeedit" className="App">
           <Fragment>
               <Switch>
-                <Route path="/p/edit/:userName" exact render={(props) =>{
-                  const userName = props.match.params.userName;
+                <Route path="/p/edit/" exact render={(props) =>{
+                  
+                  //
                   let blocks_convented = []
-                  this.state.blocks.forEach(row_agr=>{
-                    blocks_convented.push(<li>{gen_component({...row_agr})}</li>)
-                  })
+                  const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
+                  if(userId != null){
+                  
+                    //
+                    let userpage = filter_page(page,userId)
+                    let blocks = userpage.page ? userpage.page: []
+                    let pageId = userpage.id
+                    console.log("userpage", userpage)
+
+
+                    //
+                    blocks.forEach((row_agr, i)=>{
+                      blocks_convented.push(<li>{gen_component_n_editor({...row_agr,index:i,pageId,onUpdateBlock:this.onUpdateBlock})}</li>)
+                    })
+                    
+                  }else{
+                    alert("尚未登入")
+                  }
                   return(
                     <DocumentMeta {...meta("Edit")}>
-                     <Fragment>
-                        <AddElementButton
-                          text={'add header'}
-                          onClick={this.onAdd_header}
-                        />
-                        <AddElementButton
-                          text={'add Dashboard'}
-                          onClick={this.onAdd_Dashboard}
-                        />
-                        <AddElementButton
-                          text={'add PicPage'}
-                          onClick={this.onAdd_PicPage}
-                        />
-                        <AddElementButton
-                          text={'add email'}
-                          onClick={this.onAdd_email}
-                        />
-                        <ul className="one_page">
-                          {blocks_convented}
-                        </ul>
+                    <Fragment>
+                        { decodedToken &&(
+                            <div>
+                                <AddElementButton
+                                  text={'add header'}
+                                  onClick={this.onAdd_header}
+                                />
+                                <AddElementButton
+                                  text={'add Dashboard'}
+                                  onClick={this.onAdd_Dashboard}
+                                />
+                                <AddElementButton
+                                  text={'add PicPage'}
+                                  onClick={this.onAdd_PicPage}
+                                />
+                                <AddElementButton
+                                  text={'add email'}
+                                  onClick={this.onAdd_email}
+                                />
+                                <ul className="one_page">
+                                  {blocks_convented}
+                                </ul>
+                            </div>)}
                      </Fragment></DocumentMeta>)
                 }} />
             </Switch>
@@ -143,18 +166,36 @@ class APP_HOME_EDIT extends Component {
     // display loading page
     this.setState({ loading: true })
     // load all of the rooms from the database
-    listRoomsOfficial()
-      .then(rooms => {
-        this.setState({ roomData: rooms})
-        this.setState({ loading: false })
-      })
-      .catch(error => {
-        console.error('Error loading room data', error)
-        this.setState({ error })
-      })
-      listPages().then( page =>{
-        this.setState({ "page": page })
-      })
+    // listRoomsOfficial()
+    //   .then(rooms => {
+    //     this.setState({ roomData: rooms})
+    //     this.setState({ loading: false })
+    //   })
+    //   .catch(error => {
+    //     console.error('Error loading room data', error)
+    //     this.setState({ error })
+    //   })
+    listPages().then( page =>{
+      this.setState({ "page": page })
+
+      //
+
+      const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
+      this.state.blocks = filter_page(page,userId).page
+
+      //
+      if(userId != null && this.state.blocks.length==0){
+        let init_blocks = [agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock]
+        createPages({
+          owner: userId,
+          page: init_blocks
+        })
+        listPages().then( page =>{
+          this.setState({ "page": page })
+        })
+      }
+
+    })
     
   }
 
@@ -178,3 +219,22 @@ class APP_HOME_EDIT extends Component {
 
 
 export default APP_HOME_EDIT
+
+
+function filter_page(page,userName){
+  console.log("page", page)
+  let respond = {}
+  page.forEach(p => 
+    {
+
+      if(p.owner == userName){
+        respond = {
+          page: p.page,
+          id: p._id
+        }
+      }
+    }
+  )
+  
+  return respond
+}

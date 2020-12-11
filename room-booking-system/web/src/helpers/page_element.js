@@ -5,6 +5,7 @@ import DashBoard from '../components/dynamic/ViewCalendar'
 import EmailBlock from '../components/dynamic/EmailBlock'
 import PicPage from '../components/dynamic/PicPage'
 import OnePageHead from '../components/dynamic/OnePageHeader'
+import Edit_OnePageHead from '../components/dynamic/Edit_OnePageHeader'
 
 function gen_agrs_DashBoard (){return({
   "component_type":"DashBoard",
@@ -77,6 +78,30 @@ function gen_agrs_EmailBlock (title,sub_titile,ml1,ml2,ml3){return({
 	}
 })}
 
+function gen_component_n_editor(data){
+	let component_type = data['component_type']? data['component_type']: null;
+	console.log("data",data)
+	switch(component_type){
+		case "OnePageHead":
+			return [OnePageHead(data),Edit_OnePageHead(data)]
+			break;
+		case "PicPage":
+			return [PicPage(data)]
+			break;
+		case "DashBoard":
+		  return [DashBoard(data)]
+		  break;
+  
+		case "EmailBlock":
+		  return [EmailBlock(data)]
+		  break;
+			
+		default:
+		  return(<h1>`Not Fount Component! {component_type}`</h1>)
+	}
+  
+	
+}
 
 function gen_component(data){
 	let component_type = data['component_type']? data['component_type']: null;
@@ -101,7 +126,7 @@ function gen_component(data){
 	}
   
 	
-  }
+}
 const agrs_Demo_DashBoard = {
 "component_type":"DashBoard",
 }
@@ -168,5 +193,5 @@ const agrs_Demo_EmailBlock = {
 	}
 }
 
-export { gen_component, agrs_Demo_OnePageHead, agrs_Demo_DashBoard, agrs_Demo_PicPage,agrs_Demo_EmailBlock}
+export { gen_agrs_OnePageHead, gen_component_n_editor, gen_component, agrs_Demo_OnePageHead, agrs_Demo_DashBoard, agrs_Demo_PicPage,agrs_Demo_EmailBlock}
 
