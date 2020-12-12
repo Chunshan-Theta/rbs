@@ -115,7 +115,6 @@ class APP_HOME_EDIT extends Component {
                     let pageId = userpage.id
                     console.log("userpage", userpage)
 
-
                     //
                     blocks.forEach((row_agr, i)=>{
                       blocks_convented.push(<li>{gen_component_n_editor({...row_agr,index:i,pageId,onUpdateBlock:this.onUpdateBlock})}</li>)
@@ -123,6 +122,8 @@ class APP_HOME_EDIT extends Component {
                     
                   }else{
                     alert("尚未登入")
+                    console.log("props",this.props)
+                    window.location.href = "../../login";
                   }
                   return(
                     <DocumentMeta {...meta("Edit")}>
