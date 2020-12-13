@@ -72,6 +72,11 @@ class APP_HOME_EDIT extends Component {
     this.state.blocks.push(agrs_Demo_EmailBlock)
     this.setState({ blocks: this.state.blocks })
   }
+  onlink_homepage =()=>{
+    const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
+    console.log("this.state.decodedToken",this.state.decodedToken)
+    window.location.href = `./${userId}`;
+  }
 
   onSubmit =()=>{
     console.log(this.state.blocks)
@@ -164,6 +169,12 @@ class APP_HOME_EDIT extends Component {
                                   text={'add email'}
                                   onClick={this.onAdd_email}
                                 />
+                                <AddElementButton
+                                  text={'VIEW'}
+                                  onClick={this.onlink_homepage}
+                                />
+
+
                                 <ul className="one_page">
                                   {blocks_convented}
                                 </ul>
