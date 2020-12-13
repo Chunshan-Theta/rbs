@@ -17,7 +17,7 @@ import './css/sass/toolbar.css'
 import './css/sass/variables.css'
 import DocumentMeta from 'react-document-meta';
 import moment from 'moment'
-
+import { listRoomsOfficial } from './api/rooms_official'
 import AddElementButton from './components/EditHomePage'
 import BookingForm from './components/BookingForm'
 import Button from './components/Button'
@@ -48,7 +48,12 @@ class APP_HOME_EDIT extends Component {
   state = {
     decodedToken: getDecodedToken(), // retrieves the token from local storage if valid, else will be null
     blocks: [],
-    page: []
+    page: [],
+    roomData: null,
+    eventDetail: [[" ",[" "]]],
+  }
+  updatedEvent = detailString => {
+    this.setState(() => ({ eventDetail: detailString }))
   }
 
   onAdd_header =()=>{
@@ -85,9 +90,11 @@ class APP_HOME_EDIT extends Component {
   //
   render() {
     const {
-      decodedToken, // retrieves the token from local storage if valid, else will be null
-      blocks,
-      page
+        roomData,
+        page,
+        eventDetail,
+        decodedToken, // retrieves the token from local storage if valid, else will be null
+        blocks,
     } = this.state
     const signedIn = !!decodedToken
     const Loading = require('react-loading-animation')
@@ -103,6 +110,8 @@ class APP_HOME_EDIT extends Component {
           <Fragment>
               <Switch>
                 <Route path="/p/edit/" exact render={(props) =>{
+
+
                   
                   //
                   let blocks_convented = []
@@ -115,9 +124,18 @@ class APP_HOME_EDIT extends Component {
                     let pageId = userpage.id
                     console.log("userpage", userpage)
 
+
+
+                    //
+                    let add_agrs = {
+                      "roomData":filter_room(roomData,userId),
+                      "eventDetail":this.state.eventDetail,
+                      "updatedEventDetail":this.updatedEvent
+                    }
+
                     //
                     blocks.forEach((row_agr, i)=>{
-                      blocks_convented.push(<li>{gen_component_n_editor({...row_agr,index:i,pageId,onUpdateBlock:this.onUpdateBlock})}</li>)
+                      blocks_convented.push(<li>{gen_component_n_editor({...add_agrs,...row_agr,index:i,pageId,onUpdateBlock:this.onUpdateBlock})}</li>)
                     })
                     
                   }else{
@@ -167,15 +185,16 @@ class APP_HOME_EDIT extends Component {
     // display loading page
     this.setState({ loading: true })
     // load all of the rooms from the database
-    // listRoomsOfficial()
-    //   .then(rooms => {
-    //     this.setState({ roomData: rooms})
-    //     this.setState({ loading: false })
-    //   })
-    //   .catch(error => {
-    //     console.error('Error loading room data', error)
-    //     this.setState({ error })
-    //   })
+    listRoomsOfficial()
+        .then(rooms => {
+         console.log("listRoomsOfficial data:",rooms)
+         this.setState({ roomData: rooms})
+         this.setState({ loading: false })
+        })
+        .catch(error => {
+         console.error('Error loading room data', error)
+         this.setState({ error })
+    })
     listPages().then( page =>{
       this.setState({ "page": page })
 
@@ -238,4 +257,21 @@ function filter_page(page,userName){
   )
   
   return respond
+}
+
+function filter_room(roomData,userName){
+    roomData = roomData?roomData:[]
+    let filter_roomData = []
+    roomData.forEach(room =>
+      {
+
+        if(room.owner == userName){
+          filter_roomData.push(room)
+        }
+      }
+    )
+    console.log("filter_room userName", userName)
+    console.log("filter_room roomData", roomData)
+    console.log("filter_roomData",filter_roomData)
+    return filter_roomData
 }
