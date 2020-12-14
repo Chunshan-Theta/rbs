@@ -75,7 +75,7 @@ class APP_HOME_EDIT extends Component {
   onlink_homepage =()=>{
     const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
     console.log("this.state.decodedToken",this.state.decodedToken)
-    window.location.href = `./${userId}`;
+    window.location.href = `../${userId}`;
   }
 
   onSubmit =()=>{

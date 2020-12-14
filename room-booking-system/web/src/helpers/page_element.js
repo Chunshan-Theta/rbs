@@ -8,6 +8,7 @@ import OnePageHead from '../components/dynamic/OnePageHeader'
 import Edit_OnePageHead from '../components/dynamic/Edit_OnePageHeader'
 import Edit_PicPage from '../components/dynamic/Edit_PicPage'
 import Edit_DashBoard from '../components/dynamic/Edit_ViewCalendar'
+import Edit_EmailBlock from '../components/dynamic/Edit_EmailBlock'
 
 function gen_agrs_DashBoard (){return({
   "component_type":"DashBoard",
@@ -95,7 +96,7 @@ function gen_component_n_editor(data){
 		  break;
   
 		case "EmailBlock":
-		  return [EmailBlock(data)]
+		  return [EmailBlock(data),Edit_EmailBlock(data)]
 		  break;
 			
 		default:
@@ -195,7 +196,7 @@ const agrs_Demo_EmailBlock = {
 	}
 }
 
-export { gen_agrs_PicPage, gen_agrs_OnePageHead, gen_component_n_editor, gen_component, agrs_Demo_OnePageHead, agrs_Demo_DashBoard, agrs_Demo_PicPage,agrs_Demo_EmailBlock}
+export { gen_agrs_EmailBlock, gen_agrs_PicPage, gen_agrs_OnePageHead, gen_component_n_editor, gen_component, agrs_Demo_OnePageHead, agrs_Demo_DashBoard, agrs_Demo_PicPage,agrs_Demo_EmailBlock}
 
 
 
