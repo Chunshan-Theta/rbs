@@ -75,7 +75,12 @@ class APP_HOME_EDIT extends Component {
   onlink_homepage =()=>{
     const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
     console.log("this.state.decodedToken",this.state.decodedToken)
-    window.location.href = `../${userId}`;
+    window.location.href = `../p/${userId}`;
+  }
+  onlink_manager =()=>{
+    const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
+    console.log("this.state.decodedToken",this.state.decodedToken)
+    window.location.href = `../../`;
   }
 
   onSubmit =()=>{
@@ -173,6 +178,11 @@ class APP_HOME_EDIT extends Component {
                                   text={'VIEW'}
                                   onClick={this.onlink_homepage}
                                 />
+                                <AddElementButton
+                                  text={'Home'}
+                                  onClick={this.onlink_manager}
+                                />
+                                
 
 
                                 <ul className="one_page">
