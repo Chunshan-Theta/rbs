@@ -47,23 +47,23 @@ const Edit_EmailBlock = (props) => {
                 </label><br/>
                 <label>
                     信箱2:
-                    <input type="text" name="ml1_mail" placeholder={props.ml2.mail}/>
+                    <input type="text" name="ml2_mail" placeholder={props.ml2.mail}/>
                     說明文字2:
-                    <input type="text" name="ml1_text" placeholder={props.ml2.text}/>
+                    <input type="text" name="ml2_text" placeholder={props.ml2.text}/>
                     信件內容範本2:
-                    <input type="text" name="ml1_body" placeholder={props.ml2.body}/>
+                    <input type="text" name="ml2_body" placeholder={props.ml2.body}/>
                     信件主旨2:
-                    <input type="text" name="ml1_subject" placeholder={props.ml2.subject}/>
+                    <input type="text" name="ml2_subject" placeholder={props.ml2.subject}/>
                 </label><br/>
                 <label>
                     信箱3:
-                    <input type="text" name="ml1_mail" placeholder={props.ml3.mail}/>
+                    <input type="text" name="ml3_mail" placeholder={props.ml3.mail}/>
                     說明文字3:
-                    <input type="text" name="ml1_text" placeholder={props.ml3.text}/>
+                    <input type="text" name="ml3_text" placeholder={props.ml3.text}/>
                     信件內容範本3:
-                    <input type="text" name="ml1_body" placeholder={props.ml3.body}/>
+                    <input type="text" name="ml3_body" placeholder={props.ml3.body}/>
                     信件主旨3:
-                    <input type="text" name="ml1_subject" placeholder={props.ml3.subject}/>
+                    <input type="text" name="ml3_subject" placeholder={props.ml3.subject}/>
                 </label><br/>
                 <Button className="button" text={'Submit'} />
             </form>
