@@ -7,7 +7,7 @@ const EmailBlock = (props) => {
   let ml2 = "mailto:"+props.ml2.mail+"?subject="+props.ml2.subject+"&body="+props.ml2.body;
   let ml3 = "mailto:"+props.ml3.mail+"?subject="+props.ml3.subject+"&body="+props.ml3.body;
   return (
-    <section class="container bkc-gray">
+    <section class="container">
         <header class="major-lf">
             <h1>{props.title}</h1>
         </header>

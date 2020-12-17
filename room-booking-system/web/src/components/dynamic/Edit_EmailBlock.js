@@ -7,6 +7,7 @@ const Edit_EmailBlock = (props) => {
   console.log("props",props)
   return (
     <section class="container">
+            <Button className="button btn-lr" text={'刪除此欄位'} onClick={() => props.onDeleteBlock(props.index,props.pageId)}/>
             <form onSubmit={event => {
                 //
                 event.preventDefault()
@@ -29,44 +30,46 @@ const Edit_EmailBlock = (props) => {
               }}>
                 <label>
                     標題:
-                    <input type="text" name="title" placeholder={props.title}/>
+                    <input type="text" name="title" defaultValue={props.title}/>
                 </label>
                 <label>
                     副標題:
-                    <input type="text" name="sub_titile" placeholder={props.sub_titile}/>
+                    <input type="text" name="sub_titile" defaultValue={props.sub_titile}/>
                 </label><br/>
                 <label>
                     信箱1:
-                    <input type="text" name="ml1_mail" placeholder={props.ml1.mail}/>
+                    <input type="text" name="ml1_mail" defaultValue={props.ml1.mail}/>
                     說明文字1:
-                    <input type="text" name="ml1_text" placeholder={props.ml1.text}/>
+                    <input type="text" name="ml1_text" defaultValue={props.ml1.text}/>
                     信件內容範本1:
-                    <input type="text" name="ml1_body" placeholder={props.ml1.body}/>
+                    <input type="text" name="ml1_body" defaultValue={props.ml1.body}/>
                     信件主旨1:
-                    <input type="text" name="ml1_subject" placeholder={props.ml1.subject}/>
+                    <input type="text" name="ml1_subject" defaultValue={props.ml1.subject}/>
                 </label><br/>
                 <label>
                     信箱2:
-                    <input type="text" name="ml2_mail" placeholder={props.ml2.mail}/>
+                    <input type="text" name="ml2_mail" defaultValue={props.ml2.mail}/>
                     說明文字2:
-                    <input type="text" name="ml2_text" placeholder={props.ml2.text}/>
+                    <input type="text" name="ml2_text" defaultValue={props.ml2.text}/>
                     信件內容範本2:
-                    <input type="text" name="ml2_body" placeholder={props.ml2.body}/>
+                    <input type="text" name="ml2_body" defaultValue={props.ml2.body}/>
                     信件主旨2:
-                    <input type="text" name="ml2_subject" placeholder={props.ml2.subject}/>
+                    <input type="text" name="ml2_subject" defaultValue={props.ml2.subject}/>
                 </label><br/>
                 <label>
                     信箱3:
-                    <input type="text" name="ml3_mail" placeholder={props.ml3.mail}/>
+                    <input type="text" name="ml3_mail" defaultValue={props.ml3.mail}/>
                     說明文字3:
-                    <input type="text" name="ml3_text" placeholder={props.ml3.text}/>
+                    <input type="text" name="ml3_text" defaultValue={props.ml3.text}/>
                     信件內容範本3:
-                    <input type="text" name="ml3_body" placeholder={props.ml3.body}/>
+                    <input type="text" name="ml3_body" defaultValue={props.ml3.body}/>
                     信件主旨3:
-                    <input type="text" name="ml3_subject" placeholder={props.ml3.subject}/>
+                    <input type="text" name="ml3_subject" defaultValue={props.ml3.subject}/>
                 </label><br/>
-                <Button className="button" text={'Submit'} />
+                <Button className="button" text={'更新此欄位'} />
             </form>
+            
+            
 
     </section>
   )

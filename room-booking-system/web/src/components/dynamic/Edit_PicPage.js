@@ -28,29 +28,29 @@ const Edit_PicPage = (props) => {
               }}>
                 <label>
                     標題:
-                    <input type="text" name="title" placeholder={props.title}/>
+                    <input type="text" name="title" defaultValue={props.title}/>
                 </label>
                 <label>
                     副標題:
-                    <input type="text" name="sub_titile" placeholder={props.sub_titile}/>
+                    <input type="text" name="sub_titile" defaultValue={props.sub_titile}/>
                 </label><br/>
                 <label>
                     說明1:
-                    <input type="text" name="col1_text" placeholder={props.col1.text}/>
+                    <input type="text" name="col1_text" defaultValue={props.col1.text}/>
                     圖片連結1:
-                    <input type="text" name="col1_url" placeholder={props.col1.url}/>
+                    <input type="text" name="col1_url" defaultValue={props.col1.url}/>
                 </label><br/>
                 <label>
                     說明2:
-                    <input type="text" name="col2_text" placeholder={props.col2.text}/>
+                    <input type="text" name="col2_text" defaultValue={props.col2.text}/>
                     圖片連結2:
-                    <input type="text" name="col2_url" placeholder={props.col2.url}/>
+                    <input type="text" name="col2_url" defaultValue={props.col2.url}/>
                 </label><br/>
                 <label>
                     說明3:
-                    <input type="text" name="col3_text" placeholder={props.col3.text}/>
+                    <input type="text" name="col3_text" defaultValue={props.col3.text}/>
                     圖片連結3:
-                    <input type="text" name="col3_url" placeholder={props.col3.url}/>
+                    <input type="text" name="col3_url" defaultValue={props.col3.url}/>
                 </label><br/>
                 <Button className="button" text={'Submit'} />
             </form>

@@ -95,6 +95,15 @@ class APP_HOME_EDIT extends Component {
     putPages(pageId,this.state.blocks)
     
   }
+  onDeleteBlock =(index,pageId)=>{
+    this.state.blocks.splice(index, 1);
+    this.setState({ blocks: this.state.blocks })
+    putPages(pageId,this.state.blocks)
+
+    // console.log("onUpdateBlock pageId", pageId)
+    // console.log("onUpdateBlock index", index)
+    
+  }
 
 
   //
@@ -145,7 +154,7 @@ class APP_HOME_EDIT extends Component {
 
                     //
                     blocks.forEach((row_agr, i)=>{
-                      blocks_convented.push(<li>{gen_component_n_editor({...add_agrs,...row_agr,index:i,pageId,onUpdateBlock:this.onUpdateBlock})}</li>)
+                      blocks_convented.push(<li>{gen_component_n_editor({...add_agrs,...row_agr,index:i,pageId,onUpdateBlock:this.onUpdateBlock,onDeleteBlock:this.onDeleteBlock})}</li>)
                     })
                     
                   }else{

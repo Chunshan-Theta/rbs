@@ -29,35 +29,35 @@ const Edit_OnePageHead = (props) => {
               }}>
                 <label>
                     標題:
-                    <input type="text" name="title" placeholder={props.title}/>
+                    <input type="text" name="title" defaultValue={props.title}/>
                 </label>
                 <label>
                     副標題:
-                    <input type="text" name="sub_titile" placeholder={props.sub_titile}/>
+                    <input type="text" name="sub_titile" defaultValue={props.sub_titile}/>
                 </label><br/>
                 <label>
                     按鍵1:
-                    <input type="text" name="btn1_text" placeholder={props.btn1.text}/>
+                    <input type="text" name="btn1_text" defaultValue={props.btn1.text}/>
                     連結1:
-                    <input type="text" name="btn1_url" placeholder={props.btn1.url}/>
+                    <input type="text" name="btn1_url" defaultValue={props.btn1.url}/>
                 </label><br/>
                 <label>
                     按鍵2:
-                    <input type="text" name="btn2_text" placeholder={props.btn2.text}/>
+                    <input type="text" name="btn2_text" defaultValue={props.btn2.text}/>
                     連結2:
-                    <input type="text" name="btn2_url" placeholder={props.btn2.url}/>
+                    <input type="text" name="btn2_url" defaultValue={props.btn2.url}/>
                 </label><br/>
                 <label>
                     按鍵3:
-                    <input type="text" name="btn3_text" placeholder={props.btn3.text}/>
+                    <input type="text" name="btn3_text" defaultValue={props.btn3.text}/>
                     連結3:
-                    <input type="text" name="btn3_url" placeholder={props.btn3.url}/>
+                    <input type="text" name="btn3_url" defaultValue={props.btn3.url}/>
                 </label><br/>
                 <label>
                     按鍵4:
-                    <input type="text" name="btn4_text" placeholder={props.btn4.text}/>
+                    <input type="text" name="btn4_text" defaultValue={props.btn4.text}/>
                     連結4:
-                    <input type="text" name="btn4_url" placeholder={props.btn4.url}/>
+                    <input type="text" name="btn4_url" defaultValue={props.btn4.url}/>
                 </label><br/>
                 <Button className="button" text={'Submit'} />
             </form>

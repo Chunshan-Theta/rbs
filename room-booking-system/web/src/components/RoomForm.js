@@ -7,7 +7,7 @@ function RoomForm({ onMakeRoom, user}) {
   return (
     <Fragment>
       <div className="header__page">
-        <h2 className="header__heading header__heading--sub">設立新空間 | {user}</h2>
+        <h2 className="header__heading header__heading--sub">設立新空間</h2>
       </div>
       <form className="" onSubmit={event => {
                 //
@@ -25,7 +25,7 @@ function RoomForm({ onMakeRoom, user}) {
                 onMakeRoom({name,floor,capacity,owner})
               }}>
         <div className="">
-          <h3 className="header__heading header__heading--column">Make a Booking</h3>
+          <h3 className="header__heading header__heading--column">Create a Room</h3>
           <div className="form__group form__group--margin-top">
 
 

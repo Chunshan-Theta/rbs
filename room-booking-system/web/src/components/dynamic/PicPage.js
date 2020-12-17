@@ -4,7 +4,7 @@ import ReactModal from 'react-modal'
 const PicPage = (props) => {
 
   return (
-    <section id="menu" class="container bkc-gray">
+    <section id="menu" class="container">
         <header class="major-lf">
             <h1>{props.title}</h1>
             <p>{props.sub_titile}</p>

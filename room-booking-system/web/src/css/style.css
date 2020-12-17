@@ -1169,7 +1169,9 @@ hr {
    overflow:scroll;
 }
 
-
+.btn-lr{
+  float: right;
+}
 @media screen and (min-width: 1025px) {
   div.rbc-event {
     background-color: #d4d7dd !important;
