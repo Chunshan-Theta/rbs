@@ -6,8 +6,9 @@ import { gen_agrs_EmailBlock } from '../../helpers/page_element'
 const Edit_EmailBlock = (props) => {
   console.log("props",props)
   return (
-    <section class="container">
-            <Button className="button btn-lr" text={'刪除此欄位'} onClick={() => props.onDeleteBlock(props.index,props.pageId)}/>
+    <section class="container Edit-block-border-gry">
+            <p>工具欄</p>
+            <Button className="button btn-lr" text={'刪除上方欄位'} onClick={() => props.onDeleteBlock(props.index,props.pageId)}/>
             <form onSubmit={event => {
                 //
                 event.preventDefault()
@@ -66,7 +67,7 @@ const Edit_EmailBlock = (props) => {
                     信件主旨3:
                     <input type="text" name="ml3_subject" defaultValue={props.ml3.subject}/>
                 </label><br/>
-                <Button className="button" text={'更新此欄位'} />
+                <Button className="button" text={'更新上方欄位'} />
             </form>
             
             

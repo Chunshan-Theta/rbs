@@ -1172,6 +1172,17 @@ hr {
 .btn-lr{
   float: right;
 }
+
+.Edit-block-border-gry {
+  background-color:#FFF;
+  border: 6px solid gray;
+}
+
+
+.Edit-block-border-gry label{
+  padding-bottom: 5px;
+}
+
 @media screen and (min-width: 1025px) {
   div.rbc-event {
     background-color: #d4d7dd !important;

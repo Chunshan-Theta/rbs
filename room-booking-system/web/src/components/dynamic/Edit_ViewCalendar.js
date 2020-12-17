@@ -8,10 +8,11 @@ import Button from '../Button'
 function Edit_DashBoard(props){
     console.log("Edit_DashBoard props:",props)
     return (
-    <div>
-        <Button className="button btn-lr" text={'刪除此欄位'} onClick={() => props.onDeleteBlock(props.index,props.pageId)}/>
+    <section class="container Edit-block-border-gry">
+        <p>工具欄</p>
+        <Button className="button btn-lr" text={'刪除上方欄位'} onClick={() => props.onDeleteBlock(props.index,props.pageId)}/>
         <p>這個欄位會顯示已開設的活動</p>
-    </div>)
+    </section>)
 }
 
 

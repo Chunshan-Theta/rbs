@@ -173,31 +173,34 @@ class APP_HOME_EDIT extends Component {
                     <Fragment>
                         { decodedToken &&(
                             <div>
+
                                 <AddElementButton
-                                  text={'add header'}
+                                  text={'新增欄位： header'}
                                   onClick={() => this.onAdd_header(pageId)}
                                 />
                                 <AddElementButton
-                                  text={'add Dashboard'}
+                                  text={'新增欄位： Dashboard'}
                                   onClick={() => this.onAdd_Dashboard(pageId)}
                                 />
                                 <AddElementButton
-                                  text={'add PicPage'}
+                                  text={'新增欄位： PicPage'}
                                   onClick={() => this.onAdd_PicPage(pageId)}
                                 />
                                 <AddElementButton
-                                  text={'add email'}
+                                  text={'新增欄位： email'}
                                   onClick={() => this.onAdd_email(pageId)}
                                 />
                                 <AddElementButton
-                                  text={'VIEW'}
+                                  text={'前往個人頁面'}
                                   onClick={this.onlink_homepage}
                                 />
                                 <AddElementButton
-                                  text={'Home'}
+                                  text={'返回管理後台'}
                                   onClick={this.onlink_manager}
                                 />
-                                
+                                <ul>
+                                  <p>新增欄位會在最下方</p>
+                                </ul>
 
 
                                 <ul className="one_page">
