@@ -7,6 +7,7 @@ const Edit_OnePageHead = (props) => {
   console.log("props",props)
   return (
     <section class="container">
+            <Button className="button btn-lr" text={'刪除此欄位'} onClick={() => props.onDeleteBlock(props.index,props.pageId)}/>
             <form onSubmit={event => {
                 //
                 event.preventDefault()

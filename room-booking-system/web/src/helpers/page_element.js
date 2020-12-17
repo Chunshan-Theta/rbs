@@ -92,7 +92,7 @@ function gen_component_n_editor(data){
 			return [PicPage(data),Edit_PicPage(data)]
 			break;
 		case "DashBoard":
-		  return [Edit_DashBoard(data), DashBoard(data)]
+		  return [DashBoard(data), Edit_DashBoard(data)]
 		  break;
   
 		case "EmailBlock":

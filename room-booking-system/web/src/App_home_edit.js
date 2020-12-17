@@ -56,21 +56,26 @@ class APP_HOME_EDIT extends Component {
     this.setState(() => ({ eventDetail: detailString }))
   }
 
-  onAdd_header =()=>{
+  onAdd_header =(pageId)=>{
     this.state.blocks.push(agrs_Demo_OnePageHead)
     this.setState({ blocks: this.state.blocks })
+    putPages(pageId,this.state.blocks)
   }
-  onAdd_Dashboard =()=>{
+  onAdd_Dashboard =(pageId)=>{
     this.state.blocks.push(agrs_Demo_DashBoard)
     this.setState({ blocks: this.state.blocks })
+    putPages(pageId,this.state.blocks)
+    
   }
-  onAdd_PicPage =()=>{
+  onAdd_PicPage =(pageId)=>{
     this.state.blocks.push(agrs_Demo_PicPage)
     this.setState({ blocks: this.state.blocks })
+    putPages(pageId,this.state.blocks)
   }
-  onAdd_email =()=>{
+  onAdd_email =(pageId)=>{
     this.state.blocks.push(agrs_Demo_EmailBlock)
     this.setState({ blocks: this.state.blocks })
+    putPages(pageId,this.state.blocks)
   }
   onlink_homepage =()=>{
     const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
@@ -134,13 +139,14 @@ class APP_HOME_EDIT extends Component {
                   
                   //
                   let blocks_convented = []
+                  let pageId = null
                   const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
                   if(userId != null){
                   
                     //
                     let userpage = filter_page(page,userId)
                     let blocks = userpage.page ? userpage.page: []
-                    let pageId = userpage.id
+                    pageId = userpage.id
                     console.log("userpage", userpage)
 
 
@@ -169,19 +175,19 @@ class APP_HOME_EDIT extends Component {
                             <div>
                                 <AddElementButton
                                   text={'add header'}
-                                  onClick={this.onAdd_header}
+                                  onClick={() => this.onAdd_header(pageId)}
                                 />
                                 <AddElementButton
                                   text={'add Dashboard'}
-                                  onClick={this.onAdd_Dashboard}
+                                  onClick={() => this.onAdd_Dashboard(pageId)}
                                 />
                                 <AddElementButton
                                   text={'add PicPage'}
-                                  onClick={this.onAdd_PicPage}
+                                  onClick={() => this.onAdd_PicPage(pageId)}
                                 />
                                 <AddElementButton
                                   text={'add email'}
-                                  onClick={this.onAdd_email}
+                                  onClick={() => this.onAdd_email(pageId)}
                                 />
                                 <AddElementButton
                                   text={'VIEW'}
