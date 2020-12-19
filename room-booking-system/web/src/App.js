@@ -295,7 +295,7 @@ class App extends Component {
         <div id="app" className="App">
           <Fragment>
               <Switch>
-                <Route path="/" exact render={() => (<Redirect to="/login" />)} />
+
                 <Route path="/login" exact render={() => (!!decodedToken && signedIn ?
                   (<Redirect to="/bookings" />) :
                   (<div className="wrapper__form">

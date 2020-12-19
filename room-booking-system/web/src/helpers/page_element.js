@@ -135,64 +135,64 @@ const agrs_Demo_DashBoard = {
 }
 const agrs_Demo_OnePageHead = {
 "component_type":"OnePageHead",
-	"title": "多一個空間",
-	"sub_titile": "下午茶 ｜ 桌上遊戲 ｜ 電影觀賞",
+	"title": "商店名稱",
+	"sub_titile": "商店說明之副標題",
 	"btn1":{
-		"text": "本月活動",
-		"url": "#event"
+		"text": "連結1",
+		"url": "./"
 	},
 	"btn2":{
-		"text": "多多看電影",
-		"url": "https://ddm.com.tw/"
+		"text": "連結2",
+		"url": "./"
 	},
 	"btn3":{
-		"text": "關於",
-		"url": "#menu"
+		"text": "連結3",
+		"url": "./"
 	},
 	"btn4":{
-		"text": "紛絲專頁",
-		"url": "https://www.facebook.com/onemoreplace2019/"
+		"text": "連結4",
+		"url": "./"
 	}
 }
 const agrs_Demo_PicPage = {
 "component_type":"PicPage",
-	"title": "關於 多一個空間",
-	"sub_titile": "好吃，好玩，好開心",
+	"title": "關於 商店",
+	"sub_titile": "關於 商店說明之副標題",
 	"col1":{
-		"text": "三兩好友，最佳戰友",
-		"url": "https://static.accupass.com/eventintro/2010181959479011781510.jpg"
+		"text": "標語1",
+		"url": "https://images.unsplash.com/photo-1608195156025-dfbae92b6943?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
 	},
 	"col2":{
-		"text": "喝咖啡？不如揪個團",
-		"url": "https://static.accupass.com/eventintro/2010181947321953973068.jpg"
+		"text": "標語2",
+		"url": "https://images.unsplash.com/photo-1608195156025-dfbae92b6943?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
 	},
 	"col3":{
-		"text": "週末假日的最佳選擇",
-		"url": "https://static.accupass.com/eventintro/2010181948187978925800.jpg"
+		"text": "標語3",
+		"url": "https://images.unsplash.com/photo-1608195156025-dfbae92b6943?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
 	}
 }
 
 const agrs_Demo_EmailBlock = {
 "component_type":"EmailBlock",
-	"title": "聯絡方式",
-	"sub_titile": "想做點什麼呢？",
+	"title": "電子郵件聯絡方式",
+	"sub_titile": "電子郵件聯絡之說明方式",
 	"ml1":{
-	"text": "預約空間用餐",
-	"mail":"ddm.cooperation@gmail.com",
-	"subject":"我想預約空間用餐",
-	"body":"我想預約預約空間用餐%0D%0A姓名：%0D%0A時間：%0D%0A人數："
+	"text": "聯絡目的 一",
+	"mail":"your.mail.adress@mail.com",
+	"subject":"電子郵件主旨1",
+	"body":"預設內文1"
 	},
 	"ml2":{
-	"text": "預約空間舉辦活動",
-	"mail":"ddm.cooperation@gmail.com",
-	"subject":"我想預約空間舉辦活動",
-	"body":"我想預約空間舉辦活動%0D%0A姓名：%0D%0A時間：%0D%0A人數："
+	"text": "聯絡目的 二",
+	"mail":"your.mail.adress@mail.com",
+	"subject":"電子郵件主旨2",
+	"body":"預設內文2"
 	},
 	"ml3":{
-	"text": "參加桌遊活動",
-	"mail":"ddm.cooperation@gmail.com",
-	"subject":"我想參加桌遊活動",
-	"body":"我想預參加桌遊活動%0D%0A姓名：%0D%0A時間：%0D%0A人數："
+	"text": "聯絡目的 三",
+	"mail":"your.mail.adress@mail.com",
+	"subject":"電子郵件主旨3",
+	"body":"預設內文3"
 	}
 }
 
