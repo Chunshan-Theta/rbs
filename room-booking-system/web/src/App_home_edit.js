@@ -243,7 +243,7 @@ class APP_HOME_EDIT extends Component {
       this.state.blocks = filter_page(page,userId).page
 
       //
-      if(userId != null && this.state.blocks.length==0){
+      if(userId != null && !this.state.blocks){
         let init_blocks = [agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock]
         createPages({
           owner: userId,
