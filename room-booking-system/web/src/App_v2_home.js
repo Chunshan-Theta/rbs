@@ -43,6 +43,7 @@ import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
 import { initialRoom } from './helpers/rooms'
+import { gen_component } from './helpers/page_element'
 
 class APP_V2_HOME extends Component {
   state = {
@@ -213,31 +214,6 @@ function filter_page(page,userName){
   )
   
   return filter_page
-}
-
-function gen_component(data){
-  let component_type = data['component_type']? data['component_type']: null;
-  console.log("data",data)
-  switch(component_type){
-      case "OnePageHead":
-          return OnePageHead(data)
-          break;
-      case "PicPage":
-          return PicPage(data)
-          break;
-      case "DashBoard":
-        return DashBoard(data)
-        break;
-
-      case "EmailBlock":
-        return EmailBlock(data)
-        break;
-          
-      default:
-          return(<h1>Not Fount Component!</h1>)
-  }
-
-  
 }
 
 export default APP_V2_HOME

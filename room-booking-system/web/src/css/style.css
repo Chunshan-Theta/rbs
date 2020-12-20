@@ -1001,6 +1001,10 @@ div.one_page .w50 {
 .w100{
     width: 100% !important;
 }
+
+.w75{
+    width: 75% !important;
+}
 .w50{
     width: 50% !important;
 }
@@ -1132,6 +1136,9 @@ section.container a.button:hover {
     align-items:center;
     justify-content:center;
 }
+.margin-top-5 {
+    margin-top: 5px;
+}
 .left {
     text-align: left;
     margin:0 auto;
@@ -1240,6 +1247,17 @@ hr {
         display:flex;
         align-items:center;
         justify-content:center;
+    }
+
+    .w75{
+        width: 100% !important;
+        text-align: center;
+        margin:0 auto;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        padding-bottom:20px;
     }
     .w25{
         width: 100% !important;

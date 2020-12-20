@@ -5,7 +5,7 @@ import Button from './Button'
 
 const AddElementButton = (props) => {
   return (
-    <button className={`button`} onClick={props.onClick} >{props.text}</button>
+    <button className={`button margin-top-5 bkg-gry`} onClick={props.onClick} >{props.text}</button>
 
     
   )

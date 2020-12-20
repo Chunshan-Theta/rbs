@@ -5,10 +5,16 @@ import DashBoard from '../components/dynamic/ViewCalendar'
 import EmailBlock from '../components/dynamic/EmailBlock'
 import PicPage from '../components/dynamic/PicPage'
 import OnePageHead from '../components/dynamic/OnePageHeader'
+import LeftPicRightWord from '../components/dynamic/LeftPicRightWord'
+
+//
 import Edit_OnePageHead from '../components/dynamic/Edit_OnePageHeader'
 import Edit_PicPage from '../components/dynamic/Edit_PicPage'
 import Edit_DashBoard from '../components/dynamic/Edit_ViewCalendar'
 import Edit_EmailBlock from '../components/dynamic/Edit_EmailBlock'
+import Edit_LeftPicRightWord from '../components/dynamic/Edit_LeftPicRightWord'
+
+
 
 function gen_agrs_DashBoard (){return({
   "component_type":"DashBoard",
@@ -55,8 +61,18 @@ function gen_agrs_PicPage (title,sub_titile,col1,col2,col3){return({
 	}
 })}
 
-
-
+function gen_agrs_LeftPicRightWord (title,sub_titile,image,content){return({
+  "component_type":"LeftPicRightWord",
+	"title": title,
+	"sub_titile": sub_titile,
+	"image":{
+		"text": image.text,
+		"url": image.url
+	},
+	"content":{
+		"text": content.text,
+	}
+})}
 function gen_agrs_EmailBlock (title,sub_titile,ml1,ml2,ml3){return({
   "component_type":"EmailBlock",
 	"title": title,
@@ -98,7 +114,9 @@ function gen_component_n_editor(data){
 		case "EmailBlock":
 		  return [EmailBlock(data),Edit_EmailBlock(data)]
 		  break;
-			
+        case "LeftPicRightWord":
+          return [LeftPicRightWord(data),Edit_LeftPicRightWord(data)]
+          break;
 		default:
 		  return(<h1>`Not Fount Component! {component_type}`</h1>)
 	}
@@ -122,6 +140,10 @@ function gen_component(data){
   
 		case "EmailBlock":
 		  return EmailBlock(data)
+		  break;
+
+		case "LeftPicRightWord":
+		  return LeftPicRightWord(data)
 		  break;
 			
 		default:
@@ -172,6 +194,19 @@ const agrs_Demo_PicPage = {
 	}
 }
 
+const agrs_Demo_LeftPicRightWord = {
+    "component_type":"LeftPicRightWord",
+	"title": "關於 商店",
+	"sub_titile": "關於 商店說明之副標題",
+	"image":{
+		"text": "標語1",
+		"url": "https://images.unsplash.com/photo-1608195156025-dfbae92b6943?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80"
+	},
+	"content":{
+		"text": "標語2",
+	}
+}
+
 const agrs_Demo_EmailBlock = {
 "component_type":"EmailBlock",
 	"title": "電子郵件聯絡方式",
@@ -196,7 +231,19 @@ const agrs_Demo_EmailBlock = {
 	}
 }
 
-export { gen_agrs_EmailBlock, gen_agrs_PicPage, gen_agrs_OnePageHead, gen_component_n_editor, gen_component, agrs_Demo_OnePageHead, agrs_Demo_DashBoard, agrs_Demo_PicPage,agrs_Demo_EmailBlock}
+export {
+    gen_agrs_EmailBlock,
+    gen_agrs_PicPage,
+    gen_agrs_OnePageHead,
+    gen_component_n_editor,
+    gen_component,
+    gen_agrs_LeftPicRightWord,
+    agrs_Demo_OnePageHead,
+    agrs_Demo_DashBoard,
+    agrs_Demo_PicPage,
+    agrs_Demo_EmailBlock,
+    agrs_Demo_LeftPicRightWord,
+}
 
 
 

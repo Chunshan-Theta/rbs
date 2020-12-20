@@ -41,7 +41,7 @@ import { getDecodedToken } from './api/token'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
-import { gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock } from './helpers/page_element'
+import { gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock,agrs_Demo_LeftPicRightWord } from './helpers/page_element'
 
 
 class APP_HOME_EDIT extends Component {
@@ -74,6 +74,11 @@ class APP_HOME_EDIT extends Component {
   }
   onAdd_email =(pageId)=>{
     this.state.blocks.push(agrs_Demo_EmailBlock)
+    this.setState({ blocks: this.state.blocks })
+    putPages(pageId,this.state.blocks)
+  }
+  onAdd_LeftPicRightWord =(pageId)=>{
+    this.state.blocks.push(agrs_Demo_LeftPicRightWord)
     this.setState({ blocks: this.state.blocks })
     putPages(pageId,this.state.blocks)
   }
@@ -173,35 +178,39 @@ class APP_HOME_EDIT extends Component {
                     <Fragment>
                         { decodedToken &&(
                             <div>
-
-                                <AddElementButton
-                                  text={'新增欄位： header'}
-                                  onClick={() => this.onAdd_header(pageId)}
-                                />
-                                <AddElementButton
-                                  text={'新增欄位： Dashboard'}
-                                  onClick={() => this.onAdd_Dashboard(pageId)}
-                                />
-                                <AddElementButton
-                                  text={'新增欄位： PicPage'}
-                                  onClick={() => this.onAdd_PicPage(pageId)}
-                                />
-                                <AddElementButton
-                                  text={'新增欄位： email'}
-                                  onClick={() => this.onAdd_email(pageId)}
-                                />
-                                <AddElementButton
-                                  text={'前往個人頁面'}
-                                  onClick={this.onlink_homepage}
-                                />
-                                <AddElementButton
-                                  text={'返回管理後台'}
-                                  onClick={this.onlink_manager}
-                                />
-                                <ul>
-                                  <p>新增欄位會在最下方</p>
-                                </ul>
-
+                                <div className="ToolBar bkc-gray">
+                                    <AddElementButton
+                                      text={'新增欄位： header'}
+                                      onClick={() => this.onAdd_header(pageId)}
+                                    />
+                                    <AddElementButton
+                                      text={'新增欄位： Dashboard'}
+                                      onClick={() => this.onAdd_Dashboard(pageId)}
+                                    />
+                                    <AddElementButton
+                                      text={'新增欄位： PicPage'}
+                                      onClick={() => this.onAdd_PicPage(pageId)}
+                                    />
+                                    <AddElementButton
+                                      text={'新增欄位： email'}
+                                      onClick={() => this.onAdd_email(pageId)}
+                                    />
+                                    <AddElementButton
+                                      text={'新增欄位： LeftPicRightWord'}
+                                      onClick={() => this.onAdd_LeftPicRightWord(pageId)}
+                                    />
+                                    <AddElementButton
+                                      text={'前往個人頁面'}
+                                      onClick={this.onlink_homepage}
+                                    />
+                                    <AddElementButton
+                                      text={'返回管理後台'}
+                                      onClick={this.onlink_manager}
+                                    />
+                                    <ul>
+                                      <p>新增欄位會在最下方</p>
+                                    </ul>
+                                </div>
 
                                 <ul className="one_page">
                                   {blocks_convented}

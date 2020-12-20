@@ -43,6 +43,7 @@ import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
 import { initialRoom } from './helpers/rooms'
 
+
 class APP_V1_HOME extends Component {
   state = {
     decodedToken: getDecodedToken(), // retrieves the token from local storage if valid, else will be null
