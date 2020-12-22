@@ -6,6 +6,8 @@ import EmailBlock from '../components/dynamic/EmailBlock'
 import PicPage from '../components/dynamic/PicPage'
 import OnePageHead from '../components/dynamic/OnePageHeader'
 import LeftPicRightWord from '../components/dynamic/LeftPicRightWord'
+import LeftInstaRightWord from '../components/dynamic/LeftInstaRightWord'
+
 
 //
 import Edit_OnePageHead from '../components/dynamic/Edit_OnePageHeader'
@@ -116,7 +118,10 @@ function gen_component_n_editor(data){
 		  break;
         case "LeftPicRightWord":
           return [LeftPicRightWord(data),Edit_LeftPicRightWord(data)]
-          break;
+		  break;
+		case "LeftInstaRightWord":
+			return [LeftInstaRightWord(data)]
+			break;  
 		default:
 		  return(<h1>`Not Fount Component! {component_type}`</h1>)
 	}
