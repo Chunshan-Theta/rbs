@@ -15,6 +15,7 @@ import Edit_PicPage from '../components/dynamic/Edit_PicPage'
 import Edit_DashBoard from '../components/dynamic/Edit_ViewCalendar'
 import Edit_EmailBlock from '../components/dynamic/Edit_EmailBlock'
 import Edit_LeftPicRightWord from '../components/dynamic/Edit_LeftPicRightWord'
+import Edit_LeftInstaRightWord from '../components/dynamic/Edit_LeftInstaRightWord'
 
 
 
@@ -75,6 +76,17 @@ function gen_agrs_LeftPicRightWord (title,sub_titile,image,content){return({
 		"text": content.text,
 	}
 })}
+function gen_agrs_LeftInstaRightWord (title,sub_titile,insta,content){return({
+	"component_type":"LeftInstaRightWord",
+	  "title": title,
+	  "sub_titile": sub_titile,
+	  "insta":{
+		  "shortcode": insta.shortcode,
+	  },
+	  "content":{
+		  "text": content.text,
+	  }
+  })}
 function gen_agrs_EmailBlock (title,sub_titile,ml1,ml2,ml3){return({
   "component_type":"EmailBlock",
 	"title": title,
@@ -120,7 +132,7 @@ function gen_component_n_editor(data){
           return [LeftPicRightWord(data),Edit_LeftPicRightWord(data)]
 		  break;
 		case "LeftInstaRightWord":
-			return [LeftInstaRightWord(data)]
+			return [LeftInstaRightWord(data),Edit_LeftInstaRightWord(data)]
 			break;  
 		default:
 		  return(<h1>`Not Fount Component! {component_type}`</h1>)
@@ -150,7 +162,10 @@ function gen_component(data){
 		case "LeftPicRightWord":
 		  return LeftPicRightWord(data)
 		  break;
-			
+		
+		case "LeftInstaRightWord":
+			return [LeftInstaRightWord(data)]
+			break;  
 		default:
 		  return(<h1>`Not Fount Component! {component_type}`</h1>)
 	}
@@ -199,6 +214,17 @@ const agrs_Demo_PicPage = {
 	}
 }
 
+const agrs_Demo_LeftInstaRightWord = {
+    "component_type":"LeftInstaRightWord",
+	"title": "關於 商店",
+	"sub_titile": "關於 商店說明之副標題",
+	"insta":{
+		"shortcode":"CDU2C5Nh09d"
+	},
+	"content":{
+		"text": "標語2",
+	}
+}
 const agrs_Demo_LeftPicRightWord = {
     "component_type":"LeftPicRightWord",
 	"title": "關於 商店",
@@ -237,17 +263,20 @@ const agrs_Demo_EmailBlock = {
 }
 
 export {
+
+    gen_agrs_LeftPicRightWord,
     gen_agrs_EmailBlock,
     gen_agrs_PicPage,
-    gen_agrs_OnePageHead,
+	gen_agrs_OnePageHead,
+	gen_agrs_LeftInstaRightWord,
     gen_component_n_editor,
     gen_component,
-    gen_agrs_LeftPicRightWord,
     agrs_Demo_OnePageHead,
     agrs_Demo_DashBoard,
     agrs_Demo_PicPage,
     agrs_Demo_EmailBlock,
-    agrs_Demo_LeftPicRightWord,
+	agrs_Demo_LeftPicRightWord,
+	agrs_Demo_LeftInstaRightWord,
 }
 
 

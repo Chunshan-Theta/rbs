@@ -41,7 +41,7 @@ import { getDecodedToken } from './api/token'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
-import { gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock,agrs_Demo_LeftPicRightWord } from './helpers/page_element'
+import { gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock,agrs_Demo_LeftPicRightWord,agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
 
 
 class APP_HOME_EDIT extends Component {
@@ -79,6 +79,11 @@ class APP_HOME_EDIT extends Component {
   }
   onAdd_LeftPicRightWord =(pageId)=>{
     this.state.blocks.push(agrs_Demo_LeftPicRightWord)
+    this.setState({ blocks: this.state.blocks })
+    putPages(pageId,this.state.blocks)
+  }
+  onAdd_LeftInstaRightWord =(pageId)=>{
+    this.state.blocks.push(agrs_Demo_LeftInstaRightWord)
     this.setState({ blocks: this.state.blocks })
     putPages(pageId,this.state.blocks)
   }
@@ -167,7 +172,7 @@ class APP_HOME_EDIT extends Component {
                     blocks.forEach((row_agr, i)=>{
                       blocks_convented.push(<li>{gen_component_n_editor({...add_agrs,...row_agr,index:i,pageId,onUpdateBlock:this.onUpdateBlock,onDeleteBlock:this.onDeleteBlock})}</li>)
                     })
-                    
+
                   }else{
                     alert("尚未登入")
                     console.log("props",this.props)
@@ -199,6 +204,12 @@ class APP_HOME_EDIT extends Component {
                                       text={'新增欄位： LeftPicRightWord'}
                                       onClick={() => this.onAdd_LeftPicRightWord(pageId)}
                                     />
+
+                                    <AddElementButton
+                                      text={'新增欄位： LeftInstaRightWord'}
+                                      onClick={() => this.onAdd_LeftInstaRightWord(pageId)}
+                                    />
+                                    
                                     <AddElementButton
                                       text={'前往個人頁面'}
                                       onClick={this.onlink_homepage}
