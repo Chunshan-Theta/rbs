@@ -39,7 +39,7 @@ const LeftInstaRightWord = (props) => {
             <section class="w50">
                 <ul>
                     <li>
-                        <div >{instablock}</div>
+                        <div style={{"padding-left": "5%"}}>{instablock}</div>
                     </li>
                 </ul>
             </section>
