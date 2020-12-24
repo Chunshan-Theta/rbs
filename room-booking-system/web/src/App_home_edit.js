@@ -190,33 +190,33 @@ class APP_HOME_EDIT extends Component {
                             <div>
                                 <div className="ToolBar bkc-gray">
                                     <AddElementButton
-                                      text={'新增欄位： header'}
+                                      text={'新增欄位： 置中大字加上四個連結'}
                                       onClick={() => this.onAdd_header(pageId)}
                                     />
                                     <AddElementButton
-                                      text={'新增欄位： CenterBanner'}
+                                      text={'新增欄位： 置中大字'}
                                       onClick={() => this.onAdd_CenterBanner(pageId)}
                                     />
                                     
                                     <AddElementButton
-                                      text={'新增欄位： Dashboard'}
+                                      text={'新增欄位： 行事曆'}
                                       onClick={() => this.onAdd_Dashboard(pageId)}
                                     />
                                     <AddElementButton
-                                      text={'新增欄位： PicPage'}
+                                      text={'新增欄位： 三欄圖片'}
                                       onClick={() => this.onAdd_PicPage(pageId)}
                                     />
                                     <AddElementButton
-                                      text={'新增欄位： email'}
+                                      text={'新增欄位： 三個電子信箱聯絡按鈕'}
                                       onClick={() => this.onAdd_email(pageId)}
                                     />
                                     <AddElementButton
-                                      text={'新增欄位： LeftPicRightWord'}
+                                      text={'新增欄位： 左圖右字'}
                                       onClick={() => this.onAdd_LeftPicRightWord(pageId)}
                                     />
 
                                     <AddElementButton
-                                      text={'新增欄位： LeftInstaRightWord'}
+                                      text={'新增欄位： Instagram嵌入與文字說明'}
                                       onClick={() => this.onAdd_LeftInstaRightWord(pageId)}
                                     />
                                     
