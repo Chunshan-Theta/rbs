@@ -303,9 +303,16 @@ class App extends Component {
                         <h2 className="header__heading header__heading--sub--alt">Sign in with email</h2>
                       </div>
                       <SignInForm onSignIn={this.onSignIn} />
+                    </div>
+                  )
+                )} />
+                
+                <Route path="/signup" exact render={() => (!!decodedToken && signedIn ?
+                  (<Redirect to="/bookings" />) :
+                  (<div className="wrapper__form">
                       <div >
                       <h3 className="header__heading header__heading--sub--alt">Don't have an account?</h3>
-                      <SignUpForm onSignUp={this.onSignUp} />
+                        <SignUpForm onSignUp={this.onSignUp} />
                       </div>
                     </div>
                   )
@@ -321,7 +328,7 @@ class App extends Component {
                     {!!decodedToken && !!roomData && !loading && (
                       <div className="wrapper">
                         <div className="header header__nav header--flex">
-                          <h1 className="header__heading header__heading--main">多一個空間</h1>
+                          <h1 className="header__heading header__heading--main">ThetaCity</h1>
                           <NavBar
                             signOut={signOut}
                             loadMyBookings={loadMyBookings}

@@ -124,7 +124,7 @@ class APP_V2_HOME extends Component {
                      }
                      { roomData &&
                         (
-                            <DocumentMeta {...meta("DoDo Space")}>
+                            <DocumentMeta {...meta("ThetaCity")}>
                                 
                                 <ul className="one_page">
                                   {/* <li>
