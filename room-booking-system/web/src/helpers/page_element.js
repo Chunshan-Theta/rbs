@@ -5,12 +5,14 @@ import DashBoard from '../components/dynamic/ViewCalendar'
 import EmailBlock from '../components/dynamic/EmailBlock'
 import PicPage from '../components/dynamic/PicPage'
 import OnePageHead from '../components/dynamic/OnePageHeader'
+import CenterBanner from '../components/dynamic/CenterBanner'
 import LeftPicRightWord from '../components/dynamic/LeftPicRightWord'
 import LeftInstaRightWord from '../components/dynamic/LeftInstaRightWord'
 
 
 //
 import Edit_OnePageHead from '../components/dynamic/Edit_OnePageHeader'
+import Edit_CenterBanner from '../components/dynamic/Edit_CenterBanner'
 import Edit_PicPage from '../components/dynamic/Edit_PicPage'
 import Edit_DashBoard from '../components/dynamic/Edit_ViewCalendar'
 import Edit_EmailBlock from '../components/dynamic/Edit_EmailBlock'
@@ -45,6 +47,11 @@ function gen_agrs_OnePageHead (title,sub_titile,btn1,btn2,btn3,btn4){return({
 	}
 })}
 
+function gen_agrs_CenterBanner (title,sub_titile){return({
+	"component_type":"CenterBanner",
+	  "title": title,
+	  "sub_titile": sub_titile
+  })}
 
 function gen_agrs_PicPage (title,sub_titile,col1,col2,col3){return({
   "component_type":"PicPage",
@@ -133,7 +140,11 @@ function gen_component_n_editor(data){
 		  break;
 		case "LeftInstaRightWord":
 			return [LeftInstaRightWord(data),Edit_LeftInstaRightWord(data)]
-			break;  
+			break;
+		case "CenterBanner":
+			return [CenterBanner(data),Edit_CenterBanner(data)]
+			break;
+			  
 		default:
 		  return(<h1>`Not Fount Component! {component_type}`</h1>)
 	}
@@ -166,6 +177,10 @@ function gen_component(data){
 		case "LeftInstaRightWord":
 			return [LeftInstaRightWord(data)]
 			break;  
+		
+		case "CenterBanner":
+			return [CenterBanner(data)]
+			break;
 		default:
 		  return(<h1>`Not Fount Component! {component_type}`</h1>)
 	}
@@ -175,6 +190,11 @@ function gen_component(data){
 const agrs_Demo_DashBoard = {
 "component_type":"DashBoard",
 }
+const agrs_Demo_CenterBanner = {
+	"component_type":"CenterBanner",
+		"title": "商店名稱",
+		"sub_titile": "商店說明之副標題",
+	}
 const agrs_Demo_OnePageHead = {
 "component_type":"OnePageHead",
 	"title": "商店名稱",
@@ -270,13 +290,15 @@ export {
 	gen_agrs_OnePageHead,
 	gen_agrs_LeftInstaRightWord,
     gen_component_n_editor,
-    gen_component,
+	gen_component,
+	gen_agrs_CenterBanner,
     agrs_Demo_OnePageHead,
     agrs_Demo_DashBoard,
     agrs_Demo_PicPage,
     agrs_Demo_EmailBlock,
 	agrs_Demo_LeftPicRightWord,
 	agrs_Demo_LeftInstaRightWord,
+	agrs_Demo_CenterBanner,
 }
 
 
