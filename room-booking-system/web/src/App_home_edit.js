@@ -41,7 +41,7 @@ import { getDecodedToken } from './api/token'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
-import { agrs_Demo_CenterBanner,gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock,agrs_Demo_LeftPicRightWord,agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
+import { agrs_Demo_CenterTextContent,agrs_Demo_CenterBanner,gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock,agrs_Demo_LeftPicRightWord,agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
 
 
 class APP_HOME_EDIT extends Component {
@@ -63,6 +63,12 @@ class APP_HOME_EDIT extends Component {
     this.setState({ blocks: this.state.blocks })
     putPages(pageId,this.state.blocks)
   }
+  onAdd_CenterTextContent =(pageId)=>{
+    this.state.blocks.push(agrs_Demo_CenterTextContent)
+    this.setState({ blocks: this.state.blocks })
+    putPages(pageId,this.state.blocks)
+  }
+  
   onAdd_header =(pageId)=>{
     this.state.blocks.push(agrs_Demo_OnePageHead)
     this.setState({ blocks: this.state.blocks })
@@ -99,6 +105,7 @@ class APP_HOME_EDIT extends Component {
     console.log("this.state.decodedToken",this.state.decodedToken)
     window.location.href = `../p/${userId}`;
   }
+
   onlink_manager =()=>{
     const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
     console.log("this.state.decodedToken",this.state.decodedToken)
@@ -214,7 +221,10 @@ class APP_HOME_EDIT extends Component {
                                       text={'新增欄位： 置中大字'}
                                       onClick={() => this.onAdd_CenterBanner(pageId)}
                                     />
-                                    
+                                    <AddElementButton
+                                      text={'新增欄位： 置中內文'}
+                                      onClick={() => this.onAdd_CenterTextContent(pageId)}
+                                    />
                                     <AddElementButton
                                       text={'新增欄位： 行事曆'}
                                       onClick={() => this.onAdd_Dashboard(pageId)}
