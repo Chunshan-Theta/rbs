@@ -4,7 +4,9 @@ import Button from '../Button'
 import { gen_agrs_OnePageHead } from '../../helpers/page_element'
 
 const Edit_OnePageHead = (props) => {
-  console.log("props",props)
+    if (props.focus!=props.index){
+        return(<dev><Button className="button btn-lr" text={'編輯上方欄位'} onClick={() => props.onUpdateFocus(props.index)}/></dev>)
+      }
   return (
     <section class="container Edit-block-border-gry">
             <p>工具欄</p>
@@ -61,7 +63,7 @@ const Edit_OnePageHead = (props) => {
                     連結4:
                     <input type="text" name="btn4_url" defaultValue={props.btn4.url}/>
                 </label><br/>
-                <Button className="button" text={'Submit'} />
+                <Button className="button" text={'保存紀錄'} />
             </form>
 
     </section>

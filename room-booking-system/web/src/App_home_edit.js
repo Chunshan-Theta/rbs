@@ -51,6 +51,7 @@ class APP_HOME_EDIT extends Component {
     page: [],
     roomData: null,
     eventDetail: [[" ",[" "]]],
+    focus:null,
     editorState:BraftEditor.createEditorState("請輸入內容或點擊右上角讀取內容")
   }
   updatedEvent = detailString => {
@@ -127,12 +128,12 @@ class APP_HOME_EDIT extends Component {
   }
   //
   handleEditorChange = (editorState) => {
-    console.log("editorState",editorState)
     this.setState({ editorState })
-    console.log("State",this.state)
   }
-  //editorState={this.state.editorState}
-
+  //
+  onUpdateFocus = (index) => {
+    this.setState({ focus:index })
+  }
   //
   render() {
     const {
@@ -142,6 +143,7 @@ class APP_HOME_EDIT extends Component {
         decodedToken, // retrieves the token from local storage if valid, else will be null
         blocks,
         editorState,
+        focus,
     } = this.state
     const signedIn = !!decodedToken
     const Loading = require('react-loading-animation')
@@ -183,7 +185,9 @@ class APP_HOME_EDIT extends Component {
                       "handleEditorChange": this.handleEditorChange,
                       "onUpdateBlock":this.onUpdateBlock,
                       "onDeleteBlock":this.onDeleteBlock,
-                      "pageId":pageId
+                      "onUpdateFocus":this.onUpdateFocus,
+                      "pageId":pageId,
+                      "focus":this.state.focus
                     }
 
                     //

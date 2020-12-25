@@ -5,11 +5,16 @@ import { gen_agrs_LeftPicRightWord } from '../../helpers/page_element'
 import BraftEditor from 'braft-editor'
 
 const Edit_LeftPicRightWord = (props) => {
+  if (props.focus!=props.index){
+    return(<dev><Button className="button btn-lr" text={'編輯上方欄位'} onClick={() => {
+      props.onUpdateFocus(props.index)
+      props.handleEditorChange(BraftEditor.createEditorState(props.content.text))
+    }}/></dev>)
+  }
   return (
     <section class="container Edit-block-border-gry">
             <p>工具欄</p>
             <Button className="button btn-lr" text={'刪除上方欄位'} onClick={() => props.onDeleteBlock(props.index,props.pageId)}/>
-            <Button className="button btn-lr" text={'讀取內容'} onClick={() => props.handleEditorChange(BraftEditor.createEditorState(props.content.text))}/>
             <form onSubmit={event => {
                 //
                 event.preventDefault()
@@ -57,7 +62,7 @@ const Edit_LeftPicRightWord = (props) => {
                           />
                         </div>
                 </div>
-                <Button className="button" text={'Submit'} />
+                <Button className="button" text={'保存紀錄'} />
             </form>
 
     </section>

@@ -4,7 +4,9 @@ import Button from '../Button'
 import { gen_agrs_EmailBlock } from '../../helpers/page_element'
 
 const Edit_EmailBlock = (props) => {
-  console.log("props",props)
+  if (props.focus!=props.index){
+    return(<dev><Button className="button btn-lr" text={'編輯上方欄位'} onClick={() => props.onUpdateFocus(props.index)}/></dev>)
+  }
   return (
     <section class="container Edit-block-border-gry">
             <p>工具欄</p>
@@ -67,7 +69,7 @@ const Edit_EmailBlock = (props) => {
                     信件主旨3:
                     <input type="text" name="ml3_subject" defaultValue={props.ml3.subject}/>
                 </label><br/>
-                <Button className="button" text={'更新上方欄位'} />
+                <Button className="button" text={'保存紀錄'} />
             </form>
             
             

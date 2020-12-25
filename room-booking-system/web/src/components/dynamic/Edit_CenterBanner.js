@@ -4,7 +4,9 @@ import Button from '../Button'
 import { gen_agrs_CenterBanner } from '../../helpers/page_element'
 
 const Edit_CenterBanner= (props) => {
-  console.log("props",props)
+  if (props.focus!=props.index){
+    return(<dev><Button className="button btn-lr" text={'編輯上方欄位'} onClick={() => props.onUpdateFocus(props.index)}/></dev>)
+  }
   return (
     <section class="container Edit-block-border-gry">
             <p>工具欄</p>
@@ -34,7 +36,7 @@ const Edit_CenterBanner= (props) => {
                     <input type="text" name="sub_titile" defaultValue={props.sub_titile}/>
                 </label><br/>
                 
-                <Button className="button" text={'Submit'} />
+                <Button className="button" text={'保存紀錄'} />
             </form>
 
     </section>
