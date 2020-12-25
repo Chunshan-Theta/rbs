@@ -1,5 +1,5 @@
 @import url("https://use.typekit.net/jkj6uwy.css");
-p, a, span, h1,h2,h3,h4,h5,h6,div,th,td{
+p, a, h1,h2,h3,h4,h5,h6,div,th,td{
     color:#420000;
 }
 
@@ -1152,7 +1152,6 @@ section.container a.button:hover {
 }
 
 p, h1, h2, h3, h4, h5, h6, span, div{
-    //font-family: DFKai-SB,"Times New Roman", Times, serif;
     font-family: "Microsoft JhengHei","STHeiti", Papyrus, Verdana, ;
 }
 #header-title{
@@ -1175,6 +1174,7 @@ hr {
    border: 4px double gray;
    overflow:scroll;
 }
+
 
 .btn-lr{
   float: right;

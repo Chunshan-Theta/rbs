@@ -51,6 +51,7 @@ class APP_HOME_EDIT extends Component {
     page: [],
     roomData: null,
     eventDetail: [[" ",[" "]]],
+    editorState:null
   }
   updatedEvent = detailString => {
     this.setState(() => ({ eventDetail: detailString }))
@@ -124,7 +125,11 @@ class APP_HOME_EDIT extends Component {
     // console.log("onUpdateBlock index", index)
     
   }
-
+  //
+  handleEditorChange = (editorState) => {
+    this.setState({ editorState })
+  }
+  //editorState={this.state.editorState}
 
   //
   render() {
@@ -134,6 +139,7 @@ class APP_HOME_EDIT extends Component {
         eventDetail,
         decodedToken, // retrieves the token from local storage if valid, else will be null
         blocks,
+        editorState,
     } = this.state
     const signedIn = !!decodedToken
     const Loading = require('react-loading-animation')
@@ -170,12 +176,17 @@ class APP_HOME_EDIT extends Component {
                     let add_agrs = {
                       "roomData":filter_room(roomData,userId),
                       "eventDetail":this.state.eventDetail,
-                      "updatedEventDetail":this.updatedEvent
+                      "updatedEventDetail":this.updatedEvent,
+                      "editorState":this.state.editorState,
+                      "handleEditorChange": this.handleEditorChange,
+                      "onUpdateBlock":this.onUpdateBlock,
+                      "onDeleteBlock":this.onDeleteBlock,
+                      "pageId":pageId
                     }
 
                     //
                     blocks.forEach((row_agr, i)=>{
-                      blocks_convented.push(<li>{gen_component_n_editor({...add_agrs,...row_agr,index:i,pageId,onUpdateBlock:this.onUpdateBlock,onDeleteBlock:this.onDeleteBlock})}</li>)
+                      blocks_convented.push(<li>{gen_component_n_editor({...add_agrs,...row_agr,index:i})}</li>)
                     })
 
                   }else{
