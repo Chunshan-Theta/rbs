@@ -32,10 +32,10 @@ import DashBoard from './components/dynamic/ViewCalendar'
 import EmailBlock from './components/dynamic/EmailBlock'
 import PicPage from './components/dynamic/PicPage'
 import OnePageHead from './components/dynamic/OnePageHeader'
+import BraftEditor from 'braft-editor'
 
 
 import meta from './components/head'
-
 import { listPages,createPages,putPages } from './api/userpages'
 import { getDecodedToken } from './api/token'
 import Calendar from './components/Calendar'
@@ -51,7 +51,7 @@ class APP_HOME_EDIT extends Component {
     page: [],
     roomData: null,
     eventDetail: [[" ",[" "]]],
-    editorState:null
+    editorState:BraftEditor.createEditorState("請輸入內容或點擊右上角讀取內容")
   }
   updatedEvent = detailString => {
     this.setState(() => ({ eventDetail: detailString }))
@@ -127,7 +127,9 @@ class APP_HOME_EDIT extends Component {
   }
   //
   handleEditorChange = (editorState) => {
+    console.log("editorState",editorState)
     this.setState({ editorState })
+    console.log("State",this.state)
   }
   //editorState={this.state.editorState}
 

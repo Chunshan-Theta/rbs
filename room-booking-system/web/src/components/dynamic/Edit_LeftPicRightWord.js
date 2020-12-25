@@ -9,6 +9,7 @@ const Edit_LeftPicRightWord = (props) => {
     <section class="container Edit-block-border-gry">
             <p>工具欄</p>
             <Button className="button btn-lr" text={'刪除上方欄位'} onClick={() => props.onDeleteBlock(props.index,props.pageId)}/>
+            <Button className="button btn-lr" text={'讀取內容'} onClick={() => props.handleEditorChange(BraftEditor.createEditorState(props.content.text))}/>
             <form onSubmit={event => {
                 //
                 event.preventDefault()
