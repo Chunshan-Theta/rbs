@@ -11,6 +11,8 @@ const Edit_EmailBlock = (props) => {
     <section class="container Edit-block-border-gry">
             <p>工具欄</p>
             <Button className="button btn-lr" text={'刪除上方欄位'} onClick={() => props.onDeleteBlock(props.index,props.pageId)}/>
+            <Button className="button btn-lr" text={'下移'} onClick={() => props.onMoveDownBlock(props.index,props.pageId)}/>
+            <Button className="button btn-lr" text={'上移'} onClick={() => props.onMoveUpBlock(props.index,props.pageId)}/>
             <form onSubmit={event => {
                 //
                 event.preventDefault()

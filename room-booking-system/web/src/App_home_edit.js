@@ -131,7 +131,36 @@ class APP_HOME_EDIT extends Component {
 
     // console.log("onUpdateBlock pageId", pageId)
     // console.log("onUpdateBlock index", index)
-    
+  }
+  onMoveUpBlock =(index,pageId)=>{
+    if(index!=0){
+
+        let sourceBlock = this.state.blocks[index]
+        let targetBlock = this.state.blocks[index-1]
+        this.state.blocks[index-1] = sourceBlock
+        this.state.blocks[index] = targetBlock
+        this.setState({ blocks: this.state.blocks,focus:null })
+        putPages(pageId,this.state.blocks)
+
+    }
+    else{
+        alert("已到最上方")
+    }
+  }
+  onMoveDownBlock =(index,pageId)=>{
+    if(this.state.blocks.length > index+1){
+
+        let sourceBlock = this.state.blocks[index]
+        let targetBlock = this.state.blocks[index+1]
+        this.state.blocks[index+1] = sourceBlock
+        this.state.blocks[index] = targetBlock
+        this.setState({ blocks: this.state.blocks,focus:null })
+        putPages(pageId,this.state.blocks)
+
+    }
+    else{
+        alert("已到最下方")
+    }
   }
   //
   handleEditorChange = (editorState) => {
@@ -193,6 +222,8 @@ class APP_HOME_EDIT extends Component {
                       "onUpdateBlock":this.onUpdateBlock,
                       "onDeleteBlock":this.onDeleteBlock,
                       "onUpdateFocus":this.onUpdateFocus,
+                      "onMoveUpBlock":this.onMoveUpBlock,
+                      "onMoveDownBlock":this.onMoveDownBlock,
                       "pageId":pageId,
                       "focus":this.state.focus
                     }
