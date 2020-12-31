@@ -322,18 +322,18 @@ class APP_JOURNI_EDIT extends Component {
 
 
     // display loading page
-    this.setState({ loading: true })
-    // load all of the rooms from the database
-    listRoomsOfficial()
-        .then(rooms => {
-         console.log("listRoomsOfficial data:",rooms)
-         this.setState({ roomData: rooms})
-         this.setState({ loading: false })
-        })
-        .catch(error => {
-         console.error('Error loading room data', error)
-         this.setState({ error })
-    })
+    // this.setState({ loading: true })
+    // // load all of the rooms from the database
+    // listRoomsOfficial()
+    //     .then(rooms => {
+    //      console.log("listRoomsOfficial data:",rooms)
+    //      this.setState({ roomData: rooms})
+    //      this.setState({ loading: false })
+    //     })
+    //     .catch(error => {
+    //      console.error('Error loading room data', error)
+    //      this.setState({ error })
+    // })
 
     //
     listPages().then( page =>{
