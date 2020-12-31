@@ -9,6 +9,8 @@ import CenterBanner from '../components/dynamic/CenterBanner'
 import LeftPicRightWord from '../components/dynamic/LeftPicRightWord'
 import LeftInstaRightWord from '../components/dynamic/LeftInstaRightWord'
 import CenterTextContent from '../components/dynamic/CenterTextContent'
+import OneGoAhead from '../components/dynamic/OneGoAhead'
+
 
 
 //
@@ -20,12 +22,22 @@ import Edit_DashBoard from '../components/dynamic/Edit_ViewCalendar'
 import Edit_EmailBlock from '../components/dynamic/Edit_EmailBlock'
 import Edit_LeftPicRightWord from '../components/dynamic/Edit_LeftPicRightWord'
 import Edit_LeftInstaRightWord from '../components/dynamic/Edit_LeftInstaRightWord'
-
+import Edit_OneGoAhead from '../components/dynamic/Edit_OneGoAhead'
 
 
 function gen_agrs_DashBoard (){return({
   "component_type":"DashBoard",
 })}
+
+function gen_agrs_OneGoAhead (title,sub_titile,btn1){return({
+	"component_type":"OneGoAhead",
+	  "title": title,
+	  "sub_titile": sub_titile,
+	  "btn1":{
+		  "text": btn1.text,
+		  "url": btn1.url
+	  }
+  })}
 
 function gen_agrs_OnePageHead (title,sub_titile,btn1,btn2,btn3,btn4){return({
   "component_type":"OnePageHead",
@@ -154,7 +166,9 @@ function gen_component_n_editor(data){
 		case "CenterTextContent":
 			return [CenterTextContent(data),Edit_CenterTextContent(data)]
 			break;
-			  
+		case "OneGoAhead":
+			return [OneGoAhead(data),Edit_OneGoAhead(data)]
+			break;
 		default:
 		  return(<h1>`Not Fount Component! {component_type}`</h1>)
 	}
@@ -195,6 +209,9 @@ function gen_component(data){
 		case "CenterTextContent":
 			return CenterTextContent(data)
 			break;
+		case "OneGoAhead":
+			return OneGoAhead(data)
+			break;
 		default:
 		  return(<h1>`Not Fount Component! {component_type}`</h1>)
 	}
@@ -234,6 +251,16 @@ const agrs_Demo_OnePageHead = {
 		"url": "./"
 	}
 }
+const agrs_Demo_OneGoAhead = {
+	"component_type":"OneGoAhead",
+	"title": "商店名稱",
+	"sub_titile": "商店說明之副標題",
+	"btn1":{
+		"text": "連結1",
+		"url": "./"
+	}
+}
+
 const agrs_Demo_PicPage = {
 "component_type":"PicPage",
 	"title": "關於 商店",
@@ -307,6 +334,7 @@ export {
     gen_agrs_PicPage,
 	gen_agrs_OnePageHead,
 	gen_agrs_LeftInstaRightWord,
+	gen_agrs_OneGoAhead,
     gen_component_n_editor,
 	gen_component,
 	gen_agrs_CenterBanner,
@@ -318,7 +346,8 @@ export {
 	agrs_Demo_LeftPicRightWord,
 	agrs_Demo_LeftInstaRightWord,
 	agrs_Demo_CenterBanner,
-	agrs_Demo_CenterTextContent
+	agrs_Demo_CenterTextContent,
+	agrs_Demo_OneGoAhead
 }
 
 

@@ -41,7 +41,7 @@ import { getDecodedToken } from './api/token'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
-import { agrs_Demo_CenterTextContent,agrs_Demo_CenterBanner,gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock,agrs_Demo_LeftPicRightWord,agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
+import { agrs_Demo_OneGoAhead,agrs_Demo_CenterTextContent,agrs_Demo_CenterBanner,gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock,agrs_Demo_LeftPicRightWord,agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
 
 
 class APP_HOME_EDIT extends Component {
@@ -76,6 +76,12 @@ class APP_HOME_EDIT extends Component {
   }
   onAdd_Dashboard =(pageId)=>{
     this.state.blocks.push(agrs_Demo_DashBoard)
+    this.setState({ blocks: this.state.blocks })
+    putPages(pageId,this.state.blocks)
+    
+  }
+  onAdd_OneGoAhead =(pageId)=>{
+    this.state.blocks.push(agrs_Demo_OneGoAhead)
     this.setState({ blocks: this.state.blocks })
     putPages(pageId,this.state.blocks)
     
@@ -247,6 +253,10 @@ class APP_HOME_EDIT extends Component {
                                     <AddElementButton
                                       text={'新增欄位： 置中大字加上四個連結'}
                                       onClick={() => this.onAdd_header(pageId)}
+                                    />
+                                    <AddElementButton
+                                      text={'新增欄位： 大字置中按鈕'}
+                                      onClick={() => this.onAdd_OneGoAhead(pageId)}
                                     />
                                     <AddElementButton
                                       text={'新增欄位： 置中大字'}
