@@ -6,6 +6,7 @@
     "axios": "^0.17.1",
     "braft-editor": "^2.3.9",
     "jwt-decode": "^2.2.0",
+    "md5": "^2.3.0",
     "moment": "^2.20.1",
     "moment-timezone": "^0.5.14",
     "normalize.css": "^7.0.0",

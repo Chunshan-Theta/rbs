@@ -44,6 +44,7 @@ import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
 import { initialRoom } from './helpers/rooms'
 import { gen_component } from './helpers/page_element'
+const md5 = require("md5")
 
 class APP_V2_HOME extends Component {
   state = {
@@ -99,6 +100,44 @@ class APP_V2_HOME extends Component {
                         <Redirect to="/p/5f5ee77c8ffb507c3b3011ec" />
                     )}
                 />
+                <Route path="/j/:pws" exact render={(props) =>{
+                      let owner = md5(props.match.params.pws)
+                      let add_agrs = {
+                        "roomData":filter_room(roomData,owner),
+                        "eventDetail":this.state.eventDetail,
+                        "updatedEventDetail":this.updatedEvent
+                      }
+                      /*Todo: patch from Mongodb */
+                      //let blocks =[agrs_OnePageHead,agrs_PicPage,agrs_DashBoard,agrs_EmailBlock]
+                      let blocks = filter_page(page,owner)
+                      let blocks_convented = []
+                      blocks.forEach(row_agr=>{
+                        blocks_convented.push(<li>{gen_component({...row_agr,...add_agrs})}</li>)
+                      })
+                      return(
+                         <Fragment>
+                         {  !roomData && loading &&
+                            (
+                                <div className="loading_animation">
+                                    <Loading />
+                                </div>
+                            )
+                         }
+                         { roomData &&
+                            (
+                                <DocumentMeta {...meta("ThetaCity")}>
+
+                                    <ul className="one_page">
+                                      {/* <li>
+                                          <h1>Hey！ {props.match.params.userName}</h1>
+                                      </li> */}
+                                      {blocks_convented}
+                                    </ul>
+                                </DocumentMeta>
+                            )
+                         }
+                         </Fragment>)}
+                } />
                 <Route path="/p/:userName" exact render={(props) =>{
                   
                   let add_agrs = {

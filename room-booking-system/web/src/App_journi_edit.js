@@ -26,32 +26,33 @@ import Footer from './components/Footer'
 import Key from './components/Key'
 import MyBookings from './components/MyBookings'
 import NavBar from './components/NavBar'
-import SignInForm from './components/SignInForm'
-import SignUpForm from './components/SignUpForm'
+import SignInJourneyForm from './components/SignInJourneyForm'
+import SignUpJourneyForm from './components/SignUpJourneyForm'
 import DashBoard from './components/dynamic/ViewCalendar'
 import EmailBlock from './components/dynamic/EmailBlock'
 import PicPage from './components/dynamic/PicPage'
 import OnePageHead from './components/dynamic/OnePageHeader'
 import BraftEditor from 'braft-editor'
 
-
 import meta from './components/head'
-import { listPages,createPages,putPages } from './api/userpages'
+import { listPages,createJourneyPages,putJourneyPages } from './api/userpages'
 import { getDecodedToken } from './api/token'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
 import { agrs_Demo_OneGoAhead,agrs_Demo_CenterTextContent,agrs_Demo_CenterBanner,gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock,agrs_Demo_LeftPicRightWord,agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
 
-
+const md5 = require("md5")
 class APP_JOURNI_EDIT extends Component {
   state = {
     decodedToken: getDecodedToken(), // retrieves the token from local storage if valid, else will be null
     blocks: [],
+    preblocks: [],
     page: [],
     roomData: null,
     eventDetail: [[" ",[" "]]],
     focus:null,
+    pws:null,
     editorState:BraftEditor.createEditorState("請輸入內容或點擊右上角讀取內容")
   }
   updatedEvent = detailString => {
@@ -60,62 +61,46 @@ class APP_JOURNI_EDIT extends Component {
 
   onAdd_CenterBanner =(pageId)=>{
     this.state.blocks.push(agrs_Demo_CenterBanner)
-    this.setState({ blocks: this.state.blocks })
-    putPages(pageId,this.state.blocks)
+    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
+
   }
   onAdd_CenterTextContent =(pageId)=>{
     this.state.blocks.push(agrs_Demo_CenterTextContent)
-    this.setState({ blocks: this.state.blocks })
-    putPages(pageId,this.state.blocks)
+    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
   }
   
   onAdd_header =(pageId)=>{
     this.state.blocks.push(agrs_Demo_OnePageHead)
-    this.setState({ blocks: this.state.blocks })
-    putPages(pageId,this.state.blocks)
+    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
   }
   onAdd_Dashboard =(pageId)=>{
     this.state.blocks.push(agrs_Demo_DashBoard)
-    this.setState({ blocks: this.state.blocks })
-    putPages(pageId,this.state.blocks)
+    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
     
   }
   onAdd_OneGoAhead =(pageId)=>{
     this.state.blocks.push(agrs_Demo_OneGoAhead)
-    this.setState({ blocks: this.state.blocks })
-    putPages(pageId,this.state.blocks)
+    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
     
   }
   onAdd_PicPage =(pageId)=>{
     this.state.blocks.push(agrs_Demo_PicPage)
-    this.setState({ blocks: this.state.blocks })
-    putPages(pageId,this.state.blocks)
+    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
   }
   onAdd_email =(pageId)=>{
     this.state.blocks.push(agrs_Demo_EmailBlock)
-    this.setState({ blocks: this.state.blocks })
-    putPages(pageId,this.state.blocks)
+    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
   }
   onAdd_LeftPicRightWord =(pageId)=>{
     this.state.blocks.push(agrs_Demo_LeftPicRightWord)
-    this.setState({ blocks: this.state.blocks })
-    putPages(pageId,this.state.blocks)
+    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
   }
   onAdd_LeftInstaRightWord =(pageId)=>{
     this.state.blocks.push(agrs_Demo_LeftInstaRightWord)
-    this.setState({ blocks: this.state.blocks })
-    putPages(pageId,this.state.blocks)
+    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
   }
-  onlink_homepage =()=>{
-    const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
-    console.log("this.state.decodedToken",this.state.decodedToken)
-    window.location.href = `../p/${userId}`;
-  }
-
-  onlink_manager =()=>{
-    const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
-    console.log("this.state.decodedToken",this.state.decodedToken)
-    window.location.href = `../../login`;
+  onlink_homepage =(userId)=>{
+    window.location.href = `../../../${this.state.pws}`;
   }
 
   onSubmit =()=>{
@@ -124,19 +109,13 @@ class APP_JOURNI_EDIT extends Component {
 
   onUpdateBlock =(index,pageId,block)=>{
     this.state.blocks[index] = block
-    this.setState({ blocks: this.state.blocks })
-    // console.log("onUpdateBlock blocks", this.state.blocks)
-    // console.log("onUpdateBlock pageId", pageId)
-    putPages(pageId,this.state.blocks)
+    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
     
   }
   onDeleteBlock =(index,pageId)=>{
     this.state.blocks.splice(index, 1);
+    putJourneyPages(pageId,this.state.pws,this.state.blocks)
     this.setState({ blocks: this.state.blocks })
-    putPages(pageId,this.state.blocks)
-
-    // console.log("onUpdateBlock pageId", pageId)
-    // console.log("onUpdateBlock index", index)
   }
   onMoveUpBlock =(index,pageId)=>{
     if(index!=0){
@@ -145,8 +124,9 @@ class APP_JOURNI_EDIT extends Component {
         let targetBlock = this.state.blocks[index-1]
         this.state.blocks[index-1] = sourceBlock
         this.state.blocks[index] = targetBlock
+
+        putJourneyPages(pageId,this.state.pws,this.state.blocks)
         this.setState({ blocks: this.state.blocks,focus:null })
-        putPages(pageId,this.state.blocks)
 
     }
     else{
@@ -160,8 +140,9 @@ class APP_JOURNI_EDIT extends Component {
         let targetBlock = this.state.blocks[index+1]
         this.state.blocks[index+1] = sourceBlock
         this.state.blocks[index] = targetBlock
+
+        putJourneyPages(pageId,this.state.pws,this.state.blocks)
         this.setState({ blocks: this.state.blocks,focus:null })
-        putPages(pageId,this.state.blocks)
 
     }
     else{
@@ -176,6 +157,26 @@ class APP_JOURNI_EDIT extends Component {
   onUpdateFocus = (index) => {
     this.setState({ focus:index })
   }
+
+  onLogUp = ({ tag }) => {
+      createJourneyPages({
+        "page": [],
+        "owner":tag
+      })
+      .then(res=>{
+        if(res.data.error){
+            alert("此標籤已註冊過")
+        }
+        else{
+            alert("您的密碼為"+res.data._id)
+            window.location.href = `../../../j/edit/${res.data._id}/${tag}/`;
+        }
+      })
+  }
+  onLogIn = ({ pws, id }) => {
+      window.location.href = `../../../j/edit/${id}/${pws}/`;
+  }
+
   //
   render() {
     const {
@@ -186,6 +187,7 @@ class APP_JOURNI_EDIT extends Component {
         blocks,
         editorState,
         focus,
+        pws
     } = this.state
     const signedIn = !!decodedToken
     const Loading = require('react-loading-animation')
@@ -200,24 +202,44 @@ class APP_JOURNI_EDIT extends Component {
         <div id="homeedit" className="App">
           <Fragment>
               <Switch>
-                
-                <Route path="/j/edit/:userName/:pws" exact render={(props) =>{
-
-
-                  
+                <Route path="/j/home" exact render={() =>
+                  (<div className="wrapper__form">
+                      <h2>新建旅程</h2>
+                      <SignUpJourneyForm onSignUp={this.onLogUp} />
+                      <h2>編輯已存在旅程</h2>
+                      <SignInJourneyForm onSignIn={this.onLogIn} />
+                    </div>
+                  )} />
+                <Route path="/j/edit/:userName/:pws/" exact render={(props) =>{
                   //
                   let userId = props.match.params.userName
-                  let pws = props.match.params.pws
+                  let page = this.state.page
                   let blocks_convented = []
                   let pageId = null
                   //const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
                   if(userId != null){
                   
                     //
-                    let userpage = filter_page(page,userId)
+                    console.log("/j/edit/:userName/ : page",page)
+                    console.log("/j/edit/:userName/ : userId",userId)
+
+                    let pws = props.match.params.pws
+                    if(this.state.pws != pws){
+                        this.setState({"pws":pws})
+                    }
+                    console.log("props.match.params.pws",this.state.pws)
+                    console.log("/j/edit/:userName/ : pws",pws)
+                    let userpage = filter_page(page,md5(pws))
                     let blocks = userpage.page ? userpage.page: []
+                    if(this.state.blocks.toString() != blocks.toString()){
+                        console.log("/j/edit/:userName/ : this.state.blocks ",this.state.blocks )
+                        console.log("/j/edit/:userName/ : blocks ",blocks )
+                        this.setState({"blocks":blocks})
+                        this.load()
+                    }
                     pageId = userpage.id
-                    console.log("userpage", userpage)
+                    console.log("/j/edit/:userName/ : blocks", blocks)
+                    console.log("/j/edit/:userName/ : userpage", userpage)
 
 
 
@@ -250,7 +272,7 @@ class APP_JOURNI_EDIT extends Component {
                   return(
                     <DocumentMeta {...meta("Edit")}>
                     <Fragment>
-                        { decodedToken &&(
+                        {(
                             <div>
                                 <div className="ToolBar bkc-gray">
                                     <AddElementButton
@@ -270,16 +292,8 @@ class APP_JOURNI_EDIT extends Component {
                                       onClick={() => this.onAdd_CenterTextContent(pageId)}
                                     />
                                     <AddElementButton
-                                      text={'新增欄位： 行事曆'}
-                                      onClick={() => this.onAdd_Dashboard(pageId)}
-                                    />
-                                    <AddElementButton
                                       text={'新增欄位： 三欄圖片'}
                                       onClick={() => this.onAdd_PicPage(pageId)}
-                                    />
-                                    <AddElementButton
-                                      text={'新增欄位： 三個電子信箱聯絡按鈕'}
-                                      onClick={() => this.onAdd_email(pageId)}
                                     />
                                     <AddElementButton
                                       text={'新增欄位： 左圖右字'}
@@ -290,17 +304,15 @@ class APP_JOURNI_EDIT extends Component {
                                       text={'新增欄位： Instagram嵌入與文字說明'}
                                       onClick={() => this.onAdd_LeftInstaRightWord(pageId)}
                                     />
-                                    
+
                                     <AddElementButton
                                       text={'前往個人頁面'}
                                       onClick={this.onlink_homepage}
                                     />
-                                    <AddElementButton
-                                      text={'返回管理後台'}
-                                      onClick={this.onlink_manager}
-                                    />
                                     <ul>
                                       <p>新增欄位會在最下方</p>
+                                      <p>您的密碼為： {userId}</p>
+                                      <p>切勿忘記，若遺失密碼將無法再次編輯此頁面，或可記得此永久網址</p>
                                     </ul>
                                 </div>
 
@@ -318,30 +330,11 @@ class APP_JOURNI_EDIT extends Component {
   }
 
   load() {
-    const { decodedToken } = this.state
-    const signedIn = !!decodedToken
-
     //
     listPages().then( page =>{
-      this.setState({ "page": page })
-
-      //
-      const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
-      this.state.blocks = filter_page(page,userId).page
-
-      if(userId != null && !this.state.blocks){
-            let init_blocks = [agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock]
-            createPages({
-              owner: userId,
-              page: init_blocks
-            })
-            listPages().then( page =>{
-              this.setState({ "page": page })
-            })
-      }
-
+        console.log("App_journi_edit.js load: page",page)
+        this.setState({ "page": page })
     })
-    
   }
 
   // When the App first renders
@@ -351,10 +344,13 @@ class APP_JOURNI_EDIT extends Component {
 
   // When state changes
   componentDidUpdate(prevProps, prevState) {
-    // If just signed in, signed up, or signed out,
-    // then the token will have changed
-    if (this.state.decodedToken !== prevState.decodedToken) {
-      this.load()
+    console.log("componentDidUpdate State",this.state.blocks)
+    console.log("componentDidUpdate preblocks",this.state.preblocks)
+    if (!arraysEqual(this.state.blocks, this.state.preblocks)) {
+        console.log("componentDidUpdate State1",this.state.blocks)
+        console.log("componentDidUpdate preblocks",this.state.preblocks)
+        this.setState({ "preblocks": Array.from(this.state.blocks) })
+        this.load()
     }
   }
 
@@ -367,7 +363,8 @@ export default APP_JOURNI_EDIT
 
 
 function filter_page(page,userName){
-  console.log("page", page)
+  console.log("journey filter_page:page", page)
+  console.log("journey filter_page:userName", userName)
   let respond = {}
   page.forEach(p => 
     {
@@ -380,7 +377,7 @@ function filter_page(page,userName){
       }
     }
   )
-  
+  console.log("journey filter_page:respond", respond)
   return respond
 }
 
@@ -399,4 +396,20 @@ function filter_room(roomData,userName){
     console.log("filter_room roomData", roomData)
     console.log("filter_roomData",filter_roomData)
     return filter_roomData
+}
+
+function arraysEqual(a, b) {
+  if (a === b) return true;
+  if (a == null || b == null) return false;
+  if (a.length !== b.length) return false;
+
+  // If you don't care about the order of the elements inside
+  // the array, you should sort both arrays here.
+  // Please note that calling sort on an array will modify that array.
+  // you might want to clone your array first.
+
+  for (var i = 0; i < a.length; ++i) {
+    if (a[i] !== b[i]) return false;
+  }
+  return true;
 }

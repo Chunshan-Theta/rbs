@@ -19,3 +19,20 @@ export function putPages(pageID, payload) {
     .catch(err => alert(err))
   
 }
+
+export function createJourneyPages(payload) {
+  return api.post(`/j/page`, payload)
+    .then(res => res)
+
+}
+export function putJourneyPages(pageID,pws, payload) {
+  console.log("putJourneyPages: pageID",pageID)
+  console.log("putJourneyPages: pws",pws)
+  console.log("putJourneyPages: payload",payload)
+  return api.put(`/j/page/${pageID}/${pws}`, payload)
+    .then(res => {
+        console.log("putJourneyPages: res.data",res.data)
+        return(res.data)
+    })
+
+}
