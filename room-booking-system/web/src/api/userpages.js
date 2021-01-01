@@ -10,7 +10,6 @@ export function listPages() {
 export function createPages(payload) {
   return api.post(`/page/`, payload)
     .then(res => res.data)
-    .catch(err => alert(err))
   
 }
 

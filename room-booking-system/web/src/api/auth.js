@@ -5,9 +5,16 @@ import { getDecodedToken } from './token'
 export function signUp({ firstName, lastName, email, password }) {
   return api.post('/auth/sign-up', { firstName, lastName, email, password })
     .then(res => {
-      const token = res.data.token
-      setToken(token)
-      return getDecodedToken()
+      if(res.data.error){
+          alert(res.data.error.message)
+          return
+      }
+      else{
+          console.log("web:signUp res",JSON.stringify(res))
+          const token = res.data.token
+          setToken(token)
+          return getDecodedToken()
+      }
     })
 }
 

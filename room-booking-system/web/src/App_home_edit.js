@@ -37,7 +37,7 @@ import BraftEditor from 'braft-editor'
 
 import meta from './components/head'
 import { listPages,createPages,putPages } from './api/userpages'
-import { getDecodedToken } from './api/token'
+import { getDecodedToken, rememberToken } from './api/token'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'

@@ -343,16 +343,15 @@ class APP_JOURNI_EDIT extends Component {
       const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
       this.state.blocks = filter_page(page,userId).page
 
-      //
       if(userId != null && !this.state.blocks){
-        let init_blocks = [agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock]
-        createPages({
-          owner: userId,
-          page: init_blocks
-        })
-        listPages().then( page =>{
-          this.setState({ "page": page })
-        })
+            let init_blocks = [agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock]
+            createPages({
+              owner: userId,
+              page: init_blocks
+            })
+            listPages().then( page =>{
+              this.setState({ "page": page })
+            })
       }
 
     })

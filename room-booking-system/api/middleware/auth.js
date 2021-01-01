@@ -24,13 +24,17 @@ const signUp = (req, res, next) => {
 
   User.register(user, req.body.password, (error, user) => {
     if (error) {
-      next(error)
-      return
+        console.log("api:signUp res:error",res);
+        next(error)
+        return
+    }else{
+        console.log("api:signUp res",res);
+        req.user = user
+        next()
     }
   })
 
-  req.user = user
-  next()
+
 }
 
 const signJWTForUser = (req, res) => {

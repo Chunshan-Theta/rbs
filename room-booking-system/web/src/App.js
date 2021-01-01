@@ -70,8 +70,10 @@ class App extends Component {
   onSignUp = ({ firstName, lastName, email, password }) => {
     signUp({ firstName, lastName, email, password }).then(decodedToken => {
       //this.setState({ decodedToken })
-      alert("註冊成功 請登入")
-      window.location.reload(false)
+      if(decodedToken){
+          alert("註冊成功 請登入")
+          window.location.reload(false)
+      }
     })
   }
 
