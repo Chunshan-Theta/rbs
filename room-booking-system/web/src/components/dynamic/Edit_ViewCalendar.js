@@ -6,7 +6,9 @@ import moment from 'moment'
 import Button from '../Button'
 
 function Edit_DashBoard(props){
-    console.log("Edit_DashBoard props:",props)
+    if (props.focus!=props.index){
+        return(<dev><Button className="button btn-lr" text={'編輯上方欄位'} onClick={() => props.onUpdateFocus(props.index)}/></dev>)
+    }
     return (
     <section class="container Edit-block-border-gry">
         <p>工具欄</p>

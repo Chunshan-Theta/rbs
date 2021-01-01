@@ -200,6 +200,7 @@ class APP_JOURNI_EDIT extends Component {
         <div id="homeedit" className="App">
           <Fragment>
               <Switch>
+                
                 <Route path="/j/edit/:userName/:pws" exact render={(props) =>{
 
 
@@ -319,21 +320,6 @@ class APP_JOURNI_EDIT extends Component {
   load() {
     const { decodedToken } = this.state
     const signedIn = !!decodedToken
-
-
-    // display loading page
-    // this.setState({ loading: true })
-    // // load all of the rooms from the database
-    // listRoomsOfficial()
-    //     .then(rooms => {
-    //      console.log("listRoomsOfficial data:",rooms)
-    //      this.setState({ roomData: rooms})
-    //      this.setState({ loading: false })
-    //     })
-    //     .catch(error => {
-    //      console.error('Error loading room data', error)
-    //      this.setState({ error })
-    // })
 
     //
     listPages().then( page =>{
