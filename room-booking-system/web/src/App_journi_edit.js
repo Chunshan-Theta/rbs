@@ -376,7 +376,7 @@ function filter_page(page,owner,id){
     {
       console.log("p._id.toString()",p._id.toString())
       console.log("id",id)
-      if(p.owner == owner && p._id.toString() == id){
+      if(p.owner == owner){
         respond = {
           page: p.page,
           id: p._id
