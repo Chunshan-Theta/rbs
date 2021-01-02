@@ -374,7 +374,8 @@ function filter_page(page,owner,id){
   let respond = {}
   page.forEach(p => 
     {
-
+      console.log("p._id.toString()",p._id.toString())
+      console.log("id",id)
       if(p.owner == owner && p._id.toString() == id){
         respond = {
           page: p.page,
