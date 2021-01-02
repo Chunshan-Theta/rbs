@@ -375,7 +375,7 @@ function filter_page(page,owner,id){
   page.forEach(p => 
     {
 
-      if(p.owner == owner && p._id==id){
+      if(p.owner == owner && p._id.toString() == id){
         respond = {
           page: p.page,
           id: p._id
