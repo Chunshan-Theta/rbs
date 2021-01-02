@@ -174,7 +174,13 @@ class APP_JOURNI_EDIT extends Component {
       })
   }
   onLogIn = ({ pws, id }) => {
-      window.location.href = `../../../j/edit/${id}/${pws}/`;
+      if(filter_page(page,md5(pws),userId)!=null){
+            window.location.href = `../../../j/edit/${id}/${pws}/`;
+      }
+      else{
+            alert("查詢失敗，可能是輸入錯誤或是沒有此標籤")
+      }
+
   }
 
   //
@@ -229,7 +235,7 @@ class APP_JOURNI_EDIT extends Component {
                     }
                     console.log("props.match.params.pws",this.state.pws)
                     console.log("/j/edit/:userName/ : pws",pws)
-                    let userpage = filter_page(page,md5(pws))
+                    let userpage = filter_page(page,md5(pws),userId)
                     let blocks = userpage.page ? userpage.page: []
                     if(this.state.blocks.toString() != blocks.toString()){
                         console.log("/j/edit/:userName/ : this.state.blocks ",this.state.blocks )
@@ -362,14 +368,14 @@ class APP_JOURNI_EDIT extends Component {
 export default APP_JOURNI_EDIT
 
 
-function filter_page(page,userName){
+function filter_page(page,owner,id){
   console.log("journey filter_page:page", page)
   console.log("journey filter_page:userName", userName)
   let respond = {}
   page.forEach(p => 
     {
 
-      if(p.owner == userName){
+      if(p.owner == owner && p._id==id){
         respond = {
           page: p.page,
           id: p._id
@@ -378,7 +384,7 @@ function filter_page(page,userName){
     }
   )
   console.log("journey filter_page:respond", respond)
-  return respond
+  return null
 }
 
 function filter_room(roomData,userName){
