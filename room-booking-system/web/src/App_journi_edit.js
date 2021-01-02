@@ -174,7 +174,7 @@ class APP_JOURNI_EDIT extends Component {
       })
   }
   onLogIn = ({ pws, id }) => {
-      if(filter_page(page,md5(pws),userId)!=null){
+      if(filter_page(this.state.page,md5(pws),id)!=null){
             window.location.href = `../../../j/edit/${id}/${pws}/`;
       }
       else{
@@ -370,7 +370,7 @@ export default APP_JOURNI_EDIT
 
 function filter_page(page,owner,id){
   console.log("journey filter_page:page", page)
-  console.log("journey filter_page:userName", userName)
+  console.log("journey filter_page:userName", owner)
   let respond = {}
   page.forEach(p => 
     {
