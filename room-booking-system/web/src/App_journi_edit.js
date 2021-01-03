@@ -174,7 +174,7 @@ class APP_JOURNI_EDIT extends Component {
       })
   }
   onLogIn = ({ pws, id }) => {
-      if(filter_page(this.state.page,md5(pws),id)!=null){
+      if(filter_page(this.state.page,md5(pws),id).page){
             window.location.href = `../../../j/edit/${id}/${pws}/`;
       }
       else{
@@ -374,9 +374,7 @@ function filter_page(page,owner,id){
   let respond = {}
   page.forEach(p => 
     {
-      console.log("p._id.toString()",p._id.toString())
-      console.log("id",id)
-      if(p.owner == owner){
+      if(p.owner == owner && id == p._id){
         respond = {
           page: p.page,
           id: p._id
@@ -385,7 +383,7 @@ function filter_page(page,owner,id){
     }
   )
   console.log("journey filter_page:respond", respond)
-  return null
+  return respond
 }
 
 function filter_room(roomData,userName){
