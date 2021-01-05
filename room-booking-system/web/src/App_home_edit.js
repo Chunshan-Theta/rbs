@@ -265,6 +265,10 @@ class APP_HOME_EDIT extends Component {
                                       onClick={() => this.onAdd_OneGoAhead(pageId)}
                                     />
                                     <AddElementButton
+                                      text={'新增欄位： 置中內文'}
+                                      onClick={() => this.onAdd_CenterTextContent(pageId)}
+                                    />
+                                    <AddElementButton
                                       text={'新增欄位： 行事曆'}
                                       onClick={() => this.onAdd_Dashboard(pageId)}
                                     />
