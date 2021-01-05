@@ -203,6 +203,10 @@ class APP_JOURNI_EDIT extends Component {
     
 
 
+    // <AddElementButton
+    //   text={'新增欄位： 置中大字'}
+    //   onClick={() => this.onAdd_CenterBanner(pageId)}
+    // />
     return (
       <Router>
         <div id="homeedit" className="App">
@@ -282,16 +286,12 @@ class APP_JOURNI_EDIT extends Component {
                             <div>
                                 <div className="ToolBar bkc-gray">
                                     <AddElementButton
-                                      text={'新增欄位： 置中大字加上四個連結'}
+                                      text={'新增欄位： 置中大字+四個連結'}
                                       onClick={() => this.onAdd_header(pageId)}
                                     />
                                     <AddElementButton
-                                      text={'新增欄位： 大字置中按鈕'}
+                                      text={'新增欄位： 大字置中+一個連結'}
                                       onClick={() => this.onAdd_OneGoAhead(pageId)}
-                                    />
-                                    <AddElementButton
-                                      text={'新增欄位： 置中大字'}
-                                      onClick={() => this.onAdd_CenterBanner(pageId)}
                                     />
                                     <AddElementButton
                                       text={'新增欄位： 置中內文'}

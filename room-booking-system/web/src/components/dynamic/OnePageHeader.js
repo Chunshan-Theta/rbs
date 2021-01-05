@@ -4,6 +4,19 @@ import ReactModal from 'react-modal'
 
 const OnePageHead = (props) => {
   console.log("props",props)
+  let buttons = [props.btn1,props.btn2,props.btn3,props.btn4]
+  let buttons_html = []
+  buttons.forEach(btn=>{
+    if(btn.text && btn.text!=""){
+        buttons_html.push(
+            <section class="w25 center">
+                <a href={btn.url} className="button " >{btn.text}</a>
+            </section>
+        )
+    }
+    
+  })
+
   return (
     <section class="container">
 
@@ -12,18 +25,7 @@ const OnePageHead = (props) => {
                 <p class="center" >{props.sub_titile}</p>
             </div>
             <div class="row">
-                <section class="w25 center">
-                    <a href={props.btn1.url} className="button ">{props.btn1.text}</a>
-                </section>
-                <section class="w25 center">
-                    <a href={props.btn2.url} className="button ">{props.btn2.text}</a>
-                </section>
-                <section class="w25 center">
-                    <a href={props.btn3.url} className="button ">{props.btn3.text}</a>
-                </section>
-                <section class="w25 center">
-                    <a href={props.btn4.url} className="button ">{props.btn4.text}</a>
-                </section>
+                {buttons_html}
             </div>
 
     </section>

@@ -193,7 +193,13 @@ class APP_HOME_EDIT extends Component {
     const featureParams = this.state.filterParams
     const date = this.state.currentDate
     
+    
 
+
+    // <AddElementButton
+    //   text={'新增欄位： 置中大字'}
+    //   onClick={() => this.onAdd_CenterBanner(pageId)}
+    // />
 
     return (
       <Router>
@@ -251,20 +257,12 @@ class APP_HOME_EDIT extends Component {
                             <div>
                                 <div className="ToolBar bkc-gray">
                                     <AddElementButton
-                                      text={'新增欄位： 置中大字加上四個連結'}
+                                      text={'新增欄位： 置中大字+四個連結'}
                                       onClick={() => this.onAdd_header(pageId)}
                                     />
                                     <AddElementButton
-                                      text={'新增欄位： 大字置中按鈕'}
+                                      text={'新增欄位： 置中大字+一個連結'}
                                       onClick={() => this.onAdd_OneGoAhead(pageId)}
-                                    />
-                                    <AddElementButton
-                                      text={'新增欄位： 置中大字'}
-                                      onClick={() => this.onAdd_CenterBanner(pageId)}
-                                    />
-                                    <AddElementButton
-                                      text={'新增欄位： 置中內文'}
-                                      onClick={() => this.onAdd_CenterTextContent(pageId)}
                                     />
                                     <AddElementButton
                                       text={'新增欄位： 行事曆'}

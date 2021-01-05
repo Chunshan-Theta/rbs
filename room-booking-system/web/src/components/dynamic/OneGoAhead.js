@@ -4,6 +4,18 @@ import ReactModal from 'react-modal'
 
 const OneGoAhead = (props) => {
   console.log("props",props)
+  let buttons = [props.btn1]
+  let buttons_html = []
+  buttons.forEach(btn=>{
+    if(btn.text && btn.text!=""){
+        buttons_html.push(
+            <section class="w50 center">
+                <a href={btn.url} style={{"width":"100%"}} className="button "  >{btn.text}</a>
+            </section>
+        )
+    }
+    
+  })
   return (
     <section class="container">
 
@@ -12,9 +24,7 @@ const OneGoAhead = (props) => {
                 <p class="center" >{props.sub_titile}</p>
             </div>
             <div class="row">
-                <section class="w50 center" >
-                    <a href={props.btn1.url} style={{"width":"100%"}} className="button ">{props.btn1.text}</a>
-                </section>
+                {buttons_html}
             </div>
 
     </section>
