@@ -9,7 +9,7 @@ function gen_insta_format(shortcode) {
       <InstagramEmbed
         url= {insta_url}
         clientAccessToken='207630901011100|c74039121871ad7b19cbb68e132e4bc6'
-        hideCaption={false}
+        hideCaption={true}
         containerTagName='div'
         protocol=''
         injectScript
