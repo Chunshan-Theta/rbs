@@ -1189,6 +1189,13 @@ hr {
 .Edit-block-border-gry label{
   padding-bottom: 5px;
 }
+.instablock{
+  width: 80%;
+  padding-left: 5%;
+  /* max-height: 600px;
+  overflow: hidden;
+  width:600px; */
+}
 
 @media screen and (min-width: 1025px) {
   div.rbc-event {
@@ -1197,7 +1204,12 @@ hr {
 
 }
 @media screen and (max-width: 1024px) {
-
+    .instablock{
+      padding-left: 0%;
+      /* width:350px;
+      max-height: 400px;
+      overflow: hidden; */
+    }
     #eventDetailContent {
       padding: 0;
       word-wrap: break-word;

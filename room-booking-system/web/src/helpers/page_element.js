@@ -7,7 +7,7 @@ import PicPage from '../components/dynamic/PicPage'
 import OnePageHead from '../components/dynamic/OnePageHeader'
 import CenterBanner from '../components/dynamic/CenterBanner'
 import LeftPicRightWord from '../components/dynamic/LeftPicRightWord'
-import LeftInstaRightWord from '../components/dynamic/LeftInstaRightWord'
+import {LeftInstaRightWord} from '../components/dynamic/LeftInstaRightWord'
 import CenterTextContent from '../components/dynamic/CenterTextContent'
 import OneGoAhead from '../components/dynamic/OneGoAhead'
 
