@@ -112,7 +112,7 @@ function DashBoard({
                     var re_obj = (
                         <div>
                         <h1 class="eventDetailTitle">{row[0]}</h1>
-                        <div class="eventDetailContent" dangerouslySetInnerHTML={{ __html: row[1] }} />
+                        <div class="eventDetailContent textLeft" dangerouslySetInnerHTML={{ __html: row[1] }} />
                         </div>
                     )
                     return(re_obj)

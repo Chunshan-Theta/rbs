@@ -1079,7 +1079,9 @@ section.container a{
   
 }
 
-
+.textLeft {
+  text-align: left;
+}
 section.container p,h1,h2,h3,h4,h5,h6,a {
    margin-bottom: 15px;
 }
