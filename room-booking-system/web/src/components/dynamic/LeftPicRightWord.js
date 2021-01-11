@@ -22,10 +22,10 @@ const LeftPicRightWord = (props) => {
                     </li>
                 </ul>
             </section>
-            <section class="w50 textLeft">
+            <section class="w50 ">
                 <ul>
                     <li>
-                        <div dangerouslySetInnerHTML={{ __html: props.content.text }} />
+                        <div class="textLeft" dangerouslySetInnerHTML={{ __html: props.content.text }} />
                         {/* <p>{props.content.text}</p> */}
                     </li>
                 </ul>

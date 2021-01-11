@@ -1206,6 +1206,9 @@ hr {
 
 }
 @media screen and (max-width: 1024px) {
+    .textLeft {
+      text-align: left;
+    }
     .instablock{
       padding-left: 0%;
       /* width:350px;
@@ -1226,9 +1229,9 @@ hr {
     }
     span, p {
         width:100%;
-        text-align: center;
+        /* text-align: center; */
         margin:0 auto;
-        display:flex;
+        /* display:flex; */
         align-items:center;
         justify-content:center;
     }
