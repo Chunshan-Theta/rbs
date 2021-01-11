@@ -126,9 +126,9 @@ class APP_JOURNI_EDIT extends Component {
         let newBlocks = Array.from(this.state.blocks)
         newBlocks[index-1] = sourceBlock
         newBlocks[index] = targetBlock
-        this.setState({loading:true})
-        putJourneyPages(pageId,this.state.pws,newBlocks)
-        this.setState({ blocks: newBlocks,focus:null,loading:false })
+        //this.setState({loading:true})
+        putJourneyPages(pageId,this.state.pws,newBlocks).then(res=>{this.setState({ blocks: newBlocks,focus:null,loading:false })})
+        
 
 
     }
@@ -144,9 +144,9 @@ class APP_JOURNI_EDIT extends Component {
         let newBlocks = Array.from(this.state.blocks)
         newBlocks[index+1] = sourceBlock
         newBlocks[index] = targetBlock
-        this.setState({loading:true})
-        putJourneyPages(pageId,this.state.pws,newBlocks)
-        this.setState({ blocks: newBlocks,focus:null,loading:false })
+        //this.setState({loading:true})
+        putJourneyPages(pageId,this.state.pws,newBlocks).then(res=>{this.setState({ blocks: newBlocks,focus:null,loading:false })})
+
 
     }
     else{
