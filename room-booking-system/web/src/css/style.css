@@ -1038,7 +1038,7 @@ section.container{
     padding-top: 30px;
     max-width: 100%;
     padding-bottom:70px;
-    padding-left:2%;
+    /* padding-left:2%; */
     min-height:200px;
 }
 section.container header.major{
@@ -1153,6 +1153,9 @@ section.container a.button:hover {
     padding:20px;
 }
 
+.p005 {
+  padding:5%;
+}
 p, h1, h2, h3, h4, h5, h6, span, div{
     font-family: "Microsoft JhengHei","STHeiti", Papyrus, Verdana, ;
 }

@@ -76,7 +76,7 @@ const LeftInstaRightWord = (props) => {
             <section class="w50 ">
                 <ul>
                     <li>
-                        <div class="textLeft"  dangerouslySetInnerHTML={{ __html: props.content.text }} />
+                        <div class="textLeft p005"  dangerouslySetInnerHTML={{ __html: props.content.text }} />
                     </li>
                 </ul>
             </section>
@@ -109,7 +109,7 @@ const LeftInstaRightWordOnlyPic = (props) => {
               <section class="w50 ">
                   <ul>
                       <li>
-                          <div class="textLeft"  dangerouslySetInnerHTML={{ __html: props.content.text }} />
+                          <div class="textLeft p005"  dangerouslySetInnerHTML={{ __html: props.content.text }} />
                       </li>
                   </ul>
               </section>

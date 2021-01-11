@@ -7,8 +7,8 @@ const CenterTextContent = (props) => {
   return (
     <section class="container">
 
-            <div class="p20">
-                <div class="textLeft"  dangerouslySetInnerHTML={{ __html: props.title }} />
+            <div class="">
+                <div class="textLeft p005"  dangerouslySetInnerHTML={{ __html: props.title }} />
             </div>
 
     </section>
