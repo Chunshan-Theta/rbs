@@ -53,6 +53,7 @@ class APP_JOURNI_EDIT extends Component {
     eventDetail: [[" ",[" "]]],
     focus:null,
     pws:null,
+    loading:false,
     editorState:BraftEditor.createEditorState("請輸入內容或點擊右上角讀取內容")
   }
   updatedEvent = detailString => {
@@ -120,13 +121,15 @@ class APP_JOURNI_EDIT extends Component {
   onMoveUpBlock =(index,pageId)=>{
     if(index!=0){
 
-        let sourceBlock = this.state.blocks[index]
-        let targetBlock = this.state.blocks[index-1]
-        this.state.blocks[index-1] = sourceBlock
-        this.state.blocks[index] = targetBlock
+        let sourceBlock = Object.assign({}, this.state.blocks[index])
+        let targetBlock = Object.assign({}, this.state.blocks[index-1])
+        let newBlocks = Array.from(this.state.blocks)
+        newBlocks[index-1] = sourceBlock
+        newBlocks[index] = targetBlock
+        this.setState({loading:true})
+        putJourneyPages(pageId,this.state.pws,newBlocks)
+        this.setState({ blocks: newBlocks,focus:null,loading:false })
 
-        putJourneyPages(pageId,this.state.pws,this.state.blocks)
-        this.setState({ blocks: this.state.blocks,focus:null })
 
     }
     else{
@@ -136,13 +139,14 @@ class APP_JOURNI_EDIT extends Component {
   onMoveDownBlock =(index,pageId)=>{
     if(this.state.blocks.length > index+1){
 
-        let sourceBlock = this.state.blocks[index]
-        let targetBlock = this.state.blocks[index+1]
-        this.state.blocks[index+1] = sourceBlock
-        this.state.blocks[index] = targetBlock
-
-        putJourneyPages(pageId,this.state.pws,this.state.blocks)
-        this.setState({ blocks: this.state.blocks,focus:null })
+        let sourceBlock = Object.assign({}, this.state.blocks[index])
+        let targetBlock = Object.assign({}, this.state.blocks[index+1])
+        let newBlocks = Array.from(this.state.blocks)
+        newBlocks[index+1] = sourceBlock
+        newBlocks[index] = targetBlock
+        this.setState({loading:true})
+        putJourneyPages(pageId,this.state.pws,newBlocks)
+        this.setState({ blocks: newBlocks,focus:null,loading:false })
 
     }
     else{
@@ -193,7 +197,8 @@ class APP_JOURNI_EDIT extends Component {
         blocks,
         editorState,
         focus,
-        pws
+        pws,
+        loading
     } = this.state
     const signedIn = !!decodedToken
     const Loading = require('react-loading-animation')
@@ -282,7 +287,14 @@ class APP_JOURNI_EDIT extends Component {
                   return(
                     <DocumentMeta {...meta("Edit")}>
                     <Fragment>
-                        {(
+                          {  loading &&
+                            (
+                                <div className="loading_animation">
+                                    <Loading />
+                                </div>
+                            )
+                         }
+                         { !loading && (
                             <div>
                                 <div className="ToolBar bkc-gray">
                                     <AddElementButton
