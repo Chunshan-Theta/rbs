@@ -50,10 +50,12 @@ router.put('/page/:id',requireJWT, (req, res) => {
 //
 router.post('/j/page', (req, res) => {
   const body =req.body
+  body['tag'] = body['owner']
   body['owner'] = md5(body['owner'])
   UserPage.find({'owner':body['owner']})
   .then(result=>{
      if(result.length==0){
+        console.log("req.body",req.body)
         UserPage.create(req.body)
         .then(page => {
           res.status(201).json(page)
