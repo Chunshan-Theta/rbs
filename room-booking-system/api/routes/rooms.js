@@ -3,32 +3,27 @@ const moment = require('moment')
 const momentTimezone = require('moment-timezone')
 const Room = require('../models/Room')
 const { requireJWT } = require('../middleware/auth')
-
+const { delete_column } = require('../models/toolkit')
 const router = new express.Router()
 
 router.get('/rooms_show', (req, res) => {
   //console.log("user",req.query.user);
   var owner = req.query.user ? req.query.user : null;
-  if(owner==null){
-    Room.find()
+  var payload = {}
+  if(owner != null){
+    payload["owner"] = owner
+  }
+  Room.find(payload)
     .then(rooms => {
+      var re_data = []
+      rooms.forEach(room=>{
+        delete_column(room,["_id","__v"])
+      })
       res.json(rooms)
     })
     .catch(error => {
       res.json({ error })
     })
-
-  }
-  else{
-    Room.find({"owner":owner})
-    .then(rooms => {
-      res.json(rooms)
-    })
-    .catch(error => {
-      res.json({ error })
-    })
-
-  }
 
 })
 
@@ -211,3 +206,5 @@ router.delete('/rooms/:id/:bookingId', requireJWT, (req, res) => {
 })
 
 module.exports = router
+
+

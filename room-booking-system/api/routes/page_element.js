@@ -1,12 +1,17 @@
 const express = require('express')
 const UserPage = require('../models/Page_Element')
 const { requireJWT } = require('../middleware/auth')
+const { delete_column } = require('../models/toolkit')
+
 const router = new express.Router()
 const md5 =require("md5");
 
 router.get('/page_show', (req, res) => {
   UserPage.find()
     .then(page => {
+      page.forEach(p=>{
+        delete_column(p, ["_id"])
+      })
       res.json(page)
     })
     .catch(error => {
