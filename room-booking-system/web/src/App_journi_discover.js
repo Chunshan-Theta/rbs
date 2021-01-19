@@ -41,7 +41,7 @@ import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
 import { agrs_Demo_OneGoAhead,agrs_Demo_CenterTextContent,agrs_Demo_CenterBanner,gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock,agrs_Demo_LeftPicRightWord,agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
-
+import BriefJourney from './components/dynamic/BriefJourney'
 const md5 = require("md5")
 class APP_JOURNI_DISCOVER extends Component {
   state = {
@@ -60,132 +60,7 @@ class APP_JOURNI_DISCOVER extends Component {
     this.setState(() => ({ eventDetail: detailString }))
   }
 
-  onAdd_CenterBanner =(pageId)=>{
-    this.state.blocks.push(agrs_Demo_CenterBanner)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
 
-  }
-  onAdd_CenterTextContent =(pageId)=>{
-    this.state.blocks.push(agrs_Demo_CenterTextContent)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
-  }
-  
-  onAdd_header =(pageId)=>{
-    this.state.blocks.push(agrs_Demo_OnePageHead)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
-  }
-  onAdd_Dashboard =(pageId)=>{
-    this.state.blocks.push(agrs_Demo_DashBoard)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
-    
-  }
-  onAdd_OneGoAhead =(pageId)=>{
-    this.state.blocks.push(agrs_Demo_OneGoAhead)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
-    
-  }
-  onAdd_PicPage =(pageId)=>{
-    this.state.blocks.push(agrs_Demo_PicPage)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
-  }
-  onAdd_email =(pageId)=>{
-    this.state.blocks.push(agrs_Demo_EmailBlock)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
-  }
-  onAdd_LeftPicRightWord =(pageId)=>{
-    this.state.blocks.push(agrs_Demo_LeftPicRightWord)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
-  }
-  onAdd_LeftInstaRightWord =(pageId)=>{
-    this.state.blocks.push(agrs_Demo_LeftInstaRightWord)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
-  }
-  onlink_homepage =(userId)=>{
-    window.location.href = `../../../${this.state.pws}`;
-  }
-
-  onSubmit =()=>{
-    console.log(this.state.blocks)
-  }
-
-  onUpdateBlock =(index,pageId,block)=>{
-    this.state.blocks[index] = block
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
-    
-  }
-  onDeleteBlock =(index,pageId)=>{
-    this.state.blocks.splice(index, 1);
-    putJourneyPages(pageId,this.state.pws,this.state.blocks)
-    this.setState({ blocks: this.state.blocks })
-  }
-  onMoveUpBlock =(index,pageId)=>{
-    if(index!=0){
-
-        let sourceBlock = Object.assign({}, this.state.blocks[index])
-        let targetBlock = Object.assign({}, this.state.blocks[index-1])
-        let newBlocks = Array.from(this.state.blocks)
-        newBlocks[index-1] = sourceBlock
-        newBlocks[index] = targetBlock
-        //this.setState({loading:true})
-        putJourneyPages(pageId,this.state.pws,newBlocks).then(res=>{this.setState({ blocks: newBlocks,focus:null,loading:false })})
-        
-
-
-    }
-    else{
-        alert("已到最上方")
-    }
-  }
-  onMoveDownBlock =(index,pageId)=>{
-    if(this.state.blocks.length > index+1){
-
-        let sourceBlock = Object.assign({}, this.state.blocks[index])
-        let targetBlock = Object.assign({}, this.state.blocks[index+1])
-        let newBlocks = Array.from(this.state.blocks)
-        newBlocks[index+1] = sourceBlock
-        newBlocks[index] = targetBlock
-        //this.setState({loading:true})
-        putJourneyPages(pageId,this.state.pws,newBlocks).then(res=>{this.setState({ blocks: newBlocks,focus:null,loading:false })})
-
-
-    }
-    else{
-        alert("已到最下方")
-    }
-  }
-  //
-  handleEditorChange = (editorState) => {
-    this.setState({ editorState })
-  }
-  //
-  onUpdateFocus = (index) => {
-    this.setState({ focus:index })
-  }
-
-  onLogUp = ({ tag }) => {
-      createJourneyPages({
-        "page": [],
-        "owner":tag
-      })
-      .then(res=>{
-        if(res.data.error){
-            alert("此標籤已註冊過")
-        }
-        else{
-            alert("您的密碼為"+res.data._id)
-            window.location.href = `../../../j/edit/${res.data._id}/${tag}/`;
-        }
-      })
-  }
-  onLogIn = ({ pws, id }) => {
-      if(filter_page(this.state.page,md5(pws),id).page){
-            window.location.href = `../../../j/edit/${id}/${pws}/`;
-      }
-      else{
-            alert("查詢失敗，可能是輸入錯誤或是沒有此標籤")
-      }
-
-  }
 
   //
   render() {
@@ -219,7 +94,11 @@ class APP_JOURNI_DISCOVER extends Component {
               <Switch>
                 <Route path="/discover" exact render={() =>{
 
-                  return(<div>{JSON.stringify(this.state.page)}</div>)
+                  var rows = []
+                  this.state.page.forEach(row=>{
+                    rows.push(BriefJourney(row))
+                  })
+                  return(<div>{rows}</div>)
                 }} />
 
               </Switch>

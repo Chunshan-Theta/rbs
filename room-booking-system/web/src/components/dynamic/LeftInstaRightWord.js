@@ -32,6 +32,7 @@ function gen_insta_format(shortcode,only_pic) {
                     
                     //console.log("filed",filed.parentElement)
                     //https://www.instagram.com/beagle0247/?utm_source=ig_embed
+                    var img_container = document.createElement('div'); 
                     var img = document.createElement('img'); 
                     img.src = thumbnail_url 
                     img.style.width = "100% !important"
@@ -117,6 +118,8 @@ const LeftInstaRightWordOnlyPic = (props) => {
       </section>
     )
   }
-export { LeftInstaRightWord,LeftInstaRightWordOnlyPic }
+
+
+export { LeftInstaRightWord,LeftInstaRightWordOnlyPic,gen_insta_format }
 
 
