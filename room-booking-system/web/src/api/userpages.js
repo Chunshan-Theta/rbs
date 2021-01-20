@@ -6,7 +6,10 @@ export function listPages() {
   return api.get('/page_show').then(res => res.data).catch(error=>[])
 }
 
-
+export function listPagesByTagAndPid(tag,pid) {
+  var url = '/page_show?user='+tag+'&pid='+pid
+  return api.get(url).then(res => res.data).catch(error=>[])
+}
 export function createPages(payload) {
   return api.post(`/page/`, payload)
     .then(res => res.data)

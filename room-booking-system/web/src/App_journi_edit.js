@@ -35,12 +35,12 @@ import OnePageHead from './components/dynamic/OnePageHeader'
 import BraftEditor from 'braft-editor'
 
 import meta from './components/head'
-import { listPages,createJourneyPages,putJourneyPages } from './api/userpages'
+import { listPagesByTagAndPid, listPages, createJourneyPages, putJourneyPages } from './api/userpages'
 import { getDecodedToken } from './api/token'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
-import { agrs_Demo_OneGoAhead,agrs_Demo_CenterTextContent,agrs_Demo_CenterBanner,gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock,agrs_Demo_LeftPicRightWord,agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
+import { agrs_Demo_OneGoAhead, agrs_Demo_CenterTextContent, agrs_Demo_CenterBanner, gen_component_n_editor, gen_component, agrs_Demo_OnePageHead, agrs_Demo_DashBoard, agrs_Demo_PicPage, agrs_Demo_EmailBlock, agrs_Demo_LeftPicRightWord, agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
 
 const md5 = require("md5")
 class APP_JOURNI_EDIT extends Component {
@@ -50,107 +50,108 @@ class APP_JOURNI_EDIT extends Component {
     preblocks: [],
     page: [],
     roomData: null,
-    eventDetail: [[" ",[" "]]],
-    focus:null,
-    pws:null,
-    loading:false,
-    editorState:BraftEditor.createEditorState("請輸入內容或點擊右上角讀取內容")
+    eventDetail: [[" ", [" "]]],
+    focus: null,
+    pws: null,
+    loading: false,
+    pageId: null,
+    editorState: BraftEditor.createEditorState("請輸入內容或點擊右上角讀取內容")
   }
   updatedEvent = detailString => {
     this.setState(() => ({ eventDetail: detailString }))
   }
 
-  onAdd_CenterBanner =(pageId)=>{
+  onAdd_CenterBanner = (pageId) => {
     this.state.blocks.push(agrs_Demo_CenterBanner)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
 
   }
-  onAdd_CenterTextContent =(pageId)=>{
+  onAdd_CenterTextContent = (pageId) => {
     this.state.blocks.push(agrs_Demo_CenterTextContent)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
   }
-  
-  onAdd_header =(pageId)=>{
+
+  onAdd_header = (pageId) => {
     this.state.blocks.push(agrs_Demo_OnePageHead)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
   }
-  onAdd_Dashboard =(pageId)=>{
+  onAdd_Dashboard = (pageId) => {
     this.state.blocks.push(agrs_Demo_DashBoard)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
-    
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+
   }
-  onAdd_OneGoAhead =(pageId)=>{
+  onAdd_OneGoAhead = (pageId) => {
     this.state.blocks.push(agrs_Demo_OneGoAhead)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
-    
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+
   }
-  onAdd_PicPage =(pageId)=>{
+  onAdd_PicPage = (pageId) => {
     this.state.blocks.push(agrs_Demo_PicPage)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
   }
-  onAdd_email =(pageId)=>{
+  onAdd_email = (pageId) => {
     this.state.blocks.push(agrs_Demo_EmailBlock)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
   }
-  onAdd_LeftPicRightWord =(pageId)=>{
+  onAdd_LeftPicRightWord = (pageId) => {
     this.state.blocks.push(agrs_Demo_LeftPicRightWord)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
   }
-  onAdd_LeftInstaRightWord =(pageId)=>{
+  onAdd_LeftInstaRightWord = (pageId) => {
     this.state.blocks.push(agrs_Demo_LeftInstaRightWord)
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
   }
-  onlink_homepage =(userId)=>{
+  onlink_homepage = (userId) => {
     window.location.href = `../../../${this.state.pws}`;
   }
 
-  onSubmit =()=>{
+  onSubmit = () => {
     console.log(this.state.blocks)
   }
 
-  onUpdateBlock =(index,pageId,block)=>{
+  onUpdateBlock = (index, pageId, block) => {
     this.state.blocks[index] = block
-    putJourneyPages(pageId,this.state.pws,this.state.blocks).then(res=>{this.setState({ blocks: this.state.blocks })})
-    
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+
   }
-  onDeleteBlock =(index,pageId)=>{
+  onDeleteBlock = (index, pageId) => {
     this.state.blocks.splice(index, 1);
-    putJourneyPages(pageId,this.state.pws,this.state.blocks)
+    putJourneyPages(pageId, this.state.pws, this.state.blocks)
     this.setState({ blocks: this.state.blocks })
   }
-  onMoveUpBlock =(index,pageId)=>{
-    if(index!=0){
+  onMoveUpBlock = (index, pageId) => {
+    if (index != 0) {
 
-        let sourceBlock = Object.assign({}, this.state.blocks[index])
-        let targetBlock = Object.assign({}, this.state.blocks[index-1])
-        let newBlocks = Array.from(this.state.blocks)
-        newBlocks[index-1] = sourceBlock
-        newBlocks[index] = targetBlock
-        //this.setState({loading:true})
-        putJourneyPages(pageId,this.state.pws,newBlocks).then(res=>{this.setState({ blocks: newBlocks,focus:null,loading:false })})
-        
+      let sourceBlock = Object.assign({}, this.state.blocks[index])
+      let targetBlock = Object.assign({}, this.state.blocks[index - 1])
+      let newBlocks = Array.from(this.state.blocks)
+      newBlocks[index - 1] = sourceBlock
+      newBlocks[index] = targetBlock
+      //this.setState({loading:true})
+      putJourneyPages(pageId, this.state.pws, newBlocks).then(res => { this.setState({ blocks: newBlocks, focus: null, loading: false }) })
+
 
 
     }
-    else{
-        alert("已到最上方")
+    else {
+      alert("已到最上方")
     }
   }
-  onMoveDownBlock =(index,pageId)=>{
-    if(this.state.blocks.length > index+1){
+  onMoveDownBlock = (index, pageId) => {
+    if (this.state.blocks.length > index + 1) {
 
-        let sourceBlock = Object.assign({}, this.state.blocks[index])
-        let targetBlock = Object.assign({}, this.state.blocks[index+1])
-        let newBlocks = Array.from(this.state.blocks)
-        newBlocks[index+1] = sourceBlock
-        newBlocks[index] = targetBlock
-        //this.setState({loading:true})
-        putJourneyPages(pageId,this.state.pws,newBlocks).then(res=>{this.setState({ blocks: newBlocks,focus:null,loading:false })})
+      let sourceBlock = Object.assign({}, this.state.blocks[index])
+      let targetBlock = Object.assign({}, this.state.blocks[index + 1])
+      let newBlocks = Array.from(this.state.blocks)
+      newBlocks[index + 1] = sourceBlock
+      newBlocks[index] = targetBlock
+      //this.setState({loading:true})
+      putJourneyPages(pageId, this.state.pws, newBlocks).then(res => { this.setState({ blocks: newBlocks, focus: null, loading: false }) })
 
 
     }
-    else{
-        alert("已到最下方")
+    else {
+      alert("已到最下方")
     }
   }
   //
@@ -159,53 +160,57 @@ class APP_JOURNI_EDIT extends Component {
   }
   //
   onUpdateFocus = (index) => {
-    this.setState({ focus:index })
+    this.setState({ focus: index })
   }
 
   onLogUp = ({ tag }) => {
-      createJourneyPages({
-        "page": [],
-        "owner":tag
-      })
-      .then(res=>{
-        if(res.data.error){
-            alert("此標籤已註冊過")
+    createJourneyPages({
+      "page": [],
+      "owner": tag
+    })
+      .then(res => {
+        if (res.data.error) {
+          alert("此標籤已註冊過")
         }
-        else{
-            alert("您的密碼為"+res.data._id)
-            window.location.href = `../../../j/edit/${res.data._id}/${tag}/`;
+        else {
+          alert("您的密碼為" + res.data._id)
+          window.location.href = `../../../j/edit/${res.data._id}/${tag}/`;
         }
       })
   }
   onLogIn = ({ pws, id }) => {
-      if(filter_page(this.state.page,md5(pws),id).page){
-            window.location.href = `../../../j/edit/${id}/${pws}/`;
+
+    listPagesByTagAndPid(pws, id).then(page => {
+      if (page.length>0) {
+        window.location.href = `../../../j/edit/${id}/${pws}/`;
       }
-      else{
-            alert("查詢失敗，可能是輸入錯誤或是沒有此標籤")
+      else {
+        alert("查詢失敗，可能是輸入密碼錯誤或是沒有此標籤")
       }
+    })
 
   }
 
   //
   render() {
     const {
-        roomData,
-        page,
-        eventDetail,
-        decodedToken, // retrieves the token from local storage if valid, else will be null
-        blocks,
-        editorState,
-        focus,
-        pws,
-        loading
+      roomData,
+      page,
+      eventDetail,
+      decodedToken, // retrieves the token from local storage if valid, else will be null
+      blocks,
+      editorState,
+      focus,
+      pws,
+      pageId,
+      loading
     } = this.state
     const signedIn = !!decodedToken
     const Loading = require('react-loading-animation')
 
     const featureParams = this.state.filterParams
     const date = this.state.currentDate
-    
+
 
 
     // <AddElementButton
@@ -216,130 +221,124 @@ class APP_JOURNI_EDIT extends Component {
       <Router>
         <div id="homeedit" className="App">
           <Fragment>
-              <Switch>
-                <Route path="/j/home" exact render={() =>
-                  (<div className="wrapper__form">
-                      <h2>新建旅程</h2>
-                      <SignUpJourneyForm onSignUp={this.onLogUp} />
-                      <h2>編輯已存在旅程</h2>
-                      <SignInJourneyForm onSignIn={this.onLogIn} />
-                    </div>
-                  )} />
-                <Route path="/j/edit/:userName/:pws/" exact render={(props) =>{
+            <Switch>
+              <Route path="/j/home" exact render={() =>
+                (<div className="wrapper__form">
+                  <h2>新建旅程</h2>
+                  <SignUpJourneyForm onSignUp={this.onLogUp} />
+                  <h2>編輯已存在旅程</h2>
+                  <SignInJourneyForm onSignIn={this.onLogIn} />
+                </div>
+                )} />
+              <Route path="/j/edit/:pageId/:pws/" exact render={(props) => {
+
+                let page = this.state.page
+                let blocks_convented = []
+                let pageId = props.match.params.pageId //from pid
+                let pws = props.match.params.pws //from tag
+                
+                
+                if (this.state.pws != pws || this.state.pageId != pageId) {
+                  listPagesByTagAndPid(pws, pageId).then(page => {
+                    if (this.state.page != page) {
+                      this.setState({ "page": page })
+                    }
+                    
+                  })
+
                   //
-                  let userId = props.match.params.userName
-                  let page = this.state.page
-                  let blocks_convented = []
-                  let pageId = null
-                  //const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
-                  if(userId != null){
-                  
-                    //
-                    console.log("/j/edit/:userName/ : page",page)
-                    console.log("/j/edit/:userName/ : userId",userId)
+                  this.setState({ "pws": pws })
+                  this.setState({ "pageId": pageId })
+                }
 
-                    let pws = props.match.params.pws
-                    if(this.state.pws != pws){
-                        this.setState({"pws":pws})
-                    }
-                    console.log("props.match.params.pws",this.state.pws)
-                    console.log("/j/edit/:userName/ : pws",pws)
-                    let userpage = filter_page(page,md5(pws),userId)
-                    let blocks = userpage.page ? userpage.page: []
-                    if(this.state.blocks.toString() != blocks.toString()){
-                        console.log("/j/edit/:userName/ : this.state.blocks ",this.state.blocks )
-                        console.log("/j/edit/:userName/ : blocks ",blocks )
-                        this.setState({"blocks":blocks})
-                        this.load()
-                    }
-                    pageId = userpage.id
-                    console.log("/j/edit/:userName/ : blocks", blocks)
-                    console.log("/j/edit/:userName/ : userpage", userpage)
+
+                let userpage = filter_page(page, md5(pws))
+                let blocks = userpage.page ? userpage.page : []
+                if (this.state.blocks.toString() != blocks.toString()) {
+                  this.setState({ "blocks": blocks })
+                  this.load()
+                }
 
 
 
-                    //
-                    let add_agrs = {
-                      "roomData":filter_room(roomData,userId),
-                      "eventDetail":this.state.eventDetail,
-                      "updatedEventDetail":this.updatedEvent,
-                      "editorState":this.state.editorState,
-                      "handleEditorChange": this.handleEditorChange,
-                      "onUpdateBlock":this.onUpdateBlock,
-                      "onDeleteBlock":this.onDeleteBlock,
-                      "onUpdateFocus":this.onUpdateFocus,
-                      "onMoveUpBlock":this.onMoveUpBlock,
-                      "onMoveDownBlock":this.onMoveDownBlock,
-                      "pageId":pageId,
-                      "focus":this.state.focus
-                    }
+                //
+                let add_agrs = {
+                  "roomData": filter_room(roomData, md5(pws)),
+                  "eventDetail": this.state.eventDetail,
+                  "updatedEventDetail": this.updatedEvent,
+                  "editorState": this.state.editorState,
+                  "handleEditorChange": this.handleEditorChange,
+                  "onUpdateBlock": this.onUpdateBlock,
+                  "onDeleteBlock": this.onDeleteBlock,
+                  "onUpdateFocus": this.onUpdateFocus,
+                  "onMoveUpBlock": this.onMoveUpBlock,
+                  "onMoveDownBlock": this.onMoveDownBlock,
+                  "pageId": pageId,
+                  "focus": this.state.focus
+                }
 
-                    //
-                    blocks.forEach((row_agr, i)=>{
-                      blocks_convented.push(<li>{gen_component_n_editor({...add_agrs,...row_agr,index:i})}</li>)
-                    })
+                //
+                this.state.blocks.forEach((row_agr, i) => {
+                  blocks_convented.push(<li>{gen_component_n_editor({ ...add_agrs, ...row_agr, index: i })}</li>)
+                })
 
-                  }else{
-                    alert("尚未登入")
-                    console.log("props",this.props)
-                    window.location.href = "../../login";
-                  }
-                  return(
-                    <DocumentMeta {...meta("Edit")}>
+
+                return (
+                  <DocumentMeta {...meta("Edit")}>
                     <Fragment>
-                          {  loading &&
-                            (
-                                <div className="loading_animation">
-                                    <Loading />
-                                </div>
-                            )
-                         }
-                         { !loading && (
-                            <div>
-                                <div className="ToolBar bkc-gray">
-                                    <AddElementButton
-                                      text={'新增欄位： 置中大字+四個連結'}
-                                      onClick={() => this.onAdd_header(pageId)}
-                                    />
-                                    <AddElementButton
-                                      text={'新增欄位： 大字置中+一個連結'}
-                                      onClick={() => this.onAdd_OneGoAhead(pageId)}
-                                    />
-                                    <AddElementButton
-                                      text={'新增欄位： 置中內文'}
-                                      onClick={() => this.onAdd_CenterTextContent(pageId)}
-                                    />
-                                    <AddElementButton
-                                      text={'新增欄位： 三欄圖片'}
-                                      onClick={() => this.onAdd_PicPage(pageId)}
-                                    />
-                                    <AddElementButton
-                                      text={'新增欄位： 左圖右字'}
-                                      onClick={() => this.onAdd_LeftPicRightWord(pageId)}
-                                    />
+                      {loading &&
+                        (
+                          <div className="loading_animation">
+                            <Loading />
+                          </div>
+                        )
+                      }
+                      {!loading && (
+                        <div>
+                          <div className="ToolBar bkc-gray">
+                            <AddElementButton
+                              text={'新增欄位： 置中大字+四個連結'}
+                              onClick={() => this.onAdd_header(pageId)}
+                            />
+                            <AddElementButton
+                              text={'新增欄位： 大字置中+一個連結'}
+                              onClick={() => this.onAdd_OneGoAhead(pageId)}
+                            />
+                            <AddElementButton
+                              text={'新增欄位： 置中內文'}
+                              onClick={() => this.onAdd_CenterTextContent(pageId)}
+                            />
+                            <AddElementButton
+                              text={'新增欄位： 三欄圖片'}
+                              onClick={() => this.onAdd_PicPage(pageId)}
+                            />
+                            <AddElementButton
+                              text={'新增欄位： 左圖右字'}
+                              onClick={() => this.onAdd_LeftPicRightWord(pageId)}
+                            />
 
-                                    <AddElementButton
-                                      text={'新增欄位： Instagram嵌入與文字說明'}
-                                      onClick={() => this.onAdd_LeftInstaRightWord(pageId)}
-                                    />
+                            <AddElementButton
+                              text={'新增欄位： Instagram嵌入與文字說明'}
+                              onClick={() => this.onAdd_LeftInstaRightWord(pageId)}
+                            />
 
-                                    <AddElementButton
-                                      text={'前往個人頁面'}
-                                      onClick={this.onlink_homepage}
-                                    />
-                                    <ul>
-                                      <p>新增欄位會在最下方</p>
-                                      <p>您的密碼為： {userId}</p>
-                                      <p>切勿忘記，若遺失密碼將無法再次編輯此頁面，或可記得此永久網址</p>
-                                    </ul>
-                                </div>
+                            <AddElementButton
+                              text={'前往個人頁面'}
+                              onClick={this.onlink_homepage}
+                            />
+                            <ul>
+                              <p>新增欄位會在最下方</p>
+                              <p>您的密碼為： {pageId}</p>
+                              <p>切勿忘記，若遺失密碼將無法再次編輯此頁面，或可記得此永久網址</p>
+                            </ul>
+                          </div>
 
-                                <ul className="one_page">
-                                  {blocks_convented}
-                                </ul>
-                            </div>)}
-                     </Fragment></DocumentMeta>)
-                }} />
+                          <ul className="one_page">
+                            {blocks_convented}
+                          </ul>
+                        </div>)}
+                    </Fragment></DocumentMeta>)
+              }} />
             </Switch>
           </Fragment>
         </div>
@@ -348,11 +347,12 @@ class APP_JOURNI_EDIT extends Component {
   }
 
   load() {
-    //
-    listPages().then( page =>{
-        console.log("App_journi_edit.js load: page",page)
+    if (this.state.pws != null && this.state.pageId != null) {
+      listPagesByTagAndPid(this.state.pws, this.state.pageId).then(page => {
         this.setState({ "page": page })
-    })
+      })
+
+    }
   }
 
   // When the App first renders
@@ -362,13 +362,11 @@ class APP_JOURNI_EDIT extends Component {
 
   // When state changes
   componentDidUpdate(prevProps, prevState) {
-    console.log("componentDidUpdate State",this.state.blocks)
-    console.log("componentDidUpdate preblocks",this.state.preblocks)
     if (!arraysEqual(this.state.blocks, this.state.preblocks)) {
-        console.log("componentDidUpdate State1",this.state.blocks)
-        console.log("componentDidUpdate preblocks",this.state.preblocks)
-        this.setState({ "preblocks": Array.from(this.state.blocks) })
-        this.load()
+      console.log("componentDidUpdate State1", this.state.blocks)
+      console.log("componentDidUpdate preblocks", this.state.preblocks)
+      this.setState({ "preblocks": Array.from(this.state.blocks) })
+      this.load()
     }
   }
 
@@ -380,39 +378,36 @@ class APP_JOURNI_EDIT extends Component {
 export default APP_JOURNI_EDIT
 
 
-function filter_page(page,owner,id){
+function filter_page(page, owner) {
   console.log("journey filter_page:page", page)
   console.log("journey filter_page:userName", owner)
   let respond = {}
-  page.forEach(p => 
-    {
-      if(p.owner == owner && id == p._id){
-        respond = {
-          page: p.page,
-          id: p._id
-        }
+  page.forEach(p => {
+    if (p.owner == owner) {
+      respond = {
+        page: p.page
       }
     }
+  }
   )
   console.log("journey filter_page:respond", respond)
   return respond
 }
 
-function filter_room(roomData,userName){
-    roomData = roomData?roomData:[]
-    let filter_roomData = []
-    roomData.forEach(room =>
-      {
+function filter_room(roomData, userName) {
+  roomData = roomData ? roomData : []
+  let filter_roomData = []
+  roomData.forEach(room => {
 
-        if(room.owner == userName){
-          filter_roomData.push(room)
-        }
-      }
-    )
-    console.log("filter_room userName", userName)
-    console.log("filter_room roomData", roomData)
-    console.log("filter_roomData",filter_roomData)
-    return filter_roomData
+    if (room.owner == userName) {
+      filter_roomData.push(room)
+    }
+  }
+  )
+  console.log("filter_room userName", userName)
+  console.log("filter_room roomData", roomData)
+  console.log("filter_roomData", filter_roomData)
+  return filter_roomData
 }
 
 function arraysEqual(a, b) {

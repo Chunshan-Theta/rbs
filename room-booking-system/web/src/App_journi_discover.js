@@ -199,7 +199,7 @@ function refactor_page(page){
                  "title": html_strip(deep_search_from_list(ele.page,["title"],["root"])),
                  "tag": ele.tag,
             }
-            var brief_image = deep_search_from_list(ele.page,["url","shortcode"],["image","insta"])
+            var brief_image = deep_search_from_list(ele.page,["url","shortcode"],["image","insta","col1"])
             if( typeof brief_image == "string" && brief_image.startsWith('http')){
                 payload["image"] = brief_image
             }else if(typeof brief_image == "string"){

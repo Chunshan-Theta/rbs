@@ -2,12 +2,27 @@ const express = require('express')
 const UserPage = require('../models/Page_Element')
 const { requireJWT } = require('../middleware/auth')
 const { delete_column } = require('../models/toolkit')
+const mongoose = require('mongoose')
 
 const router = new express.Router()
 const md5 =require("md5");
 
 router.get('/page_show', (req, res) => {
-  UserPage.find()
+  var owner = req.query.user ? req.query.user : null;
+  var pid = req.query.pid ? req.query.pid : null;
+  var payload = {}
+  if(owner != null){
+    payload["owner"] = md5(owner)
+  }
+  if(pid != null){
+    if(pid.length != 24){
+      payload["_id"] = null
+    }else{
+      payload["_id"] = mongoose.Types.ObjectId(pid)
+    }
+    
+  }
+  UserPage.find(payload)
     .then(page => {
       page.forEach(p=>{
         delete_column(p, ["_id"])
