@@ -1,5 +1,7 @@
 import React from 'react'
 import {gen_insta_format} from "./LeftInstaRightWord"
+import Button from '../Button'
+
 
 function img_switch (key) {
   console.log("key",key)
@@ -16,19 +18,8 @@ function img_switch (key) {
   }
 }
 
-const BriefJourney = (props) => {
-  console.log("props",props)
-  // return (
-  //   <section class="container">
+const BriefJourney = (props,like_func,saved_journey) => {
 
-  //           <div class="p20">
-  //               <p class="center">{props.title}</p>
-  //               <p class="center" >image: {props.image}</p>
-  //               <p class="center" >shortcode: {props.shortcode}</p>
-  //           </div>
-
-  //   </section>
-  // )
   return (
     <section class="container">
         <div class="row w75 center">
@@ -50,7 +41,10 @@ const BriefJourney = (props) => {
             <section class="w33 ">
                 <ul>
                     <li>
-                        <a href={"../j/"+props.tag} style={{"width":"100%"}} className="button "  >查看</a>
+                        <Button className="button btn-lr" text={'查看'} onClick={() => window.location.href = "../j/"+props.tag}/>
+                    </li>
+                    <li>
+                        <Button className="button btn-lr" text={saved_journey?"已喜歡":"喜歡"} style={saved_journey?{background: "#cccccc",border: "0.1rem solid #eeeeee"}:{}} onClick={() => like_func(props.tag)}/>
                     </li>
                 </ul>
             </section>

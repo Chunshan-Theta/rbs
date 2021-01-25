@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "react-big-calendar": "^0.28.0",
-    "seed": "^0.4.4"
+    "seed": "^0.4.4",
+    "universal-cookie": "^4.0.4"
   }
 }
