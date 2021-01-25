@@ -64,35 +64,35 @@ class APP_JOURNI_DISCOVER extends Component {
   //
   add_like_journey = (tag) => {
     const cookies = new Cookies();
-    var likes = cookies.get('likes')?cookies.get('likes'):[]
-    console.log("source_likes",likes)
-    if(likes.indexOf(tag)==-1){
-        likes.push(tag)
+    var likes = cookies.get('likes') ? cookies.get('likes') : []
+    console.log("source_likes", likes)
+    if (likes.indexOf(tag) == -1) {
+      likes.push(tag)
     }
     cookies.set('likes', likes, { path: '/' });
     this.load()
-    console.log("likes",cookies.get('likes'))
+    console.log("likes", cookies.get('likes'))
   }
   //
   remove_like_journey = (tag) => {
     const cookies = new Cookies();
-    var likes = cookies.get('likes')?cookies.get('likes'):[]
-    console.log("source_likes",likes)
-    if(likes.indexOf(tag)!=-1){
-        likes.splice(likes.indexOf(tag), 1);
-        cookies.set('likes', likes, { path: '/' });
-        console.log("rm_tag", tag)
-        console.log("rm_likes", cookies.get('likes'))
-        this.load()
+    var likes = cookies.get('likes') ? cookies.get('likes') : []
+    console.log("source_likes", likes)
+    if (likes.indexOf(tag) != -1) {
+      likes.splice(likes.indexOf(tag), 1);
+      cookies.set('likes', likes, { path: '/' });
+      console.log("rm_tag", tag)
+      console.log("rm_likes", cookies.get('likes'))
+      this.load()
     }
   }
 
   //
   seved_journey = (tag) => {
     const cookies = new Cookies();
-    var likes = cookies.get('likes')?cookies.get('likes'):[]
-    if(likes.indexOf(tag)!=-1){
-        return true
+    var likes = cookies.get('likes') ? cookies.get('likes') : []
+    if (likes.indexOf(tag) != -1) {
+      return true
     }
     return false
   }
@@ -132,12 +132,23 @@ class APP_JOURNI_DISCOVER extends Component {
 
                 var rows = []
                 this.state.page.forEach(row => {
-                  if(!this.seved_journey(row.tag)){
-                    rows.push(BriefJourney(row,this.add_like_journey, false))
-                  }else{
-                    rows.push(BriefJourney(row,this.remove_like_journey, true))
+                  if (!this.seved_journey(row.tag)) {
+                    rows.push(BriefJourney(row, this.add_like_journey, false))
+                  } else {
+                    rows.push(BriefJourney(row, this.remove_like_journey, true))
                   }
-                  
+
+                })
+                return (<div>{rows}</div>)
+              }} />
+
+              <Route path="/discover/likes" exact render={() => {
+                var rows = []
+                this.state.page.forEach(row => {
+                  if (this.seved_journey(row.tag)) {
+                    rows.push(BriefJourney(row, this.remove_like_journey, true))
+                  }
+
                 })
                 return (<div>{rows}</div>)
               }} />
@@ -150,17 +161,17 @@ class APP_JOURNI_DISCOVER extends Component {
   }
 
   load() {
-    
+
     listPages().then(page => {
       var refactored_page = refactor_page(page)
-      this.setState({ 
+      this.setState({
         "page": refactored_page
       })
     })
 
-    
 
-    
+
+
   }
 
 
