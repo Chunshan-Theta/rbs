@@ -36,7 +36,7 @@ import BraftEditor from 'braft-editor'
 
 
 import meta from './components/head'
-import { listPages,createPages,putPages } from './api/userpages'
+import { listPages,listPagesByUid, createPages,putPages } from './api/userpages'
 import { getDecodedToken, rememberToken } from './api/token'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
@@ -214,6 +214,7 @@ class APP_HOME_EDIT extends Component {
                   let blocks_convented = []
                   let pageId = null
                   const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
+                  console.log("this.state.decodedToken", this.state.decodedToken)
                   if(userId != null){
                   
                     //
@@ -319,7 +320,7 @@ class APP_HOME_EDIT extends Component {
   load() {
     const { decodedToken } = this.state
     const signedIn = !!decodedToken
-
+    const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
 
     // display loading page
     this.setState({ loading: true })
@@ -334,27 +335,30 @@ class APP_HOME_EDIT extends Component {
          console.error('Error loading room data', error)
          this.setState({ error })
     })
-    listPages().then( page =>{
-      this.setState({ "page": page })
-
-      //
-
-      const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
-      this.state.blocks = filter_page(page,userId).page
-
-      //
-      if(userId != null && !this.state.blocks){
-        let init_blocks = [agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock]
-        createPages({
-          owner: userId,
-          page: init_blocks
-        })
-        listPages().then( page =>{
-          this.setState({ "page": page })
-        })
-      }
-
-    })
+    if(userId!=null){
+      listPagesByUid(userId).then( page =>{
+        this.setState({ "page": page })
+  
+        //
+  
+        const userId = this.state.decodedToken? this.state.decodedToken.sub: null;
+        this.state.blocks = filter_page(page,userId).page
+  
+        //
+        if(userId != null && !this.state.blocks){
+          let init_blocks = [agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock]
+          createPages({
+            owner: userId,
+            page: init_blocks
+          })
+          listPagesByUid(userId).then( page =>{
+            this.setState({ "page": page })
+          })
+        }
+  
+      })
+    }
+    
     
   }
 

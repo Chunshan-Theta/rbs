@@ -8,11 +8,19 @@ const router = new express.Router()
 const md5 =require("md5");
 
 router.get('/page_show', (req, res) => {
+  var tag = req.query.tag ? req.query.tag : null;
   var owner = req.query.user ? req.query.user : null;
   var pid = req.query.pid ? req.query.pid : null;
+  var keyword = req.query.keyword ? req.query.keyword : null;
   var payload = {}
+  if(tag != null){
+    payload["owner"] = md5(tag)
+  }
   if(owner != null){
-    payload["owner"] = md5(owner)
+    payload["owner"] = owner
+  }
+  if(keyword != null){
+    payload["page"] = { $regex: keyword, $options: 'i' }
   }
   if(pid != null){
     if(pid.length != 24){
@@ -25,7 +33,9 @@ router.get('/page_show', (req, res) => {
   UserPage.find(payload)
     .then(page => {
       page.forEach(p=>{
-        delete_column(p, ["_id"])
+        if(owner == null){
+          delete_column(p, ["_id"])
+        }
       })
       res.json(page)
     })
@@ -50,6 +60,8 @@ router.put('/page/:id',requireJWT, (req, res) => {
   const { body } = req
   // console.log("body",body)
   // console.log("id",id)
+  var blocks = body
+
   UserPage.findByIdAndUpdate(
     id,
     {
@@ -118,3 +130,10 @@ router.put('/j/page/:id/:pws', (req, res) => {
 
 
 module.exports = router
+
+
+//
+function html_strip(html) {
+  let doc = new DOMParser().parseFromString(html, 'text/html');
+  return doc.body.textContent || "";
+}

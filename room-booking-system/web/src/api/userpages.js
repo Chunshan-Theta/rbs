@@ -7,7 +7,11 @@ export function listPages() {
 }
 
 export function listPagesByTagAndPid(tag,pid) {
-  var url = '/page_show?user='+tag+'&pid='+pid
+  var url = '/page_show?tag='+tag+'&pid='+pid
+  return api.get(url).then(res => res.data).catch(error=>[])
+}
+export function listPagesByUid(uid) {
+  var url = '/page_show?user='+uid
   return api.get(url).then(res => res.data).catch(error=>[])
 }
 export function createPages(payload) {
