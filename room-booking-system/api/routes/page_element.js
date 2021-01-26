@@ -19,8 +19,8 @@ router.get('/page_show', (req, res) => {
   if(owner != null){
     payload["owner"] = owner
   }
-  if(keyword != null){
-    payload["page"] = { $regex: keyword, $options: 'i' }
+  if(keyword != null && keyword.length > 0){
+    payload["attraction"] = { $regex: keyword, $options: 'i' }
   }
   if(pid != null){
     if(pid.length != 24){
@@ -58,16 +58,17 @@ router.post('/page',requireJWT, (req, res) => {
 router.put('/page/:id',requireJWT, (req, res) => {
   const { id } = req.params
   const { body } = req
-  // console.log("body",body)
+  
   // console.log("id",id)
-  var blocks = body
+  var attraction = get_attr(body)
 
   UserPage.findByIdAndUpdate(
     id,
     {
       $set: {
         page: body
-      }
+      },
+      attraction
     },
     { new: true, runValidators: true, context: 'query' }
   )
@@ -110,12 +111,14 @@ router.put('/j/page/:id/:pws', (req, res) => {
   console.log("/j/page/:id/:pws body",body)
   console.log("/j/page/:id/:pws id",id)
   console.log("/j/page/:id/:pws pws",md5_pws)
+  var attraction = get_attr(body)
   UserPage.findOneAndUpdate(
     {"_id":id,"owner":md5_pws},
     {
       $set: {
         page: body
-      }
+      },
+      attraction
     },
     { new: true, runValidators: true, context: 'query' }
   )
@@ -132,8 +135,14 @@ router.put('/j/page/:id/:pws', (req, res) => {
 module.exports = router
 
 
-//
-function html_strip(html) {
-  let doc = new DOMParser().parseFromString(html, 'text/html');
-  return doc.body.textContent || "";
+
+function get_attr(blocks){
+  var attr_str = ""
+  blocks.forEach(ele=>{
+    if(ele.title){
+        attr_str+=ele.title
+    }
+  })
+
+  return(attr_str)
 }
