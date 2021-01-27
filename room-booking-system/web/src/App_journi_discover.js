@@ -17,7 +17,6 @@ import './css/sass/toolbar.css'
 import './css/sass/variables.css'
 import DocumentMeta from 'react-document-meta';
 import moment from 'moment'
-import { listRoomsOfficial } from './api/rooms_official'
 import AddElementButton from './components/EditHomePage'
 import BookingForm from './components/BookingForm'
 import Button from './components/Button'
@@ -43,6 +42,7 @@ import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByF
 import { agrs_Demo_OneGoAhead, agrs_Demo_CenterTextContent, agrs_Demo_CenterBanner, gen_component_n_editor, gen_component, agrs_Demo_OnePageHead, agrs_Demo_DashBoard, agrs_Demo_PicPage, agrs_Demo_EmailBlock, agrs_Demo_LeftPicRightWord, agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
 import BriefJourney from './components/dynamic/BriefJourney'
 import Cookies from 'universal-cookie';
+import NavBar_Discover from './components/NavBar_Discover'
 
 
 const md5 = require("md5")
@@ -57,6 +57,7 @@ class APP_JOURNI_DISCOVER extends Component {
     focus: null,
     pws: null,
     loading: false,
+    keyword: null,
     editorState: BraftEditor.createEditorState("請輸入內容或點擊右上角讀取內容")
   };
 
@@ -97,6 +98,13 @@ class APP_JOURNI_DISCOVER extends Component {
     return false
   }
 
+  //
+  search_keyword = (keyword) => {
+    console.log("keyword",keyword)
+    this.setState({ "keyword":keyword },()=>{this.load()})
+    
+  }
+
 
   //
   render() {
@@ -109,7 +117,8 @@ class APP_JOURNI_DISCOVER extends Component {
       editorState,
       focus,
       pws,
-      loading
+      loading,
+      keyword
     } = this.state
     const signedIn = !!decodedToken
     const Loading = require('react-loading-animation')
@@ -139,7 +148,19 @@ class APP_JOURNI_DISCOVER extends Component {
                   }
 
                 })
-                return (<div>{rows}</div>)
+                
+                return (
+                <div>
+                  <div>
+                    <NavBar_Discover
+                      search={this.search_keyword}
+                    />
+                  </div>
+                  <div>
+                    {rows}
+                  </div>
+                </div>
+                )
               }} />
 
               <Route path="/discover/likes" exact render={() => {
@@ -161,8 +182,11 @@ class APP_JOURNI_DISCOVER extends Component {
   }
 
   load() {
+    var keyword = this.state.keyword
 
-    listPages().then(page => {
+    console.log("load listPages keyword",keyword)
+    listPages(keyword).then(page => {
+      console.log("listPages_keyword",page)
       var refactored_page = refactor_page(page)
       this.setState({
         "page": refactored_page
@@ -182,14 +206,7 @@ class APP_JOURNI_DISCOVER extends Component {
 
   // When state changes
   componentDidUpdate(prevProps, prevState) {
-    console.log("componentDidUpdate State", this.state.blocks)
-    console.log("componentDidUpdate preblocks", this.state.preblocks)
-    if (!arraysEqual(this.state.blocks, this.state.preblocks)) {
-      console.log("componentDidUpdate State1", this.state.blocks)
-      console.log("componentDidUpdate preblocks", this.state.preblocks)
-      this.setState({ "preblocks": Array.from(this.state.blocks) })
-      this.load()
-    }
+    //this.load()
   }
 
 }

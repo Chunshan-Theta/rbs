@@ -2,8 +2,12 @@ import React from 'react'
 import moment from 'moment'
 import api from './init'
 
-export function listPages() {
-  return api.get('/page_show').then(res => res.data).catch(error=>[])
+export function listPages(keyword=null) {
+  if(keyword!=null){
+    return api.get('/page_show?keyword='+keyword).then(res => res.data).catch(error=>[])
+  }else{
+    return api.get('/page_show').then(res => res.data).catch(error=>[])
+  }
 }
 
 export function listPagesByTagAndPid(tag,pid) {
