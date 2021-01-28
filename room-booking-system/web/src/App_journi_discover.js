@@ -171,7 +171,18 @@ class APP_JOURNI_DISCOVER extends Component {
                   }
 
                 })
-                return (<div>{rows}</div>)
+                return (
+                  <div>
+                    <div>
+                      <NavBar_Discover
+                        search={this.search_keyword}
+                      />
+                    </div>
+                    <div>
+                      {rows}
+                    </div>
+                  </div>
+                  )
               }} />
 
             </Switch>
@@ -268,7 +279,7 @@ function refactor_page(page) {
 
 
   page.forEach(ele => {
-    if (ele.owner.length == 32) {
+    if (ele.owner.length == 32) { //屬於是旅程的頁面，非商店頁面
       var payload = {
         "title": html_strip(deep_search_from_list(ele.page, ["title"], ["root"])),
         "tag": ele.tag,
@@ -276,10 +287,12 @@ function refactor_page(page) {
       var brief_image = deep_search_from_list(ele.page, ["url", "shortcode"], ["image", "insta", "col1"])
       if (typeof brief_image == "string" && brief_image.startsWith('http')) {
         payload["image"] = brief_image
+        refactored_page.push(payload)
       } else if (typeof brief_image == "string") {
         payload["shortcode"] = brief_image
+        refactored_page.push(payload)
       }
-      refactored_page.push(payload)
+      
     }
   })
   return (refactored_page)
