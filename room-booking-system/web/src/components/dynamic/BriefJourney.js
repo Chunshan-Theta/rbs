@@ -21,24 +21,24 @@ function img_switch (key) {
 const BriefJourney = (props,like_func,saved_journey) => {
 
   return (
-    <section class="container">
-        <div class="row w75 center">
+    <section className="container">
+        <div className="row w75 center">
 
-            <section class="w33">
+            <section className="w33">
                 <ul>
                     <li>
                         {img_switch(props.image || props.shortcode)}
                     </li>
                 </ul>
             </section>
-            <section class="w33 textLeft">
+            <section className="w33 textLeft">
                 <ul>
                     <li>
-                        <p class="">{props.title}</p>
+                        <p className="">{props.title}</p>
                     </li>
                 </ul>
             </section>
-            <section class="w33 ">
+            <section className="w33 ">
                 <ul>
                     <li>
                         <Button className="button btn-lr" text={'查看'} onClick={() => window.location.href = "../j/"+props.tag}/>
