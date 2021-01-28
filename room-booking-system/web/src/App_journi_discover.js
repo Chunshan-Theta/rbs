@@ -51,7 +51,7 @@ class APP_JOURNI_DISCOVER extends Component {
     decodedToken: getDecodedToken(), // retrieves the token from local storage if valid, else will be null
     blocks: [],
     preblocks: [],
-    page: [],
+    page: null,
     roomData: null,
     eventDetail: [[" ", [" "]]],
     focus: null,
@@ -138,16 +138,23 @@ class APP_JOURNI_DISCOVER extends Component {
           <Fragment>
             <Switch>
               <Route path="/discover" exact render={() => {
+                
+                //
+                this.init_page()
 
+                //
                 var rows = []
-                this.state.page.forEach(row => {
-                  if (!this.seved_journey(row.tag)) {
-                    rows.push(BriefJourney(row, this.add_like_journey, false))
-                  } else {
-                    rows.push(BriefJourney(row, this.remove_like_journey, true))
-                  }
-
-                })
+                if(this.state.page!=null){
+                  this.state.page.forEach(row => {
+                    if (!this.seved_journey(row.tag)) {
+                      rows.push(BriefJourney(row, this.add_like_journey, false))
+                    } else {
+                      rows.push(BriefJourney(row, this.remove_like_journey, true))
+                    }
+  
+                  })
+                }
+                
                 
                 return (
                 <div>
@@ -164,13 +171,19 @@ class APP_JOURNI_DISCOVER extends Component {
               }} />
 
               <Route path="/discover/likes" exact render={() => {
+                //
+                this.init_page()
+                
+                //
                 var rows = []
-                this.state.page.forEach(row => {
-                  if (this.seved_journey(row.tag)) {
-                    rows.push(BriefJourney(row, this.remove_like_journey, true))
-                  }
-
-                })
+                if(this.state.page!=null){
+                  this.state.page.forEach(row => {
+                    if (this.seved_journey(row.tag)) {
+                      rows.push(BriefJourney(row, this.remove_like_journey, true))
+                    } 
+                  })
+                }
+                
                 return (
                   <div>
                     <div>
@@ -193,10 +206,7 @@ class APP_JOURNI_DISCOVER extends Component {
   }
 
   load() {
-    var keyword = this.state.keyword
-
-    console.log("load listPages keyword",keyword)
-    listPages(keyword).then(page => {
+    listPages(this.state.keyword).then(page => {
       console.log("listPages_keyword",page)
       var refactored_page = refactor_page(page)
       this.setState({
@@ -209,15 +219,24 @@ class APP_JOURNI_DISCOVER extends Component {
 
   }
 
-
+  init_page(){
+    if(this.state.page == null){
+      this.load()
+    }
+  }
   // When the App first renders
   componentDidMount() {
-    this.load()
+    //this.load()
+    //this.setState({"keyword":""})
   }
 
   // When state changes
   componentDidUpdate(prevProps, prevState) {
     //this.load()
+    console.log("prevState",prevState)
+    if(this.state.keyword!==prevState.keyword){
+      this.load()
+    }
   }
 
 }
