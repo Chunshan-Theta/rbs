@@ -208,7 +208,10 @@ class APP_HOME_EDIT extends Component {
               <Switch>
                 <Route path="/p/edit/" exact render={(props) =>{
 
-
+                  if(this.state.roomData==null){
+                    this.setState({"roomData":[]})
+                    this.load()
+                  }
                   
                   //
                   let blocks_convented = []
@@ -364,7 +367,7 @@ class APP_HOME_EDIT extends Component {
 
   // When the App first renders
   componentDidMount() {
-    this.load()
+    //this.load()
   }
 
   // When state changes

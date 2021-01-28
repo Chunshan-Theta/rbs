@@ -101,6 +101,10 @@ class APP_V2_HOME extends Component {
                     )}
                 />
                 <Route path="/j/:pws" exact render={(props) =>{
+                      //
+                      this.init_page()
+                      
+                      //
                       let owner = md5(props.match.params.pws)
                       let add_agrs = {
                         "roomData":filter_room(roomData,owner),
@@ -139,6 +143,9 @@ class APP_V2_HOME extends Component {
                          </Fragment>)}
                 } />
                 <Route path="/p/:userName" exact render={(props) =>{
+
+                  //
+                  this.init_page()
                   
                   let add_agrs = {
                     "roomData":filter_room(roomData,props.match.params.userName),
@@ -182,6 +189,12 @@ class APP_V2_HOME extends Component {
       </Router>
     )
   }
+  init_page(){
+    if(this.state.roomData==null){
+      this.setState({"roomData": []})
+      this.load()
+    }
+  }
 
   load() {
     const { decodedToken } = this.state
@@ -208,7 +221,7 @@ class APP_V2_HOME extends Component {
 
   // When the App first renders
   componentDidMount() {
-    this.load()
+    //this.load()
   }
 
   // When state changes
