@@ -84,7 +84,7 @@ class APP_V2_HOME extends Component {
         <div id="app_v2" className="App">
           <Fragment>
               <Switch>
-                <Route path="/" exact render={() => (<Redirect to="/p/5fdd8fb5cc45df001b911c1a" />)} />
+                <Route path="/" exact render={() => (<Redirect to="/discover" />)} />
                 <Route path="/p" exact render={() =>
                     (
                         <Redirect to="/p/5f5ee77c8ffb507c3b3011ec" />

@@ -14,7 +14,7 @@ function NavBar_Discover({ search }) {
       <nav className="nav">
         <ul className="nav__list">
 
-
+        
           <li className="nav__item"><Button
               onClick={() => window.location.href = "/discover"}
               className=""
@@ -26,6 +26,18 @@ function NavBar_Discover({ search }) {
               className=""
               style={{"vertical-align": "text-bottom"}}
               text={`喜歡的旅程`}
+            /></li>
+          <li className="nav__item"><Button
+              onClick={() => window.location.href = "/j/home"}
+              className=""
+              style={{"vertical-align": "text-bottom"}}
+              text={`自己的旅程`}
+            /></li>
+          <li className="nav__item"><Button
+              onClick={() => window.location.href = "/p/5fdd8fb5cc45df001b911c1a"}
+              className=""
+              style={{"vertical-align": "text-bottom"}}
+              text={`關於我們`}
             /></li>
           <li className="nav__item"><textarea type="textarea" id="keyword"></textarea></li>
           <li className="nav__item"><Button
