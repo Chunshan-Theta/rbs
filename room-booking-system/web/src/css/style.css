@@ -1330,6 +1330,7 @@ hr {
 
         grid-area: none;
         display: block;
+        height: auto;
     }
     .nav__item,.nav__list, .nav__link, .form__input{
         display: block;
