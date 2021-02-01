@@ -44,7 +44,7 @@ const BriefJourney = (props,like_func,saved_journey) => {
                         <Button className="button btn-lr" text={'查看'} onClick={() => window.location.href = "../j/"+props.tag}/>
                     </li>
                     <li>
-                        <Button className="button btn-lr" text={saved_journey?"已喜歡":"喜歡"} style={saved_journey?{background: "#cccccc",border: "0.1rem solid #eeeeee"}:{}} onClick={() => like_func(props.tag)}/>
+                        <Button className="button btn-lr" text={saved_journey?"已收":"收藏"} style={saved_journey?{color:"#333333",background: "#ea8a8a",border: "0.1rem solid #ea8a8a"}:{}} onClick={() => like_func(props.tag)}/>
                     </li>
                 </ul>
             </section>
