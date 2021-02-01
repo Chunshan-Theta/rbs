@@ -75,7 +75,7 @@ const LeftInstaRightWord = (props) => {
                 </ul>
             </section>
             <section class="w50 ">
-                <ul>
+                <ul  class="w100" >
                     <li>
                         <div class="textLeft p005"  dangerouslySetInnerHTML={{ __html: props.content.text }} />
                     </li>
