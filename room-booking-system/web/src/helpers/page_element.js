@@ -10,6 +10,7 @@ import LeftPicRightWord from '../components/dynamic/LeftPicRightWord'
 import {LeftInstaRightWord} from '../components/dynamic/LeftInstaRightWord'
 import CenterTextContent from '../components/dynamic/CenterTextContent'
 import OneGoAhead from '../components/dynamic/OneGoAhead'
+import TrafficRow from '../components/dynamic/TrafficRow'
 
 
 
@@ -23,8 +24,22 @@ import Edit_EmailBlock from '../components/dynamic/Edit_EmailBlock'
 import Edit_LeftPicRightWord from '../components/dynamic/Edit_LeftPicRightWord'
 import Edit_LeftInstaRightWord from '../components/dynamic/Edit_LeftInstaRightWord'
 import Edit_OneGoAhead from '../components/dynamic/Edit_OneGoAhead'
+import Edit_TrafficRow from '../components/dynamic/Edit_TrafficRow'
 
 
+function gen_agrs_TrafficRow (spot1,spot2,traffic_info){return({
+	"component_type":"TrafficRow",
+		"spot1":{
+			"text": spot1.text
+		},
+		"traffic_info":{
+			"text": traffic_info.text,
+			"traffic": traffic_info.traffic
+		},
+		"spot2":{
+			"text": spot2.text,
+		}
+})}
 function gen_agrs_DashBoard (){return({
   "component_type":"DashBoard",
 })}
@@ -169,6 +184,9 @@ function gen_component_n_editor(data){
 		case "OneGoAhead":
 			return [OneGoAhead(data),Edit_OneGoAhead(data)]
 			break;
+		case "TrafficRow":
+			return [TrafficRow(data),Edit_TrafficRow(data)]
+			break;
 		default:
 		  return(<h1>`Not Fount Component! {component_type}`</h1>)
 	}
@@ -211,6 +229,9 @@ function gen_component(data){
 			break;
 		case "OneGoAhead":
 			return OneGoAhead(data)
+			break;
+		case "TrafficRow":
+			return TrafficRow(data)
 			break;
 		default:
 		  return(<h1>`Not Fount Component! {component_type}`</h1>)
@@ -279,6 +300,21 @@ const agrs_Demo_PicPage = {
 	}
 }
 
+const agrs_Demo_TrafficRow = {
+	"component_type":"TrafficRow",
+		"spot1":{
+			"text": "標語1"
+		},
+		"spot2":{
+			"text": "標語2"
+		},
+		"traffic_info":{
+			"text": "標語3",
+			"traffic":"bus"
+		}
+	}
+	
+
 const agrs_Demo_LeftInstaRightWord = {
     "component_type":"LeftInstaRightWord",
 	"title": "關於 商店",
@@ -339,6 +375,7 @@ export {
 	gen_component,
 	gen_agrs_CenterBanner,
 	gen_agrs_CenterTextContent,
+	gen_agrs_TrafficRow,
     agrs_Demo_OnePageHead,
     agrs_Demo_DashBoard,
     agrs_Demo_PicPage,
@@ -347,7 +384,8 @@ export {
 	agrs_Demo_LeftInstaRightWord,
 	agrs_Demo_CenterBanner,
 	agrs_Demo_CenterTextContent,
-	agrs_Demo_OneGoAhead
+	agrs_Demo_OneGoAhead,
+	agrs_Demo_TrafficRow
 }
 
 

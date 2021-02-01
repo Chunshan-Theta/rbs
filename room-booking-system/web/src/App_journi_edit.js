@@ -40,7 +40,7 @@ import { getDecodedToken } from './api/token'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
-import { agrs_Demo_OneGoAhead, agrs_Demo_CenterTextContent, agrs_Demo_CenterBanner, gen_component_n_editor, gen_component, agrs_Demo_OnePageHead, agrs_Demo_DashBoard, agrs_Demo_PicPage, agrs_Demo_EmailBlock, agrs_Demo_LeftPicRightWord, agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
+import { agrs_Demo_TrafficRow, agrs_Demo_OneGoAhead, agrs_Demo_CenterTextContent, agrs_Demo_CenterBanner, gen_component_n_editor, gen_component, agrs_Demo_OnePageHead, agrs_Demo_DashBoard, agrs_Demo_PicPage, agrs_Demo_EmailBlock, agrs_Demo_LeftPicRightWord, agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
 
 const md5 = require("md5")
 class APP_JOURNI_EDIT extends Component {
@@ -70,7 +70,10 @@ class APP_JOURNI_EDIT extends Component {
     this.state.blocks.push(agrs_Demo_CenterTextContent)
     putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
   }
-
+  onAdd_TrafficRow = (pageId) => {
+    this.state.blocks.push(agrs_Demo_TrafficRow)
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+  }
   onAdd_header = (pageId) => {
     this.state.blocks.push(agrs_Demo_OnePageHead)
     putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
@@ -303,6 +306,10 @@ class APP_JOURNI_EDIT extends Component {
                             <AddElementButton
                               text={'新增欄位： 大字置中+一個連結'}
                               onClick={() => this.onAdd_OneGoAhead(pageId)}
+                            />
+                            <AddElementButton
+                              text={'新增欄位： 交通方式'}
+                              onClick={() => this.onAdd_TrafficRow(pageId)}
                             />
                             <AddElementButton
                               text={'新增欄位： 置中內文'}

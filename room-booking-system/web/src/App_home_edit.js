@@ -41,7 +41,7 @@ import { getDecodedToken, rememberToken } from './api/token'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
-import { agrs_Demo_OneGoAhead,agrs_Demo_CenterTextContent,agrs_Demo_CenterBanner,gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock,agrs_Demo_LeftPicRightWord,agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
+import { agrs_Demo_TrafficRow, agrs_Demo_OneGoAhead,agrs_Demo_CenterTextContent,agrs_Demo_CenterBanner,gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock,agrs_Demo_LeftPicRightWord,agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
 
 
 class APP_HOME_EDIT extends Component {
@@ -69,6 +69,12 @@ class APP_HOME_EDIT extends Component {
     putPages(pageId,this.state.blocks)
   }
   
+  onAdd_TrafficRow =(pageId)=>{
+    this.state.blocks.push( agrs_Demo_TrafficRow)
+    this.setState({ blocks: this.state.blocks })
+    putPages(pageId,this.state.blocks)
+  }
+
   onAdd_header =(pageId)=>{
     this.state.blocks.push(agrs_Demo_OnePageHead)
     this.setState({ blocks: this.state.blocks })
@@ -293,7 +299,10 @@ class APP_HOME_EDIT extends Component {
                                       text={'新增欄位： Instagram嵌入與文字說明'}
                                       onClick={() => this.onAdd_LeftInstaRightWord(pageId)}
                                     />
-                                    
+                                    <AddElementButton
+                                      text={'新增欄位： 交通方式'}
+                                      onClick={() => this.onAdd_TrafficRow(pageId)}
+                                    />
                                     <AddElementButton
                                       text={'前往個人頁面'}
                                       onClick={this.onlink_homepage}
