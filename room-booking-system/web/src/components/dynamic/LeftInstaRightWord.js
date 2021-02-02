@@ -8,7 +8,7 @@ function getElementByShortCode(t_shortcode){
     var fileds = document.getElementsByClassName("instagram-media")
     Array.prototype.forEach.call(fileds, function(el) {
         var shortcode = el.src.substring(28, 39)
-        var eid = el.id
+        //var eid = el.id
         if(shortcode == t_shortcode){
             // console.log(typeof el,el)
             result = el
@@ -25,7 +25,7 @@ function create_fake_image_from_insta(shortcode,thumbnail_url,only_pic){
 
     // console.log("create_fake_image_from_insta:filed",filed)
     if(filed){
-        var img_container = document.createElement('div'); 
+        //var img_container = document.createElement('div'); 
         var img = document.createElement('img'); 
         img.src = thumbnail_url 
         img.style.width = "100% !important"
@@ -73,7 +73,7 @@ function gen_insta_format(shortcode,only_pic) {
             //var thumbnail_width = Response.thumbnail_width
             //var thumbnail_height = Response.thumbnail_height
             //var max_height = 0.55*Response.thumbnail_height*(Response.thumbnail_width/Response.thumbnail_height)
-            var fileds = document.getElementsByClassName("instagram-media")
+            //var fileds = document.getElementsByClassName("instagram-media")
             
             test_times_to_create_fake_image_from_insta(shortcode,thumbnail_url,only_pic)
         }}
