@@ -3,7 +3,59 @@ import ReactModal from 'react-modal'
 import InstagramEmbed from 'react-instagram-embed';
 
 
+function getElementByShortCode(t_shortcode){
+    var result = null
+    var fileds = document.getElementsByClassName("instagram-media")
+    Array.prototype.forEach.call(fileds, function(el) {
+        var shortcode = el.src.substring(28, 39)
+        var eid = el.id
+        if(shortcode == t_shortcode){
+            // console.log(typeof el,el)
+            result = el
+        }
+        
+    });
+    return(result)
+}
+
+function create_fake_image_from_insta(shortcode,thumbnail_url,only_pic){
+
+    //
+    var filed = getElementByShortCode(shortcode)
+
+    // console.log("create_fake_image_from_insta:filed",filed)
+    if(filed){
+        var img_container = document.createElement('div'); 
+        var img = document.createElement('img'); 
+        img.src = thumbnail_url 
+        img.style.width = "100% !important"
+        // console.log("create_fake_image_from_insta:only_pic",only_pic)
+        if(only_pic){
+            filed.parentElement.parentElement.appendChild(img); 
+            filed.parentElement.hidden = true;
+        }
+        return true
+        
+    }else{
+        return false
+    }
+}
+
+function test_times_to_create_fake_image_from_insta(shortcode,thumbnail_url,only_pic){
+    var timeleft = 30;
+    var result = false;
+    var downloadTimer = setInterval(function(){
+        if(timeleft <= 0 || result){
+            clearInterval(downloadTimer);
+        }else{
+            result = create_fake_image_from_insta(shortcode,thumbnail_url,only_pic)
+            timeleft -= 1;
+        }
+    }, 333);
+}
+
 function gen_insta_format(shortcode,only_pic) {
+  // console.log("only_pic",only_pic)
   let insta_url= 'https://instagr.am/p/'+shortcode+'/'
   return (
       <InstagramEmbed
@@ -22,29 +74,8 @@ function gen_insta_format(shortcode,only_pic) {
             //var thumbnail_height = Response.thumbnail_height
             //var max_height = 0.55*Response.thumbnail_height*(Response.thumbnail_width/Response.thumbnail_height)
             var fileds = document.getElementsByClassName("instagram-media")
-            var filed_id = "instagram-embed-"+fileds.length
-            var timeoutID = window.setInterval(function(){
-                var filed = document.getElementById(filed_id)
-                //var cssText = "max-height:"+max_height+"px;overflow:scroll;"
-                if(filed){
-                    //console.log("filed_id In",filed_id)
-                    window.clearTimeout(timeoutID);
-                    
-                    //console.log("filed",filed.parentElement)
-                    //https://www.instagram.com/beagle0247/?utm_source=ig_embed
-                    var img_container = document.createElement('div'); 
-                    var img = document.createElement('img'); 
-                    img.src = thumbnail_url 
-                    img.style.width = "100% !important"
-                    if(only_pic){
-                      filed.parentElement.parentElement.appendChild(img); 
-                      filed.parentElement.hidden = true;
-                    }
-                    
-                }else{
-                    //console.log("filed_id Out",filed_id)
-                }
-            },500)
+            
+            test_times_to_create_fake_image_from_insta(shortcode,thumbnail_url,only_pic)
         }}
         onAfterRender={() => {}}
         onFailure={() => {}}
@@ -121,5 +152,3 @@ const LeftInstaRightWordOnlyPic = (props) => {
 
 
 export { LeftInstaRightWord,LeftInstaRightWordOnlyPic,gen_insta_format }
-
-
