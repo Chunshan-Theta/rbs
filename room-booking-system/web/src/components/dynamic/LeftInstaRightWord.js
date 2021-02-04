@@ -7,11 +7,14 @@ function getElementByShortCode(t_shortcode){
     var result = null
     var fileds = document.getElementsByClassName("instagram-media")
     Array.prototype.forEach.call(fileds, function(el) {
-        var shortcode = el.src.substring(28, 39)
-        //var eid = el.id
-        if(shortcode == t_shortcode){
-            // console.log(typeof el,el)
-            result = el
+        console.log("el.src", el.src)
+        if(el.src){
+            var shortcode = el.src.substring(28, 39)
+            //var eid = el.id
+            if(shortcode == t_shortcode){
+                // console.log(typeof el,el)
+                result = el
+            }
         }
         
     });
