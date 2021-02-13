@@ -12,6 +12,8 @@ router.get('/page_show', (req, res) => {
   var owner = req.query.user ? req.query.user : null;
   var pid = req.query.pid ? req.query.pid : null;
   var keyword = req.query.keyword ? req.query.keyword : null;
+  var skip = req.query.skip ? Number(req.query.skip) : 0;
+  var limit = req.query.limit ? Number(req.query.limit) : 10;
   var payload = {}
   if(tag != null){
     payload["owner"] = md5(tag)
@@ -30,7 +32,7 @@ router.get('/page_show', (req, res) => {
     }
     
   }
-  UserPage.find(payload)
+  UserPage.find(payload).skip(skip).limit(limit)
     .then(page => {
       page.forEach(p=>{
         if(owner == null){
@@ -146,3 +148,89 @@ function get_attr(blocks){
 
   return(attr_str)
 }
+
+
+router.get('/journi_show', (req, res) => {
+  var tag = req.query.tag ? req.query.tag : null;
+  var tags = req.query.tags ? req.query.tags : null;
+  var owner = req.query.user ? req.query.user : null;
+  var pid = req.query.pid ? req.query.pid : null;
+  var keyword = req.query.keyword ? req.query.keyword : null;
+  var skip = req.query.skip ? Number(req.query.skip) : 0;
+  var limit = req.query.limit ? Number(req.query.limit) : 10;
+  var payload = {
+        "owner": { "$exists": true },
+        "$expr": { "$eq": [ { "$strLenCP": "$owner" }, 32 ] }
+    }
+  if(tag != null){
+    payload["owner"] = md5(tag)
+  }
+  if(tags != null){
+    tags = tags.split(',');
+    payload["tag"] = { $in: tags }
+  }
+  if(owner != null){
+    payload["owner"] = owner
+  }
+  if(keyword != null && keyword.length > 0){
+    payload["attraction"] = { $regex: keyword, $options: 'i' }
+  }
+  if(pid != null){
+    if(pid.length != 24){
+      payload["_id"] = null
+    }else{
+      payload["_id"] = mongoose.Types.ObjectId(pid)
+    }
+
+  }
+  UserPage.find(payload).skip(skip).limit(limit)
+    .then(page => {
+      page.forEach(p=>{
+        if(owner == null){
+          delete_column(p, ["_id"])
+        }
+      })
+      res.json(page)
+    })
+    .catch(error => {
+      res.json({ error })
+    })
+})
+
+
+router.get('/journi/length', (req, res) => {
+  var tag = req.query.tag ? req.query.tag : null;
+  var owner = req.query.user ? req.query.user : null;
+  var pid = req.query.pid ? req.query.pid : null;
+  var keyword = req.query.keyword ? req.query.keyword : null;
+  var skip = req.query.skip ? Number(req.query.skip) : 0;
+  var limit = req.query.limit ? Number(req.query.limit) : 10;
+  var payload = {
+        "owner": { "$exists": true },
+        "$expr": { "$eq": [ { "$strLenCP": "$owner" }, 32 ] }
+    }
+  if(tag != null){
+    payload["owner"] = md5(tag)
+  }
+  if(owner != null){
+    payload["owner"] = owner
+  }
+  if(keyword != null && keyword.length > 0){
+    payload["attraction"] = { $regex: keyword, $options: 'i' }
+  }
+  if(pid != null){
+    if(pid.length != 24){
+      payload["_id"] = null
+    }else{
+      payload["_id"] = mongoose.Types.ObjectId(pid)
+    }
+
+  }
+  UserPage.find(payload).count()
+    .then(c => {
+      res.json({count: c})
+    })
+    .catch(error => {
+      res.json({ error })
+    })
+})

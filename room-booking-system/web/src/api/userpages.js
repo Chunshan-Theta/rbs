@@ -9,6 +9,18 @@ export function listPages(keyword=null) {
     return api.get('/page_show').then(res => res.data).catch(error=>[])
   }
 }
+export function listJourPages(keyword=null,skip,limit) {
+  if(keyword!=null){
+    return api.get('/journi_show?keyword='+keyword+'&skip='+skip+'&limit='+limit).then(res => res.data).catch(error=>[])
+  }else{
+    return api.get('/journi_show?skip='+skip+'&limit='+limit).then(res => res.data).catch(error=>[])
+  }
+}
+
+export function listJourTags(tags) {
+    return api.get('/journi_show?tags='+tags).then(res => res.data).catch(error=>[])
+
+}
 
 export function listPagesByTagAndPid(tag,pid) {
   var url = '/page_show?tag='+tag+'&pid='+pid

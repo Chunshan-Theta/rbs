@@ -34,7 +34,7 @@ import OnePageHead from './components/dynamic/OnePageHeader'
 import BraftEditor from 'braft-editor'
 
 import meta from './components/head'
-import { listPages, createJourneyPages, putJourneyPages } from './api/userpages'
+import { listJourTags,listPages,listJourPages, createJourneyPages, putJourneyPages } from './api/userpages'
 import { getDecodedToken } from './api/token'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
@@ -58,6 +58,8 @@ class APP_JOURNI_DISCOVER extends Component {
     pws: null,
     loading: false,
     keyword: null,
+    skip_times: 0,
+    cookieslikes_stringline:null,
     editorState: BraftEditor.createEditorState("請輸入內容或點擊右上角讀取內容")
   };
 
@@ -71,7 +73,7 @@ class APP_JOURNI_DISCOVER extends Component {
       likes.push(tag)
     }
     cookies.set('likes', likes, { path: '/' });
-    this.load()
+    this.setState({page:this.state.page})
     console.log("likes", cookies.get('likes'))
   }
   //
@@ -84,7 +86,7 @@ class APP_JOURNI_DISCOVER extends Component {
       cookies.set('likes', likes, { path: '/' });
       console.log("rm_tag", tag)
       console.log("rm_likes", cookies.get('likes'))
-      this.load()
+      this.setState({page:this.state.page})
     }
   }
 
@@ -101,8 +103,14 @@ class APP_JOURNI_DISCOVER extends Component {
   //
   search_keyword = (keyword) => {
     console.log("keyword",keyword)
-    this.setState({ "keyword":keyword },()=>{this.load()})
+    this.setState({ "keyword":keyword,"loading":false,"skip_times":0,"page":[] },()=>{this.load()})
     
+  }
+
+  //
+  loadmore = () => {
+    this.new_fetch_from_db(10)
+
   }
 
 
@@ -121,8 +129,6 @@ class APP_JOURNI_DISCOVER extends Component {
       keyword
     } = this.state
     const signedIn = !!decodedToken
-    const Loading = require('react-loading-animation')
-
     const featureParams = this.state.filterParams
     const date = this.state.currentDate
 
@@ -166,6 +172,13 @@ class APP_JOURNI_DISCOVER extends Component {
                   <div>
                     {rows}
                   </div>
+                  <div>
+                    <Button
+                      className={this.state.loading?"center disabled":"center"}
+                      onClick={() => this.loadmore()}
+                      text={this.state.loading?`已經到底了`:`加載更多`}
+                    />
+                  </div>
                 </div>
                 )
               }} />
@@ -176,11 +189,19 @@ class APP_JOURNI_DISCOVER extends Component {
                 
                 //
                 var rows = []
+                const cookies = new Cookies();
+                var cookieslikes = cookies.get('likes') ? cookies.get('likes') : []
+                var cookieslikes_stringline = cookieslikes.join(",")
+                console.log("cookieslikes_stringline",0)
+                if (cookieslikes_stringline != this.state.cookieslikes_stringline){
+                    console.log("cookieslikes_stringline",1)
+                    this.setState({"cookieslikes_stringline":cookieslikes_stringline})
+                }
                 if(this.state.page!=null){
                   this.state.page.forEach(row => {
                     if (this.seved_journey(row.tag)) {
                       rows.push(BriefJourney(row, this.remove_like_journey, true))
-                    } 
+                    }
                   })
                 }
                 
@@ -205,15 +226,32 @@ class APP_JOURNI_DISCOVER extends Component {
     )
   }
 
-  load() {
-    listPages(this.state.keyword).then(page => {
-      console.log("listPages_keyword",page)
-      var refactored_page = refactor_page(page)
-      this.setState({
-        "page": refactored_page
-      })
-    })
+  new_fetch_from_db(count,fetch_num=10,empty_run=0,continue_token=false){
+    var MAX_EMPTY_RUN = 3
+    if(this.state.loading == false || continue_token){
+        this.setState({loading:true})
+        var page = this.state.page?this.state.page:[]
+        listJourPages(this.state.keyword,this.state.skip_times*fetch_num,fetch_num).then(tmp_page => {
+          var valid_page = refactor_page(tmp_page)
+          var refactored_page = page.concat(valid_page)
+          this.setState({
+            "page": refactored_page,
+            "skip_times":this.state.skip_times+1
+          })
 
+          if(valid_page.length<count && empty_run <MAX_EMPTY_RUN){
+            console.log("continue_token",continue_token,this.state.keyword)
+            this.new_fetch_from_db(count-valid_page.length,fetch_num,empty_run+=1,true)
+          }else if(empty_run <MAX_EMPTY_RUN){
+            this.setState({loading:false})
+          }
+        })
+    }
+
+  }
+
+  load() {
+    this.new_fetch_from_db(10)
 
 
 
@@ -224,6 +262,7 @@ class APP_JOURNI_DISCOVER extends Component {
       this.load()
     }
   }
+
   // When the App first renders
   componentDidMount() {
     //this.load()
@@ -233,9 +272,18 @@ class APP_JOURNI_DISCOVER extends Component {
   // When state changes
   componentDidUpdate(prevProps, prevState) {
     //this.load()
-    console.log("prevState",prevState)
     if(this.state.keyword!==prevState.keyword){
       this.load()
+    }
+    if (prevState.cookieslikes_stringline != this.state.cookieslikes_stringline){
+        this.setState({loading:true})
+        console.log("cookieslikes_stringline",prevState.cookieslikes_stringline,"->",this.state.cookieslikes_stringline)
+        listJourTags(this.state.cookieslikes_stringline).then(tmp_page => {
+          var valid_page = refactor_page(tmp_page)
+          this.setState({
+            "page": valid_page
+          })
+        })
     }
   }
 
@@ -299,8 +347,9 @@ function refactor_page(page) {
 
   page.forEach(ele => {
     if (ele.owner.length == 32) { //屬於是旅程的頁面，非商店頁面
+      var title = deep_search_from_list(ele.page, ["title"], ["root"])
       var payload = {
-        "title": html_strip(deep_search_from_list(ele.page, ["title"], ["root"])),
+        "title": html_strip(title),
         "tag": ele.tag,
       }
       var brief_image = deep_search_from_list(ele.page, ["url", "shortcode"], ["image", "insta", "col1"])
