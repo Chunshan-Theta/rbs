@@ -168,6 +168,8 @@ router.get('/journi_show', (req, res) => {
   if(tags != null){
     tags = tags.split(',');
     payload["tag"] = { $in: tags }
+    skip =null
+    limit =null
   }
   if(owner != null){
     payload["owner"] = owner
@@ -183,6 +185,7 @@ router.get('/journi_show', (req, res) => {
     }
 
   }
+  console.log(skip)
   UserPage.find(payload).skip(skip).limit(limit)
     .then(page => {
       page.forEach(p=>{
