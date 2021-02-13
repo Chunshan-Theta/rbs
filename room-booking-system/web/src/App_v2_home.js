@@ -44,6 +44,8 @@ import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
 import { initialRoom } from './helpers/rooms'
 import { gen_component } from './helpers/page_element'
+import NavBar_Bottom from './components/NavBar_Bottom'
+
 const md5 = require("md5")
 
 class APP_V2_HOME extends Component {
@@ -137,6 +139,7 @@ class APP_V2_HOME extends Component {
                                       </li> */}
                                       {blocks_convented}
                                     </ul>
+                                    <NavBar_Bottom/>
                                 </DocumentMeta>
                             )
                          }
