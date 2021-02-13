@@ -23,18 +23,18 @@ function getElementByShortCode(t_shortcode){
 function create_fake_image_from_insta(shortcode,thumbnail_url,only_pic){
 
     //
-    var filed = getElementByShortCode(shortcode)
-
+    var field = getElementByShortCode(shortcode)
     // console.log("create_fake_image_from_insta:filed",filed)
-    if(filed){
+    if(field){
+        field.style.display = 'inline'
         //var img_container = document.createElement('div'); 
         var img = document.createElement('img'); 
         img.src = thumbnail_url 
         img.style.width = "100% !important"
         // console.log("create_fake_image_from_insta:only_pic",only_pic)
         if(only_pic){
-            filed.parentElement.parentElement.appendChild(img); 
-            filed.parentElement.hidden = true;
+            field.parentElement.parentElement.appendChild(img);
+            field.parentElement.hidden = true;
         }
         return true
         
@@ -65,7 +65,7 @@ function gen_insta_format(shortcode,only_pic) {
         clientAccessToken='207630901011100|c74039121871ad7b19cbb68e132e4bc6'
         hideCaption={true}
         containerTagName='div'
-        width="600"
+        width="100%"
         protocol=''
         injectScript
         onLoading={() => {}}

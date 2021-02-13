@@ -1200,8 +1200,7 @@ hr {
   padding-bottom: 5px;
 }
 .instablock{
-  width: 80%;
-  padding-left: 5%;
+  margin-left:auto;
   /* max-height: 600px;
   overflow: hidden;
   width:600px; */
@@ -1237,12 +1236,6 @@ hr {
     }
     .textLeft {
       text-align: left;
-    }
-    .instablock{
-      padding-left: 0%;
-      /* width:350px;
-      max-height: 400px;
-      overflow: hidden; */
     }
     #eventDetailContent {
       padding: 0;
