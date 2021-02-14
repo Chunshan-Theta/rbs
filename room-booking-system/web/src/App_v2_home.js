@@ -35,7 +35,7 @@ import OnePageHead from './components/dynamic/OnePageHeader'
 import meta from './components/head'
 
 import { listOfficeRooms } from './api/rooms'
-import { listPages } from './api/userpages'
+import { listPages,listJourTags } from './api/userpages'
 import { listRoomsOfficial } from './api/rooms_official'
 import { getDecodedToken } from './api/token'
 import { makeBooking, deleteBooking, updateStateRoom } from './api/booking'
@@ -105,6 +105,9 @@ class APP_V2_HOME extends Component {
                 <Route path="/j/:pws" exact render={(props) =>{
                       //
                       this.init_page()
+
+                      //
+                      this.fetch_page_from_db(props.match.params.pws)
                       
                       //
                       let owner = md5(props.match.params.pws)
@@ -199,6 +202,16 @@ class APP_V2_HOME extends Component {
     }
   }
 
+
+  //
+  fetch_page_from_db(tag){
+    var a = listJourTags(tag)
+    a.then(page=>{
+        this.setState({"page": page})
+    })
+  }
+
+  //
   load() {
     const { decodedToken } = this.state
     const signedIn = !!decodedToken
