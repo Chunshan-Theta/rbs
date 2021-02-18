@@ -42,6 +42,11 @@ import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
 import { agrs_Demo_TrafficRow, agrs_Demo_OneGoAhead, agrs_Demo_CenterTextContent, agrs_Demo_CenterBanner, gen_component_n_editor, gen_component, agrs_Demo_OnePageHead, agrs_Demo_DashBoard, agrs_Demo_PicPage, agrs_Demo_EmailBlock, agrs_Demo_LeftPicRightWord, agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
 
+//
+import button_onegoahead from './assets/button_onegoahead.jpg'
+
+
+//
 const md5 = require("md5")
 class APP_JOURNI_EDIT extends Component {
   state = {
@@ -60,49 +65,54 @@ class APP_JOURNI_EDIT extends Component {
   updatedEvent = detailString => {
     this.setState(() => ({ eventDetail: detailString }))
   }
+  refreash_page = (new_blocks) => {
+    this.setState({ blocks: new_blocks })
+    alert("已新增至最下方")
+    
+  }
 
   onAdd_CenterBanner = (pageId) => {
     this.state.blocks.push(agrs_Demo_CenterBanner)
-    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.refreash_page(this.state.blocks) })
 
   }
   onAdd_CenterTextContent = (pageId) => {
     this.state.blocks.push(agrs_Demo_CenterTextContent)
-    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.refreash_page(this.state.blocks) })
   }
   onAdd_TrafficRow = (pageId) => {
     this.state.blocks.push(agrs_Demo_TrafficRow)
-    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.refreash_page(this.state.blocks) })
   }
   onAdd_header = (pageId) => {
     this.state.blocks.push(agrs_Demo_OnePageHead)
-    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.refreash_page(this.state.blocks) })
   }
   onAdd_Dashboard = (pageId) => {
     this.state.blocks.push(agrs_Demo_DashBoard)
-    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.refreash_page(this.state.blocks) })
 
   }
   onAdd_OneGoAhead = (pageId) => {
     this.state.blocks.push(agrs_Demo_OneGoAhead)
-    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.refreash_page(this.state.blocks) })
 
   }
   onAdd_PicPage = (pageId) => {
     this.state.blocks.push(agrs_Demo_PicPage)
-    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.refreash_page(this.state.blocks) })
   }
   onAdd_email = (pageId) => {
     this.state.blocks.push(agrs_Demo_EmailBlock)
-    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.refreash_page(this.state.blocks) })
   }
   onAdd_LeftPicRightWord = (pageId) => {
     this.state.blocks.push(agrs_Demo_LeftPicRightWord)
-    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.refreash_page(this.state.blocks) })
   }
   onAdd_LeftInstaRightWord = (pageId) => {
     this.state.blocks.push(agrs_Demo_LeftInstaRightWord)
-    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.setState({ blocks: this.state.blocks }) })
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.refreash_page(this.state.blocks) })
   }
   onlink_homepage = (userId) => {
     window.location.href = `../../../${this.state.pws}`;
@@ -298,7 +308,9 @@ class APP_JOURNI_EDIT extends Component {
                       }
                       {!loading && (
                         <div>
-                          <div className="ToolBar bkc-gray">
+                          <div className="toolbar bkc-gray">
+
+                            <div className="row">
                             <AddElementButton
                               text={'新增欄位： 置中大字+四個連結'}
                               onClick={() => this.onAdd_header(pageId)}
@@ -306,6 +318,7 @@ class APP_JOURNI_EDIT extends Component {
                             <AddElementButton
                               text={'新增欄位： 大字置中+一個連結'}
                               onClick={() => this.onAdd_OneGoAhead(pageId)}
+                              backgroundimage={button_onegoahead}
                             />
                             <AddElementButton
                               text={'新增欄位： 交通方式'}
@@ -333,10 +346,9 @@ class APP_JOURNI_EDIT extends Component {
                               text={'前往個人頁面'}
                               onClick={this.onlink_homepage}
                             />
+                            </div>
                             <ul>
-                              <p>新增欄位會在最下方</p>
-                              <p>您的密碼為： {pageId}</p>
-                              <p>切勿忘記，若遺失密碼將無法再次編輯此頁面，或可記得此永久網址</p>
+                              <p>您的密碼為： {pageId} ，切勿忘記，若遺失密碼將無法再次編輯此頁面，或可記得此永久網址</p>
                             </ul>
                           </div>
 

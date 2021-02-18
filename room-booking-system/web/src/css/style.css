@@ -1115,6 +1115,9 @@ section.container div.row {
     align-items: stretch;
     text-align: center;
 }
+div.toolbar div.row {
+  display: flex;
+}
 
 section.container a.button {
        transition: color 0.25s ease-in-out, border-color 0.25s ease-in-out, background-color 0.25s ease-in-out;
@@ -1208,7 +1211,15 @@ hr {
 .hidden_desktop{
   display: none !important;
 }
+.toolbar {
+  display: block;
+  overflow-x: auto;
+  white-space: nowrap;
+}
 
+.toolbar button{
+  min-width: 300px;
+}
 @media screen and (min-width: 1025px) {
   div.rbc-event {
     background-color: #d4d7dd !important;
