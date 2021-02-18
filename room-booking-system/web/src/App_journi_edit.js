@@ -44,6 +44,16 @@ import { agrs_Demo_TrafficRow, agrs_Demo_OneGoAhead, agrs_Demo_CenterTextContent
 
 //
 import button_onegoahead from './assets/button_onegoahead.jpg'
+import button_header from './assets/button_header.jpg'
+import button_trafficrow from './assets/button_trafficrow.jpg'
+import button_centertextcontent from './assets/button_centertextcontent.jpg'
+import button_picpage from './assets/button_picpage.jpg'
+import button_leftpicrightword from './assets/button_leftpicrightword.jpg'
+import button_leftinstarightword from './assets/button_leftinstarightword.jpg'
+
+
+
+
 
 
 //
@@ -314,6 +324,7 @@ class APP_JOURNI_EDIT extends Component {
                             <AddElementButton
                               text={'新增欄位： 置中大字+四個連結'}
                               onClick={() => this.onAdd_header(pageId)}
+                              backgroundimage={button_header}
                             />
                             <AddElementButton
                               text={'新增欄位： 大字置中+一個連結'}
@@ -323,23 +334,28 @@ class APP_JOURNI_EDIT extends Component {
                             <AddElementButton
                               text={'新增欄位： 交通方式'}
                               onClick={() => this.onAdd_TrafficRow(pageId)}
+                              backgroundimage={button_trafficrow}
                             />
                             <AddElementButton
                               text={'新增欄位： 置中內文'}
                               onClick={() => this.onAdd_CenterTextContent(pageId)}
+                              backgroundimage={button_centertextcontent}
                             />
                             <AddElementButton
                               text={'新增欄位： 三欄圖片'}
                               onClick={() => this.onAdd_PicPage(pageId)}
+                              backgroundimage={button_picpage}
                             />
                             <AddElementButton
                               text={'新增欄位： 左圖右字'}
                               onClick={() => this.onAdd_LeftPicRightWord(pageId)}
+                              backgroundimage={button_leftpicrightword}
                             />
 
                             <AddElementButton
                               text={'新增欄位： Instagram嵌入與文字說明'}
                               onClick={() => this.onAdd_LeftInstaRightWord(pageId)}
+                              backgroundimage={button_leftinstarightword}
                             />
 
                             <AddElementButton
