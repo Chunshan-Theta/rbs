@@ -40,7 +40,7 @@ import { getDecodedToken } from './api/token'
 import Calendar from './components/Calendar'
 import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
-import { agrs_Demo_TrafficRow, agrs_Demo_OneGoAhead, agrs_Demo_CenterTextContent, agrs_Demo_CenterBanner, gen_component_n_editor, gen_component, agrs_Demo_OnePageHead, agrs_Demo_DashBoard, agrs_Demo_PicPage, agrs_Demo_EmailBlock, agrs_Demo_LeftPicRightWord, agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
+import { agrs_Demo_PageInfo,agrs_Demo_TrafficRow, agrs_Demo_OneGoAhead, agrs_Demo_CenterTextContent, agrs_Demo_CenterBanner, gen_component_n_editor, gen_component, agrs_Demo_OnePageHead, agrs_Demo_DashBoard, agrs_Demo_PicPage, agrs_Demo_EmailBlock, agrs_Demo_LeftPicRightWord, agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
 
 //
 import button_onegoahead from './assets/button_onegoahead.jpg'
@@ -122,6 +122,14 @@ class APP_JOURNI_EDIT extends Component {
     this.state.blocks.push(agrs_Demo_LeftPicRightWord)
     putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.refreash_page(this.state.blocks) })
   }
+  onAdd_PageInfo = (pageId) => {
+    var blocks = [agrs_Demo_PageInfo]
+    this.state.blocks = blocks.concat(this.state.blocks)
+    
+    putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => {
+      this.setState({ blocks: this.state.blocks })
+    })
+  }
   onAdd_LeftInstaRightWord = (pageId) => {
     this.state.blocks.push(agrs_Demo_LeftInstaRightWord)
     putJourneyPages(pageId, this.state.pws, this.state.blocks).then(res => { this.refreash_page(this.state.blocks) })
@@ -145,7 +153,7 @@ class APP_JOURNI_EDIT extends Component {
     this.setState({ blocks: this.state.blocks })
   }
   onMoveUpBlock = (index, pageId) => {
-    if (index != 0) {
+    if (index != 0 && this.state.blocks[index - 1].component_type!="PageInfo") {
 
       let sourceBlock = Object.assign({}, this.state.blocks[index])
       let targetBlock = Object.assign({}, this.state.blocks[index - 1])
@@ -272,41 +280,57 @@ class APP_JOURNI_EDIT extends Component {
                   })
 
                   //
-                  this.setState({ "pws": pws })
-                  this.setState({ "pageId": pageId })
+                  this.setState({ "pws": pws,"pageId": pageId })
                 }
 
 
                 let userpage = filter_page(page, md5(pws))
-                let blocks = userpage.page ? userpage.page : []
-                if (this.state.blocks.toString() != blocks.toString()) {
+                let blocks = userpage.page ? userpage.page : undefined
+                if (blocks && this.state.blocks.toString() != blocks.toString()) {
                   this.setState({ "blocks": blocks })
                   this.load()
+                }else if(blocks){
+                    console.log("blocks",blocks)
+                    //
+                    let add_agrs = {
+                      "roomData": filter_room(roomData, md5(pws)),
+                      "eventDetail": this.state.eventDetail,
+                      "updatedEventDetail": this.updatedEvent,
+                      "editorState": this.state.editorState,
+                      "handleEditorChange": this.handleEditorChange,
+                      "onUpdateBlock": this.onUpdateBlock,
+                      "onDeleteBlock": this.onDeleteBlock,
+                      "onUpdateFocus": this.onUpdateFocus,
+                      "onMoveUpBlock": this.onMoveUpBlock,
+                      "onMoveDownBlock": this.onMoveDownBlock,
+                      "pageId": pageId,
+                      "focus": this.state.focus
+                    }
+
+                    //
+                    if(this.state.blocks){
+                      var PageInfoExist = false
+                      this.state.blocks.forEach(ele=>{
+                        if(ele.component_type=="PageInfo"){
+                          PageInfoExist = true
+                        }
+                      })
+                      if(!PageInfoExist){
+                        this.onAdd_PageInfo(pageId)
+                      }
+                    }
+                    
+
+                    //
+                    this.state.blocks.forEach((row_agr, i) => {
+                      blocks_convented.push(<li>{gen_component_n_editor({ ...add_agrs, ...row_agr, index: i })}</li>)
+                    })
+
                 }
 
 
 
-                //
-                let add_agrs = {
-                  "roomData": filter_room(roomData, md5(pws)),
-                  "eventDetail": this.state.eventDetail,
-                  "updatedEventDetail": this.updatedEvent,
-                  "editorState": this.state.editorState,
-                  "handleEditorChange": this.handleEditorChange,
-                  "onUpdateBlock": this.onUpdateBlock,
-                  "onDeleteBlock": this.onDeleteBlock,
-                  "onUpdateFocus": this.onUpdateFocus,
-                  "onMoveUpBlock": this.onMoveUpBlock,
-                  "onMoveDownBlock": this.onMoveDownBlock,
-                  "pageId": pageId,
-                  "focus": this.state.focus
-                }
-
-                //
-                this.state.blocks.forEach((row_agr, i) => {
-                  blocks_convented.push(<li>{gen_component_n_editor({ ...add_agrs, ...row_agr, index: i })}</li>)
-                })
-
+                
 
                 return (
                   <DocumentMeta {...meta("Edit")}>
@@ -399,10 +423,13 @@ class APP_JOURNI_EDIT extends Component {
 
   // When state changes
   componentDidUpdate(prevProps, prevState) {
-    if (!arraysEqual(this.state.blocks, this.state.preblocks)) {
-      console.log("componentDidUpdate State1", this.state.blocks)
-      console.log("componentDidUpdate preblocks", this.state.preblocks)
-      this.setState({ "preblocks": Array.from(this.state.blocks) })
+    // if (!arraysEqual(this.state.blocks, this.state.preblocks)) {
+    //   console.log("componentDidUpdate State1", this.state.blocks)
+    //   console.log("componentDidUpdate preblocks", this.state.preblocks)
+    //   this.setState({ "preblocks": Array.from(this.state.blocks) })
+    //   this.load()
+    // }
+    if(this.state.blocks!==prevState.blocks){
       this.load()
     }
   }

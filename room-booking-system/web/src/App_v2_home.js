@@ -55,7 +55,8 @@ class APP_V2_HOME extends Component {
     floorParam: 'all',
     error: null,
     eventDetail: [[" ",[" "]]],
-    page: []
+    page: [],
+    user:null
   }
 
   updatedEvent = detailString => {
@@ -104,16 +105,15 @@ class APP_V2_HOME extends Component {
                 />
                 <Route path="/j/:pws" exact render={(props) =>{
                       //
+                      let owner = md5(props.match.params.pws)
                       this.init_page()
-
-                      //
-                      if(!this.state.page||this.state.page.length==0){
+                      if(this.state.user != owner){
                         this.fetch_page_from_db(props.match.params.pws)
+                        this.setState({user:owner})
                       }
                       
                       
                       //
-                      let owner = md5(props.match.params.pws)
                       let add_agrs = {
                         "roomData":filter_room(roomData,owner),
                         "eventDetail":this.state.eventDetail,
@@ -129,6 +129,17 @@ class APP_V2_HOME extends Component {
 
                       //
                       var title = html_strip(deep_search_from_list(blocks, ["title"], ["root"]))
+                      var description = title
+                      var keywords = `旅遊,台灣,景點,行程規劃,${title}`
+                      
+                      blocks.forEach(row_agr=>{
+                        if(row_agr.component_type=="PageInfo"){
+                          title = row_agr.title
+                          description = row_agr.description
+                          keywords = row_agr.keyword
+                        }
+                          
+                      })
                       return(
                          <Fragment>
                          {  !roomData && loading &&
@@ -142,11 +153,11 @@ class APP_V2_HOME extends Component {
                             (
                               <DocumentMeta {...{
                                 title: title,
-                                description: title,
+                                description: description,
                                 meta: {
                                   charset: 'utf-8',
                                   name: {
-                                    keywords: `旅遊,台灣,景點,行程規劃,${title}`
+                                    keywords: keywords
                                   }
                                 }
                               }}>
@@ -176,13 +187,13 @@ class APP_V2_HOME extends Component {
                   }
                   /*Todo: patch from Mongodb */
                   //
-                  if(!this.state.page||this.state.page.length==0){
-                    //this.fetch_page_from_db(props.match.params.userName)
+                  if(this.state.user != props.match.params.userName){
                     listPagesByUid(props.match.params.userName).then(page=>{
                       this.setState({page})
                     }).catch(err=>{
                       this.setState({page: [] })
                     })
+                    this.setState({user:props.match.params.userName})
                   }
 
                   let blocks = filter_page(this.state.page,props.match.params.userName)
@@ -192,7 +203,17 @@ class APP_V2_HOME extends Component {
                   })
 
                   //
-                  var title =  html_strip(deep_search_from_list(blocks, ["title"], ["root"]))
+                  var title = html_strip(deep_search_from_list(blocks, ["title"], ["root"]))
+                  var description = title
+                  var keywords = `旅遊,台灣,景點,行程規劃,${title}`
+                  blocks.forEach(row_agr=>{
+                    if(row_agr.component_type=="PageInfo"){
+                      title = row_agr.title
+                      description = row_agr.description
+                      keywords = row_agr.keyword
+                    }
+                      
+                  })
 
                   //
                   
@@ -209,11 +230,11 @@ class APP_V2_HOME extends Component {
                         (
                             <DocumentMeta {...{
                               title: title,
-                              description: title,
+                              description: description,
                               meta: {
                                 charset: 'utf-8',
                                 name: {
-                                  keywords: `旅遊,台灣,景點,行程規劃,${title}`
+                                  keywords: keywords
                                 }
                               }
                             }}>

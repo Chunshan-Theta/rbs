@@ -11,6 +11,8 @@ import {LeftInstaRightWord} from '../components/dynamic/LeftInstaRightWord'
 import CenterTextContent from '../components/dynamic/CenterTextContent'
 import OneGoAhead from '../components/dynamic/OneGoAhead'
 import TrafficRow from '../components/dynamic/TrafficRow'
+import PageInfo from '../components/dynamic/PageInfo'
+
 
 
 
@@ -25,7 +27,14 @@ import Edit_LeftPicRightWord from '../components/dynamic/Edit_LeftPicRightWord'
 import Edit_LeftInstaRightWord from '../components/dynamic/Edit_LeftInstaRightWord'
 import Edit_OneGoAhead from '../components/dynamic/Edit_OneGoAhead'
 import Edit_TrafficRow from '../components/dynamic/Edit_TrafficRow'
+import Edit_PageInfo from '../components/dynamic/Edit_PageInfo'
 
+function gen_agrs_PageInfo (title,description,keyword){return({
+	"component_type":"PageInfo",
+	"title":title,
+	"description":description,
+	"keyword":keyword
+})}
 
 function gen_agrs_TrafficRow (spot1,spot2,traffic_info){return({
 	"component_type":"TrafficRow",
@@ -187,6 +196,11 @@ function gen_component_n_editor(data){
 		case "TrafficRow":
 			return [TrafficRow(data),Edit_TrafficRow(data)]
 			break;
+		
+		case "PageInfo":
+			return [PageInfo(data),Edit_PageInfo(data)]
+			break;
+			
 		default:
 		  return(<h1>`Not Fount Component! {component_type}`</h1>)
 	}
@@ -232,6 +246,10 @@ function gen_component(data){
 			break;
 		case "TrafficRow":
 			return TrafficRow(data)
+			break;
+	
+		case "PageInfo":
+			return null
 			break;
 		default:
 		  return(<h1>`Not Fount Component! {component_type}`</h1>)
@@ -363,6 +381,14 @@ const agrs_Demo_EmailBlock = {
 	}
 }
 
+const agrs_Demo_PageInfo = {
+	"component_type":"PageInfo",
+	"title":"ThetaCity",
+	"description":"description",
+	"keyword":"keyword"
+}
+
+
 export {
 
     gen_agrs_LeftPicRightWord,
@@ -376,6 +402,7 @@ export {
 	gen_agrs_CenterBanner,
 	gen_agrs_CenterTextContent,
 	gen_agrs_TrafficRow,
+	gen_agrs_PageInfo,
     agrs_Demo_OnePageHead,
     agrs_Demo_DashBoard,
     agrs_Demo_PicPage,
@@ -385,7 +412,8 @@ export {
 	agrs_Demo_CenterBanner,
 	agrs_Demo_CenterTextContent,
 	agrs_Demo_OneGoAhead,
-	agrs_Demo_TrafficRow
+	agrs_Demo_TrafficRow,
+	agrs_Demo_PageInfo
 }
 
 
