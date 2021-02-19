@@ -35,7 +35,7 @@ import OnePageHead from './components/dynamic/OnePageHeader'
 import meta from './components/head'
 
 import { listOfficeRooms } from './api/rooms'
-import { listPages,listJourTags } from './api/userpages'
+import { listPagesByUid,listJourTags } from './api/userpages'
 import { listRoomsOfficial } from './api/rooms_official'
 import { getDecodedToken } from './api/token'
 import { makeBooking, deleteBooking, updateStateRoom } from './api/booking'
@@ -107,7 +107,10 @@ class APP_V2_HOME extends Component {
                       this.init_page()
 
                       //
-                      this.fetch_page_from_db(props.match.params.pws)
+                      if(!this.state.page||this.state.page.length==0){
+                        this.fetch_page_from_db(props.match.params.pws)
+                      }
+                      
                       
                       //
                       let owner = md5(props.match.params.pws)
@@ -118,11 +121,14 @@ class APP_V2_HOME extends Component {
                       }
                       /*Todo: patch from Mongodb */
                       //let blocks =[agrs_OnePageHead,agrs_PicPage,agrs_DashBoard,agrs_EmailBlock]
-                      let blocks = filter_page(page,owner)
+                      let blocks = filter_page(this.state.page,owner)
                       let blocks_convented = []
                       blocks.forEach(row_agr=>{
                         blocks_convented.push(<li>{gen_component({...row_agr,...add_agrs})}</li>)
                       })
+
+                      //
+                      var title = html_strip(deep_search_from_list(blocks, ["title"], ["root"]))
                       return(
                          <Fragment>
                          {  !roomData && loading &&
@@ -134,7 +140,16 @@ class APP_V2_HOME extends Component {
                          }
                          { roomData &&
                             (
-                                <DocumentMeta {...meta("ThetaCity")}>
+                              <DocumentMeta {...{
+                                title: title,
+                                description: title,
+                                meta: {
+                                  charset: 'utf-8',
+                                  name: {
+                                    keywords: `旅遊,台灣,景點,行程規劃,${title}`
+                                  }
+                                }
+                              }}>
 
                                     <ul className="one_page">
                                       {/* <li>
@@ -143,7 +158,7 @@ class APP_V2_HOME extends Component {
                                       {blocks_convented}
                                     </ul>
                                     <NavBar_Bottom/>
-                                </DocumentMeta>
+                              </DocumentMeta>
                             )
                          }
                          </Fragment>)}
@@ -153,18 +168,34 @@ class APP_V2_HOME extends Component {
                   //
                   this.init_page()
                   
+                  
                   let add_agrs = {
                     "roomData":filter_room(roomData,props.match.params.userName),
                     "eventDetail":this.state.eventDetail,
                     "updatedEventDetail":this.updatedEvent
                   }
                   /*Todo: patch from Mongodb */
-                  //let blocks =[agrs_OnePageHead,agrs_PicPage,agrs_DashBoard,agrs_EmailBlock]
-                  let blocks = filter_page(page,props.match.params.userName)
+                  //
+                  if(!this.state.page||this.state.page.length==0){
+                    //this.fetch_page_from_db(props.match.params.userName)
+                    listPagesByUid(props.match.params.userName).then(page=>{
+                      this.setState({page})
+                    }).catch(err=>{
+                      this.setState({page: [] })
+                    })
+                  }
+
+                  let blocks = filter_page(this.state.page,props.match.params.userName)
                   let blocks_convented = []
                   blocks.forEach(row_agr=>{
                     blocks_convented.push(<li>{gen_component({...row_agr,...add_agrs})}</li>)
                   })
+
+                  //
+                  var title =  html_strip(deep_search_from_list(blocks, ["title"], ["root"]))
+
+                  //
+                  
                   return(
                      <Fragment>
                      {  !roomData && loading &&
@@ -176,7 +207,16 @@ class APP_V2_HOME extends Component {
                      }
                      { roomData &&
                         (
-                            <DocumentMeta {...meta("ThetaCity")}>
+                            <DocumentMeta {...{
+                              title: title,
+                              description: title,
+                              meta: {
+                                charset: 'utf-8',
+                                name: {
+                                  keywords: `旅遊,台灣,景點,行程規劃,${title}`
+                                }
+                              }
+                            }}>
                                 
                                 <ul className="one_page">
                                   {/* <li>
@@ -228,9 +268,6 @@ class APP_V2_HOME extends Component {
       .catch(error => {
         console.error('Error loading room data', error)
         this.setState({ error })
-      })
-      listPages().then( page =>{
-        this.setState({ "page": page })
       })
     
   }
@@ -284,4 +321,52 @@ function filter_page(page,userName){
   return filter_page
 }
 
+
+function deep_search_from_list(blocks, targets, limit_levels) {
+  var result = null
+  blocks.forEach(block => {
+    if (result == null) {
+      result = deep_search(block, targets, limit_levels)
+    }
+  })
+  return result
+}
+
+function deep_search(block, targets, limit_levels, current_level = "root") {
+  for (var [key, val] of items(block)) {
+    if (val.constructor == Object) {
+      var result = deep_search(val, targets, limit_levels, key)
+      if (result != null) {
+        return result
+      }
+    } else {
+
+      if (arrayIn(limit_levels, current_level) && arrayIn(targets, key)) {
+
+        return val
+      }
+    }
+
+  }
+  return null
+}
+
+function items(iterable) {
+  return {
+    [Symbol.iterator]: function* () {
+      for (var key in iterable) {
+        yield [key, iterable[key]];
+      }
+    }
+  };
+}
+
+function arrayIn(arrhaystack, needle) {
+  return (arrhaystack.indexOf(needle) > -1);
+}
+
+function html_strip(html) {
+  let doc = new DOMParser().parseFromString(html, 'text/html');
+  return doc.body.textContent || "";
+}
 export default APP_V2_HOME
