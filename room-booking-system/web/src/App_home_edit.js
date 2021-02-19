@@ -43,6 +43,16 @@ import BookingModal from './components/BookingModal'
 import { floorParams, filterParams, capacityParams, onFilterByFloor, onFilterByFeature, onFilterByCapacity, onFilterByAvailablity } from './helpers/filters'
 import { agrs_Demo_TrafficRow, agrs_Demo_OneGoAhead,agrs_Demo_CenterTextContent,agrs_Demo_CenterBanner,gen_component_n_editor, gen_component,agrs_Demo_OnePageHead, agrs_Demo_DashBoard,agrs_Demo_PicPage,agrs_Demo_EmailBlock,agrs_Demo_LeftPicRightWord,agrs_Demo_LeftInstaRightWord } from './helpers/page_element'
 
+//
+import button_onegoahead from './assets/button_onegoahead.jpg'
+import button_header from './assets/button_header.jpg'
+import button_trafficrow from './assets/button_trafficrow.jpg'
+import button_centertextcontent from './assets/button_centertextcontent.jpg'
+import button_picpage from './assets/button_picpage.jpg'
+import button_leftpicrightword from './assets/button_leftpicrightword.jpg'
+import button_leftinstarightword from './assets/button_leftinstarightword.jpg'
+import button_mail from './assets/button_mail.jpg'
+import button_calendar from './assets/button_calendar.jpg'
 
 class APP_HOME_EDIT extends Component {
   state = {
@@ -57,59 +67,65 @@ class APP_HOME_EDIT extends Component {
   updatedEvent = detailString => {
     this.setState(() => ({ eventDetail: detailString }))
   }
+  refreash_page = (new_blocks) => {
+    this.setState({ blocks: new_blocks },()=>{
+      window.scrollTo(0,999999);
+    })
+    
+  }
 
   onAdd_CenterBanner =(pageId)=>{
     this.state.blocks.push(agrs_Demo_CenterBanner)
-    this.setState({ blocks: this.state.blocks })
+    this.refreash_page(this.state.blocks)
     putPages(pageId,this.state.blocks)
   }
   onAdd_CenterTextContent =(pageId)=>{
     this.state.blocks.push(agrs_Demo_CenterTextContent)
-    this.setState({ blocks: this.state.blocks })
+    this.refreash_page(this.state.blocks)
     putPages(pageId,this.state.blocks)
   }
   
   onAdd_TrafficRow =(pageId)=>{
     this.state.blocks.push( agrs_Demo_TrafficRow)
-    this.setState({ blocks: this.state.blocks })
+    this.refreash_page(this.state.blocks)
     putPages(pageId,this.state.blocks)
   }
 
   onAdd_header =(pageId)=>{
     this.state.blocks.push(agrs_Demo_OnePageHead)
-    this.setState({ blocks: this.state.blocks })
+    this.refreash_page(this.state.blocks)
     putPages(pageId,this.state.blocks)
   }
   onAdd_Dashboard =(pageId)=>{
     this.state.blocks.push(agrs_Demo_DashBoard)
-    this.setState({ blocks: this.state.blocks })
+    this.refreash_page(this.state.blocks)
     putPages(pageId,this.state.blocks)
     
   }
   onAdd_OneGoAhead =(pageId)=>{
     this.state.blocks.push(agrs_Demo_OneGoAhead)
-    this.setState({ blocks: this.state.blocks })
+    this.refreash_page(this.state.blocks)
     putPages(pageId,this.state.blocks)
     
   }
   onAdd_PicPage =(pageId)=>{
     this.state.blocks.push(agrs_Demo_PicPage)
-    this.setState({ blocks: this.state.blocks })
+    this.refreash_page(this.state.blocks)
     putPages(pageId,this.state.blocks)
   }
   onAdd_email =(pageId)=>{
     this.state.blocks.push(agrs_Demo_EmailBlock)
-    this.setState({ blocks: this.state.blocks })
+    this.refreash_page(this.state.blocks)
     putPages(pageId,this.state.blocks)
   }
   onAdd_LeftPicRightWord =(pageId)=>{
     this.state.blocks.push(agrs_Demo_LeftPicRightWord)
-    this.setState({ blocks: this.state.blocks })
+    this.refreash_page(this.state.blocks)
     putPages(pageId,this.state.blocks)
   }
   onAdd_LeftInstaRightWord =(pageId)=>{
     this.state.blocks.push(agrs_Demo_LeftInstaRightWord)
-    this.setState({ blocks: this.state.blocks })
+    this.refreash_page(this.state.blocks)
     putPages(pageId,this.state.blocks)
   }
   onlink_homepage =()=>{
@@ -260,48 +276,60 @@ class APP_HOME_EDIT extends Component {
                     console.log("props",this.props)
                     window.location.href = "../../login";
                   }
+
+
                   return(
                     <DocumentMeta {...meta("Edit")}>
                     <Fragment>
                         { decodedToken &&(
-                            <div>
-                                <div className="ToolBar bkc-gray">
+                            <div >
+                                <div className="toolbar bkc-gray">
+                                  <div class="row">
                                     <AddElementButton
                                       text={'新增欄位： 置中大字+四個連結'}
                                       onClick={() => this.onAdd_header(pageId)}
+                                      backgroundimage={button_header}
                                     />
                                     <AddElementButton
                                       text={'新增欄位： 置中大字+一個連結'}
                                       onClick={() => this.onAdd_OneGoAhead(pageId)}
+                                      backgroundimage={button_onegoahead}
                                     />
                                     <AddElementButton
                                       text={'新增欄位： 置中內文'}
                                       onClick={() => this.onAdd_CenterTextContent(pageId)}
+                                      backgroundimage={button_centertextcontent}
                                     />
                                     <AddElementButton
                                       text={'新增欄位： 行事曆'}
                                       onClick={() => this.onAdd_Dashboard(pageId)}
+                                      backgroundimage={button_calendar}
                                     />
                                     <AddElementButton
                                       text={'新增欄位： 三欄圖片'}
                                       onClick={() => this.onAdd_PicPage(pageId)}
+                                      backgroundimage={button_picpage}
                                     />
                                     <AddElementButton
                                       text={'新增欄位： 三個電子信箱聯絡按鈕'}
                                       onClick={() => this.onAdd_email(pageId)}
+                                      backgroundimage={button_mail}
                                     />
                                     <AddElementButton
                                       text={'新增欄位： 左圖右字'}
                                       onClick={() => this.onAdd_LeftPicRightWord(pageId)}
+                                      backgroundimage={button_leftpicrightword}
                                     />
 
                                     <AddElementButton
                                       text={'新增欄位： Instagram嵌入與文字說明'}
                                       onClick={() => this.onAdd_LeftInstaRightWord(pageId)}
+                                      backgroundimage={button_leftinstarightword}
                                     />
                                     <AddElementButton
                                       text={'新增欄位： 交通方式'}
                                       onClick={() => this.onAdd_TrafficRow(pageId)}
+                                      backgroundimage={button_trafficrow}
                                     />
                                     <AddElementButton
                                       text={'前往個人頁面'}
@@ -311,10 +339,7 @@ class APP_HOME_EDIT extends Component {
                                       text={'返回管理後台'}
                                       onClick={this.onlink_manager}
                                     />
-                                    <ul>
-                                      <p>新增欄位會在最下方</p>
-                                    </ul>
-                                </div>
+                                </div></div>
 
                                 <ul className="one_page">
                                   {blocks_convented}

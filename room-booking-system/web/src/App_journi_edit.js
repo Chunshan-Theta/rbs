@@ -76,8 +76,10 @@ class APP_JOURNI_EDIT extends Component {
     this.setState(() => ({ eventDetail: detailString }))
   }
   refreash_page = (new_blocks) => {
-    this.setState({ blocks: new_blocks })
-    alert("已新增至最下方")
+    this.setState({ blocks: new_blocks },()=>{
+
+      window.scrollTo(0,999999);
+    })
     
   }
 
