@@ -42,6 +42,7 @@ const Edit_TrafficRow = (props) => {
                       <option value="plane">plane</option>
                       <option value="bike">bike</option>
                       <option value="train">train</option>
+                      <option value="car">car</option>
                     </select>
                     說明:
                     <input type="text" name="traffic_info_text" defaultValue={props.traffic_info.text}/>

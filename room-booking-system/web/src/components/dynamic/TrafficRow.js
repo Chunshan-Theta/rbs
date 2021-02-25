@@ -7,6 +7,7 @@ import icon_walk from '../../assets/walk.png'
 import icon_plane from '../../assets/plane.png'
 import icon_bike from '../../assets/bike.png'
 import icon_train from '../../assets/train.png'
+import icon_car from '../../assets/car.png'
 
 //
 import icon_right_arrow from '../../assets/right_arrow.png'
@@ -16,7 +17,8 @@ var traffic_option = {
     "walk": {"img":icon_walk,"label":"行走"},
     "train": {"img":icon_train,"label":"火車"},
     "plane": {"img":icon_plane,"label":"飛機"},
-    "bike": {"img":icon_bike,"label":"腳踏車"}
+    "bike": {"img":icon_bike,"label":"腳踏車"},
+    "car": {"img":icon_car,"label":"汽車"}
 }
 
 const TrafficRow = (props) => {
