@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-03-29T04:06:04.283Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36" etag="jZlXk5crHYqTCIVK7SUN" version="14.5.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-03-29T04:10:27.026Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36" etag="moLnTfeFj3VW7v83JLXc" version="14.5.3" type="github">
   <diagram id="CQXvqj19SIkNWi7N2aEj" name="tourist">
     <mxGraphModel dx="2253" dy="803" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -142,6 +142,21 @@
         </mxCell>
         <mxCell id="wjUkhtjCSzYIzdJLlJuu-55" value="&lt;font face=&quot;monospace&quot;&gt;&lt;span style=&quot;font-size: 13px&quot;&gt;&amp;lt;iframe width=&quot;600&quot; height=&quot;450&quot; style=&quot;border:0&quot; loading=&quot;lazy&quot; allowfullscreen src=&quot;https://www.google.com/maps/embed/v1/place?q=%E5%8F%B0%E5%8C%97%E8%BB%8A%E7%AB%99&amp;amp;key=AIzaSyC6iDHgmq9N-fHS7XwBi-MGpOzn-ZzT7cc&quot;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;gradientColor=#b3b3b3;fillColor=#f5f5f5;" vertex="1" parent="1">
           <mxGeometry x="-360" y="240" width="500" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="wjUkhtjCSzYIzdJLlJuu-60" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="wjUkhtjCSzYIzdJLlJuu-56" target="wjUkhtjCSzYIzdJLlJuu-58">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wjUkhtjCSzYIzdJLlJuu-56" value="規劃住宿時間與方式" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="150" y="640" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="wjUkhtjCSzYIzdJLlJuu-57" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="wjUkhtjCSzYIzdJLlJuu-58" target="wjUkhtjCSzYIzdJLlJuu-59">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wjUkhtjCSzYIzdJLlJuu-58" value="選擇交通方式" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;gradientColor=#b3b3b3;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="310" y="650" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="wjUkhtjCSzYIzdJLlJuu-59" value="紀錄交通時間" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;gradientColor=#b3b3b3;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="310" y="720" width="40" height="40" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
