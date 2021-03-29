@@ -1,4 +1,4 @@
-<mxfile host="app.diagrams.net" modified="2021-03-29T04:02:37.360Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36" etag="wjKVTHvKxA6wpPlHPe62" version="14.5.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-03-29T04:03:17.401Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36" etag="t10PKPs8hbW6CtqDyWrE" version="14.5.3" type="github">
   <diagram id="CQXvqj19SIkNWi7N2aEj" name="tourist">
     <mxGraphModel dx="2253" dy="803" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
@@ -83,7 +83,7 @@
         <mxCell id="wjUkhtjCSzYIzdJLlJuu-30" value="在主要景點附近的" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;gradientColor=#b3b3b3;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
           <mxGeometry x="540" y="150" width="40" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="wjUkhtjCSzYIzdJLlJuu-32" value="最近熱門的" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;gradientColor=#ffd966;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="wjUkhtjCSzYIzdJLlJuu-32" value="最近熱門的" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;gradientColor=#b3b3b3;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
           <mxGeometry x="310" y="150" width="40" height="40" as="geometry" />
         </mxCell>
         <mxCell id="wjUkhtjCSzYIzdJLlJuu-34" value="平均停留時間" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;gradientColor=#b3b3b3;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
