@@ -1,6 +1,6 @@
-<mxfile host="app.diagrams.net" modified="2021-03-29T03:30:41.050Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36" etag="dGTk4Oeb5jifq4dBDurQ" version="14.5.3" type="github">
+<mxfile host="app.diagrams.net" modified="2021-03-29T04:02:37.360Z" agent="5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/89.0.4389.82 Safari/537.36" etag="wjKVTHvKxA6wpPlHPe62" version="14.5.3" type="github">
   <diagram id="CQXvqj19SIkNWi7N2aEj" name="tourist">
-    <mxGraphModel dx="1426" dy="803" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="2253" dy="803" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
@@ -63,6 +63,14 @@
         <mxCell id="wjUkhtjCSzYIzdJLlJuu-43" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="wjUkhtjCSzYIzdJLlJuu-26" target="wjUkhtjCSzYIzdJLlJuu-42">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
+        <mxCell id="wjUkhtjCSzYIzdJLlJuu-53" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" source="wjUkhtjCSzYIzdJLlJuu-26" target="wjUkhtjCSzYIzdJLlJuu-52">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="294" y="470" />
+              <mxPoint x="294" y="570" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
         <mxCell id="wjUkhtjCSzYIzdJLlJuu-26" value="整理資訊" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
           <mxGeometry x="154" y="440" width="120" height="60" as="geometry" />
         </mxCell>
@@ -90,7 +98,19 @@
         <mxCell id="wjUkhtjCSzYIzdJLlJuu-37" value="紀錄交通時間" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;gradientColor=#ffd966;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="540" y="350" width="40" height="40" as="geometry" />
         </mxCell>
-        <mxCell id="wjUkhtjCSzYIzdJLlJuu-40" value="交通路線圖" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;gradientColor=#ffd966;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+        <mxCell id="wjUkhtjCSzYIzdJLlJuu-51" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="wjUkhtjCSzYIzdJLlJuu-40" target="wjUkhtjCSzYIzdJLlJuu-50">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="wjUkhtjCSzYIzdJLlJuu-54" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;strokeColor=#999999;" edge="1" parent="1" source="wjUkhtjCSzYIzdJLlJuu-40" target="wjUkhtjCSzYIzdJLlJuu-55">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-50" y="380" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="330" y="390" />
+              <mxPoint x="-230" y="390" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="wjUkhtjCSzYIzdJLlJuu-40" value="紀錄&lt;br&gt;景點&lt;br&gt;位置" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;gradientColor=#ffd966;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
           <mxGeometry x="310" y="410" width="40" height="40" as="geometry" />
         </mxCell>
         <mxCell id="wjUkhtjCSzYIzdJLlJuu-42" value="行程&lt;br&gt;清單" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;gradientColor=#ffd966;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
@@ -113,6 +133,15 @@
             <mxPoint x="390" y="640" as="sourcePoint" />
             <mxPoint x="440" y="590" as="targetPoint" />
           </mxGeometry>
+        </mxCell>
+        <mxCell id="wjUkhtjCSzYIzdJLlJuu-50" value="交通路線圖" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;gradientColor=#b3b3b3;fillColor=#f5f5f5;strokeColor=#666666;" vertex="1" parent="1">
+          <mxGeometry x="380" y="410" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="wjUkhtjCSzYIzdJLlJuu-52" value="紀錄&lt;br&gt;景點&lt;br&gt;備註" style="strokeWidth=2;html=1;shape=mxgraph.flowchart.start_2;whiteSpace=wrap;gradientColor=#ffd966;fillColor=#fff2cc;strokeColor=#d6b656;" vertex="1" parent="1">
+          <mxGeometry x="310" y="550" width="40" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="wjUkhtjCSzYIzdJLlJuu-55" value="&lt;font face=&quot;monospace&quot;&gt;&lt;span style=&quot;font-size: 13px&quot;&gt;&amp;lt;iframe width=&quot;600&quot; height=&quot;450&quot; style=&quot;border:0&quot; loading=&quot;lazy&quot; allowfullscreen src=&quot;https://www.google.com/maps/embed/v1/place?q=%E5%8F%B0%E5%8C%97%E8%BB%8A%E7%AB%99&amp;amp;key=AIzaSyC6iDHgmq9N-fHS7XwBi-MGpOzn-ZzT7cc&quot;&amp;gt;&amp;lt;/iframe&amp;gt;&lt;/span&gt;&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;strokeColor=#666666;gradientColor=#b3b3b3;fillColor=#f5f5f5;" vertex="1" parent="1">
+          <mxGeometry x="-480" y="240" width="500" height="130" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
